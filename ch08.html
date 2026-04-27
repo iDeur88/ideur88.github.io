@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CH.08 · 性能测试与标准 | 包装材料学</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+:root{--bg:#FFFFFF;--bg2:#F8FBFF;--bg3:#F0F9FF;--card:#FFFFFF;--ink:#1A1A2E;--ink2:#2D3561;--muted:#6B7280;--border:#E8F4FD;--border2:#B3E5FC;--yellow:#FFD700;--cyan:#4DD0E1;--orange:#FF8A65;--sky:#81D4FA;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-weight:400;overflow-x:hidden;line-height:1.7}
+.abbr-term{border-bottom:1.5px dashed var(--cyan);cursor:help;color:var(--cyan);font-weight:500;display:inline}
+.abbr-tooltip{display:none;position:fixed;z-index:9999;background:rgba(255,255,255,0.85);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(77,208,225,0.30);border-radius:12px;padding:12px 16px;max-width:290px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.65;pointer-events:none;box-shadow:0 8px 32px rgba(77,208,225,0.18),0 2px 8px rgba(0,0,0,0.06);color:var(--ink)}
+.abbr-tooltip .tt-abbr{color:var(--orange);font-size:13px;font-weight:600;display:block;margin-bottom:3px}
+.abbr-tooltip .tt-en{color:var(--muted);font-size:10px;display:block;margin-bottom:6px}
+.abbr-tooltip .tt-def{color:var(--ink2);font-size:11px}
+#top-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:2px solid var(--accent);display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:56px}
+.nav-back{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.08em;display:flex;align-items:center;gap:8px;transition:color 0.2s}.nav-back:hover{color:var(--orange)}
+.nav-chapter{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;color:var(--ink)}
+.nav-progress{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em}
+.chapter-hero{margin-top:56px;padding:80px 72px 64px;border-bottom:1px solid var(--border2);position:relative;overflow:hidden}
+.chapter-hero::after{content:var(--ch-num);position:absolute;right:-10px;top:-20px;font-family:'Noto Sans SC',sans-serif;font-size:260px;font-weight:700;color:transparent;-webkit-text-stroke:1.5px rgba(77,208,225,0.12);line-height:1;pointer-events:none}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.hero-title{font-family:'Noto Sans SC',sans-serif;font-size:clamp(36px,5.5vw,64px);font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:20px}
+.hero-title .accent{color:var(--accent)}
+.hero-subtitle{font-size:14px;font-weight:300;color:var(--ink2);max-width:560px;line-height:1.9;margin-bottom:36px}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap}
+.htag{font-family:'DM Mono',monospace;font-size:10px;padding:5px 14px;border-radius:20px;border:1.5px solid var(--border2);color:var(--ink2);letter-spacing:0.06em;background:var(--bg)}
+.chapter-nav{position:fixed;left:20px;top:50%;transform:translateY(-50%);z-index:150;display:flex;flex-direction:column;gap:8px}
+.cnav-item{display:flex;align-items:center;gap:8px;text-decoration:none;opacity:0.4;transition:opacity 0.2s}.cnav-item:hover,.cnav-item.active{opacity:1}
+.cnav-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);flex-shrink:0;transition:background 0.2s,transform 0.2s}
+.cnav-item.active .cnav-dot{background:var(--accent);transform:scale(1.4)}
+.cnav-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink2);letter-spacing:0.06em;white-space:nowrap}
+.content-wrap{max-width:900px;margin:0 auto;padding:0 72px}
+.section-block{padding:64px 0;border-bottom:1px solid var(--border)}
+.block-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.block-eyebrow::after{content:'';display:block;height:2px;width:40px;background:var(--accent);border-radius:2px;opacity:0.6}
+.block-title{font-family:'Noto Sans SC',sans-serif;font-size:32px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.25}
+.block-title-en{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;margin-bottom:32px}
+.prose{font-size:15px;color:var(--ink2);line-height:1.9;margin-bottom:24px;max-width:720px}.prose strong{font-weight:600;color:var(--ink)}
+.info-box{background:var(--bg3);border:1.5px solid var(--sky);border-radius:12px;padding:20px 24px;margin:24px 0;display:flex;gap:16px;align-items:flex-start}
+.info-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.info-text{font-size:14px;color:var(--ink2);line-height:1.8}.info-text strong{color:var(--ink);font-weight:600}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin:32px 0}
+.content-card{background:var(--card);border:1.5px solid var(--border2);border-radius:14px;padding:22px 18px;transition:all 0.2s;cursor:default}
+.content-card:hover{border-color:var(--accent);background:var(--bg3);transform:translateY(-3px);box-shadow:0 8px 24px rgba(77,208,225,0.10)}
+.cc-title{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.cc-en{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:10px;letter-spacing:0.06em}
+.cc-desc{font-size:13px;color:var(--ink2);line-height:1.7}
+.cc-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:8px;background:var(--bg3);color:var(--ink2);margin-top:10px;margin-right:4px}
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:24px 0}
+.ref-card{background:var(--card);border:1.5px solid var(--border2);border-radius:12px;padding:16px 18px;text-decoration:none;display:block;transition:all 0.2s}
+.ref-card:hover{border-color:var(--accent);background:var(--bg3);transform:translateY(-2px)}
+.ref-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.ref-title{font-family:'Noto Sans SC',sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.4}
+.ref-desc{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:1.6}
+.data-table{width:100%;border-collapse:collapse;margin:32px 0;font-size:13px}
+.data-table th{background:var(--ink);color:#fff;padding:10px 14px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-align:left;font-weight:500}
+.data-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--ink2)}
+.data-table tr:hover td{background:var(--bg2)}
+@media(max-width:900px){.chapter-nav{display:none}.content-wrap{padding:0 24px}.chapter-hero{padding:56px 24px 48px}#top-nav{padding:0 20px}.nav-progress{display:none}}
+:root { --accent:#4DD0E1; }
+.chapter-hero { background:linear-gradient(135deg,#E0F7FA 0%,#E8EAF6 60%,#F3E5F5 100%); }
+.chapter-hero::after { content:'08'; }
+</style>
+</head>
+<body>
+<div class="abbr-tooltip" id="abbrTooltip"><span class="tt-abbr" id="ttAbbr"></span><span class="tt-en" id="ttEn"></span><span class="tt-def" id="ttDef"></span></div>
+<nav id="top-nav">
+  <a class="nav-back" href="index.html">← 返回主页</a>
+  <div class="nav-chapter">CH.08 · 性能测试与标准</div>
+  <div class="nav-progress">Performance Testing &amp; Standards</div>
+</nav>
+<nav class="chapter-nav" id="chapterNav">
+  <a class="cnav-item active" href="#sec-overview" data-sec="sec-overview"><div class="cnav-dot"></div><span class="cnav-label">测试体系概述</span></a>
+  <a class="cnav-item" href="#sec-material" data-sec="sec-material"><div class="cnav-dot"></div><span class="cnav-label">材料级测试</span></a>
+  <a class="cnav-item" href="#sec-transport" data-sec="sec-transport"><div class="cnav-dot"></div><span class="cnav-label">运输模拟测试</span></a>
+  <a class="cnav-item" href="#sec-food" data-sec="sec-food"><div class="cnav-dot"></div><span class="cnav-label">食品接触测试</span></a>
+  <a class="cnav-item" href="#sec-refs" data-sec="sec-refs"><div class="cnav-dot"></div><span class="cnav-label">参考资料</span></a>
+</nav>
+<header class="chapter-hero">
+  <div class="hero-eyebrow">Chapter 08 · Packaging Materials Science</div>
+  <h1 class="hero-title"><span class="accent">性能测试</span></h1>
+  <p class="hero-subtitle">包装材料的性能不靠「感觉」判断，靠标准化测试验证。从单一材料的物理化学指标，到整体包装的运输模拟，测试体系构成了材料选用决策的客观依据。</p>
+  <div class="hero-tags"><span class="htag">TAPPI 测试</span><span class="htag">ASTM D4169</span><span class="htag">振动/跌落</span><span class="htag">ECT/BCT</span><span class="htag">阻隔测试</span><span class="htag">食品模拟迁移</span></div>
+</header>
+<div class="content-wrap">
+
+  <section class="section-block" id="sec-overview">
+    <div class="block-eyebrow">Section 01</div>
+    <h2 class="block-title">测试体系概述</h2>
+    <p class="block-title-en">Testing Framework · From Material to System</p>
+    <p class="prose">包装性能测试分为三个层次：<strong>材料级</strong>（单一材料的物理化学性能，如纸张 ECT、薄膜 OTR）、<strong>包装级</strong>（成型包装的功能验证，如纸箱 BCT、封口强度）和<strong>系统级</strong>（模拟真实运输/储存条件，如 ISTA/ASTM D4169 运输模拟）。三个层次相互关联——材料级测试预测包装级性能，包装级测试指导系统级优化。</p>
+<div class="info-box"><div class="info-icon">📋</div><div class="info-text"><strong>主要标准体系：</strong><br>
+• <span class="abbr-term" data-key="tappi">TAPPI</span>：纸张与瓦楞纸板测试（<span class="abbr-term" data-key="ect">ECT</span>、<span class="abbr-term" data-key="rct">RCT</span>、<span class="abbr-term" data-key="bst">BST</span>）与瓦楞纸板的材料测试权威（美国）<br>
+• <span class="abbr-term" data-key="astm">ASTM</span> D4169 运输模拟：运输包装完整性模拟测试（美国）<br>
+• <span class="abbr-term" data-key="iso">ISO</span> 11607 无菌包装：医疗器械无菌包装验证（国际）<br>
+• GB/T 4857：包装运输包装件测试方法（中国）<br>
+• ISTA（国际安全运输协会）：电商包装测试规程</div></div>
+  </section>
+  <section class="section-block" id="sec-material">
+    <div class="block-eyebrow">Section 02</div>
+    <h2 class="block-title">材料级测试</h2>
+    <p class="block-title-en">Material Tests · Key Methods</p>
+    <table class="data-table">
+<thead><tr><th>测试名称</th><th>标准</th><th>测试对象</th><th>测量内容</th><th>单位</th></tr></thead>
+<tbody>
+<tr><td><strong>边压强度 <span class="abbr-term" data-key="ect">ECT</span></strong></td><td>TAPPI T 811</td><td>瓦楞纸板</td><td>截面边缘抗压力</td><td>kN/m</td></tr>
+<tr><td><strong>环压强度 <span class="abbr-term" data-key="rct">RCT</span></strong></td><td>TAPPI T 822</td><td>面纸/里纸</td><td>纸条环形压缩强度</td><td>N</td></tr>
+<tr><td><strong>耐破强度 <span class="abbr-term" data-key="bst">BST</span></strong></td><td>TAPPI T 807</td><td>瓦楞纸板</td><td>液压穿破压力</td><td>kPa</td></tr>
+<tr><td><strong>透氧率 <span class="abbr-term" data-key="otr">OTR</span></strong></td><td>ASTM D3985</td><td>塑料薄膜/复合膜</td><td>氧气透过量</td><td>cm³/m²·day·atm</td></tr>
+<tr><td>透湿率 <span class="abbr-term" data-key="wvtr">WVTR</span></td><td>ASTM E96</td><td>薄膜/纸张涂层</td><td>水蒸气透过量</td><td>g/m²·24h</td></tr>
+<tr><td><strong>拉伸强度</strong></td><td>ASTM D882</td><td>薄膜/复合膜</td><td>断裂拉力和延伸率</td><td>MPa / %</td></tr>
+<tr><td><strong>热封强度</strong></td><td>ASTM F88</td><td>软包封口</td><td>T型剥离封口强度</td><td>N/15mm</td></tr>
+</tbody>
+</table>
+  </section>
+  <section class="section-block" id="sec-transport">
+    <div class="block-eyebrow">Section 03</div>
+    <h2 class="block-title">运输模拟测试</h2>
+    <p class="block-title-en">Transport Simulation · ASTM D4169 &amp; ISTA</p>
+    <p class="prose">运输模拟测试的目的是在实验室中重现真实物流链中的各类机械应力，验证包装在到达消费者前的完整性。ASTM D4169 是全球最广泛采用的运输模拟标准，将运输链分解为若干应力序列：振动 → 跌落 → 压缩 → 低气压（空运）→ 环境老化。</p>
+<div class="card-grid">
+<div class="content-card"><div class="cc-title">跌落测试</div><div class="cc-en">Drop Test</div><div class="cc-desc">模拟装卸过程中的意外跌落。测试高度由产品重量决定（&lt;10 kg → 76 cm），按 ASTM D5276 执行，测试面/棱/角。</div></div>
+<div class="content-card"><div class="cc-title">振动测试</div><div class="cc-en">Vibration Test</div><div class="cc-desc">模拟卡车/铁路运输中的持续振动。用功率谱密度（PSD）曲线描述振动能量分布，随机振动比正弦振动更接近真实情况。</div></div>
+<div class="content-card"><div class="cc-title">压缩测试</div><div class="cc-en">Compression Test</div><div class="cc-desc">模拟仓储码垛压力。<span class="abbr-term" data-key="bct">BCT</span> 测试施加压力至纸箱压溃，取最大力值。电商纸箱通常要求 BCT ≥ 产品重量 × 层数 × 1.6 安全系数。</div></div>
+</div>
+  </section>
+  <section class="section-block" id="sec-food">
+    <div class="block-eyebrow">Section 04</div>
+    <h2 class="block-title">食品接触迁移测试</h2>
+    <p class="block-title-en">Food Contact Migration Testing</p>
+    <p class="prose">食品接触包装材料须通过迁移测试，证明有害物质不会从包装迁移至食品。测试分为<strong>全迁移（Overall Migration）</strong>——所有可迁移物质总量，限值 10 mg/dm²；和<strong>特定迁移（Specific Migration）</strong>——单一关注物质（如 BPA、重金属、光引发剂）的迁移量。</p>
+<p class="prose">测试采用食品模拟液代替实际食品：蒸馏水（模拟水性食品）、3% 乙酸（酸性食品）、10% 乙醇（低酒精饮料）、95% 乙醇（高脂食品）、橄榄油（脂肪类食品）。测试条件（温度/时间）须覆盖最苛刻的实际使用场景。</p>
+  </section>
+  <section class="section-block" id="sec-refs">
+    <div class="block-eyebrow">Section 05</div>
+    <h2 class="block-title">参考资料</h2>
+    <p class="block-title-en">References</p>
+    <div class="ref-grid">
+<a class="ref-card" href="https://www.tappi.org" target="_blank" rel="noopener"><div class="ref-type">标准机构</div><div class="ref-title">TAPPI · 纸张与包装测试标准</div><div class="ref-desc">纸张、瓦楞纸板全套测试方法，部分可免费获取</div></a>
+<a class="ref-card" href="https://www.ista.org" target="_blank" rel="noopener"><div class="ref-type">标准机构</div><div class="ref-title">ISTA · 国际安全运输协会</div><div class="ref-desc">电商包装专项测试规程，主流电商平台认可标准</div></a>
+<a class="ref-card" href="https://www.astm.org" target="_blank" rel="noopener"><div class="ref-type">标准机构</div><div class="ref-title">ASTM International</div><div class="ref-desc"><span class="abbr-term" data-key="astm">ASTM</span> D4169 运输模拟及 D3985 <span class="abbr-term" data-key="otr">OTR</span> 测试标准</div></a>
+</div>
+  </section>
+</div>
+<footer style="background:var(--bg2);border-top:2px solid var(--accent);padding:32px 72px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">
+  <span>CH.08 · 性能测试与标准 · Packaging Materials Science</span>
+  <div style="display:flex;gap:24px"><a href="ch07.html" style="color:var(--muted);text-decoration:none">← CH07</a><a href="index.html" style="color:var(--cyan);text-decoration:none">主页</a><a href="ch09.html" style="color:var(--orange);text-decoration:none">CH09 →</a></div>
+</footer>
+<script>
+window.ABBR_DB={
+  ect:{abbr:'ECT',en:'Edge Crush Test',def:'边压强度：沿瓦楞纸板截面边缘方向施压测得的强度，是预测纸箱 BCT 最关键的单一材料指标，单位 kN/m。'},
+  bct:{abbr:'BCT',en:'Box Compression Test',def:'纸箱抗压强度：对整只成型纸箱垂直施压至压溃时的最大力值，选材的最终验证指标，单位 N 或 kgf。'},
+  rct:{abbr:'RCT',en:'Ring Crush Test',def:'环压强度：将纸条弯成圆环后垂直压缩，测试面纸/里纸的抗压能力，单位 N。'},
+  bst:{abbr:'BST',en:'Burst Strength Test (Mullen)',def:'耐破强度（穆伦）：液压将橡皮膜顶破纸张时的压力，反映对戳穿力的抵抗能力，单位 kPa。'},
+  gsm:{abbr:'GSM',en:'Grams per Square Meter',def:'克重（定量）：1平方米材料的质量，单位 g/m²。纸张常见 80–300 g/m²，面纸 140–200 g/m²，芯纸 100–160 g/m²。'},
+  wvtr:{abbr:'WVTR',en:'Water Vapor Transmission Rate',def:'透湿率：单位面积材料每 24 小时通过的水蒸气量，单位 g/(m²·24h)，数值越低阻湿性越好。'},
+  otr:{abbr:'OTR',en:'Oxygen Transmission Rate',def:'透氧率：单位面积材料通过的氧气量，单位 cm³/(m²·day·atm)，数值越低阻氧性越好。食品/药品包装关键指标。'},
+  fefco:{abbr:'FEFCO',en:'European Federation of Corrugated Board Manufacturers',def:'欧洲瓦楞纸板工业联合会，制定国际通用的纸箱箱型编码标准（0201、0204 等）。'},
+  gbt:{abbr:'GB/T',en:'Guobiao Recommended Standard (China)',def:'中国推荐性国家标准。GB/T 6543 瓦楞纸箱、GB/T 10004 复合膜、GB/T 4857 包装运输测试。'},
+  map:{abbr:'MAP',en:'Modified Atmosphere Packaging',def:'气调包装：用 N₂/CO₂ 等替换包装内空气，抑制微生物生长和氧化，延长生鲜食品货架期。'},
+  tappi:{abbr:'TAPPI',en:'Technical Association of Pulp and Paper Industry',def:'美国纸浆与造纸工业技术协会，发布纸张和包装材料权威测试标准，如 TAPPI T 811 ECT 测试。'},
+  iso:{abbr:'ISO',en:'International Organization for Standardization',def:'国际标准化组织，发布全球通用测试标准：ISO 11607 无菌包装、ISO 14021 环保声明等。'},
+  astm:{abbr:'ASTM',en:'American Society for Testing and Materials',def:'美国材料与试验协会，包装常用：ASTM D4169 运输模拟、D3985 OTR 测试、D882 拉伸强度测试。'},
+  pe:{abbr:'PE',en:'Polyethylene',def:'聚乙烯：最常见的包装塑料，密度 &lt;1（浮于水），柔软蜡感，阻水好。LDPE 用于薄膜，HDPE 用于瓶罐。'},
+  bopp:{abbr:'BOPP',en:'Biaxially Oriented Polypropylene',def:'双向拉伸聚丙烯：强度和透明度均优于普通 PP，是零食/糖果软包外层基材的主流选择。'},
+};
+const tt=document.getElementById('abbrTooltip');
+document.querySelectorAll('.abbr-term').forEach(el=>{
+  const d=(window.ABBR_DB||{})[el.dataset.key];if(!d)return;
+  function show(x,y){document.getElementById('ttAbbr').textContent=d.abbr;document.getElementById('ttEn').textContent=d.en;document.getElementById('ttDef').textContent=d.def;let tx=x+14,ty=y-10;if(tx+300>window.innerWidth)tx=x-300;if(ty+120>window.innerHeight)ty=y-120;tt.style.left=tx+'px';tt.style.top=ty+'px';tt.style.display='block';}
+  el.addEventListener('mouseenter',e=>show(e.clientX,e.clientY));
+  el.addEventListener('mousemove',e=>show(e.clientX,e.clientY));
+  el.addEventListener('mouseleave',()=>tt.style.display='none');
+  el.addEventListener('click',e=>{e.stopPropagation();tt.style.display==='block'?tt.style.display='none':show(e.clientX,e.clientY);});
+});
+document.addEventListener('click',()=>tt.style.display='none');
+const nav=document.getElementById('chapterNav');const hero=document.querySelector('.chapter-hero');
+nav.style.cssText='opacity:0;pointer-events:none;transition:opacity 0.3s';
+new IntersectionObserver(entries=>{const v=entries[0].isIntersecting;nav.style.opacity=v?'0':'1';nav.style.pointerEvents=v?'none':'auto';},{threshold:0}).observe(hero);
+document.querySelectorAll('.section-block').forEach(s=>{new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)return;document.querySelectorAll('.cnav-item').forEach(n=>n.classList.remove('active'));const a=document.querySelector(`.cnav-item[data-sec="${entries[0].target.id}"]`);if(a)a.classList.add('active');},{rootMargin:'-20% 0px -60% 0px'}).observe(s);});
+</script>
+</body>
+</html>

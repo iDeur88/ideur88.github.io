@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CH.04 · 金属包装 | 包装材料学</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+:root{--bg:#FFFFFF;--bg2:#F8FBFF;--bg3:#F0F9FF;--card:#FFFFFF;--ink:#1A1A2E;--ink2:#2D3561;--muted:#6B7280;--border:#E8F4FD;--border2:#B3E5FC;--yellow:#FFD700;--cyan:#4DD0E1;--orange:#FF8A65;--sky:#81D4FA;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-weight:400;overflow-x:hidden;line-height:1.7}
+.abbr-term{border-bottom:1.5px dashed var(--orange);cursor:help;color:var(--orange);font-weight:500;display:inline}
+.abbr-tooltip{display:none;position:fixed;z-index:9999;background:rgba(255,255,255,0.85);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,138,101,0.30);border-radius:12px;padding:12px 16px;max-width:290px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.65;pointer-events:none;box-shadow:0 8px 32px rgba(255,138,101,0.15),0 2px 8px rgba(0,0,0,0.06);color:var(--ink)}
+.abbr-tooltip .tt-abbr{color:var(--orange);font-size:13px;font-weight:600;display:block;margin-bottom:3px}
+.abbr-tooltip .tt-en{color:var(--muted);font-size:10px;display:block;margin-bottom:6px}
+.abbr-tooltip .tt-def{color:var(--ink2);font-size:11px}
+#top-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:2px solid var(--orange);display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:56px}
+.nav-back{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.08em;display:flex;align-items:center;gap:8px;transition:color 0.2s}.nav-back:hover{color:var(--orange)}
+.nav-chapter{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;color:var(--ink)}
+.nav-progress{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em}
+.chapter-hero{margin-top:56px;padding:80px 72px 64px;background:linear-gradient(135deg,#FFF3E0 0%,#FFE0B2 40%,#FFF9C4 100%);border-bottom:1px solid var(--border2);position:relative;overflow:hidden}
+.chapter-hero::after{content:'04';position:absolute;right:-10px;top:-20px;font-family:'Noto Sans SC',sans-serif;font-size:260px;font-weight:700;color:transparent;-webkit-text-stroke:1.5px rgba(255,138,101,0.15);line-height:1;pointer-events:none}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
+.hero-title{font-family:'Noto Sans SC',sans-serif;font-size:clamp(36px,5.5vw,64px);font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:20px}
+.hero-title span{color:var(--orange)}
+.hero-subtitle{font-size:14px;font-weight:300;color:var(--ink2);max-width:560px;line-height:1.9;margin-bottom:36px}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap}
+.htag{font-family:'DM Mono',monospace;font-size:10px;padding:5px 14px;border-radius:20px;border:1.5px solid #FFB74D;color:var(--ink2);letter-spacing:0.06em;background:var(--bg)}
+.chapter-nav{position:fixed;left:20px;top:50%;transform:translateY(-50%);z-index:150;display:flex;flex-direction:column;gap:8px}
+.cnav-item{display:flex;align-items:center;gap:8px;text-decoration:none;opacity:0.4;transition:opacity 0.2s}.cnav-item:hover,.cnav-item.active{opacity:1}
+.cnav-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);flex-shrink:0;transition:background 0.2s,transform 0.2s}
+.cnav-item.active .cnav-dot{background:var(--orange);transform:scale(1.4)}
+.cnav-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink2);letter-spacing:0.06em;white-space:nowrap}
+.content-wrap{max-width:900px;margin:0 auto;padding:0 72px}
+.section-block{padding:64px 0;border-bottom:1px solid var(--border)}
+.block-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--orange);margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.block-eyebrow::after{content:'';display:block;height:2px;width:40px;background:linear-gradient(90deg,var(--orange),var(--yellow));border-radius:2px}
+.block-title{font-family:'Noto Sans SC',sans-serif;font-size:32px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.25}
+.block-title-en{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;margin-bottom:32px}
+.prose{font-size:15px;color:var(--ink2);line-height:1.9;margin-bottom:24px;max-width:720px}.prose strong{font-weight:600;color:var(--ink)}
+.compare-2col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:32px 0}
+.metal-card{background:var(--card);border:1.5px solid var(--border2);border-radius:16px;padding:28px 24px;position:relative;overflow:hidden}
+.metal-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.metal-card.tinplate::before{background:linear-gradient(90deg,#B0BEC5,#78909C)}
+.metal-card.aluminium::before{background:linear-gradient(90deg,var(--sky),var(--cyan))}
+.metal-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.metal-title{font-family:'Noto Sans SC',sans-serif;font-size:22px;font-weight:700;color:var(--ink);margin-bottom:16px}
+.metal-props{list-style:none;display:flex;flex-direction:column;gap:8px}
+.metal-props li{font-size:13px;color:var(--ink2);display:flex;gap:8px;align-items:flex-start}
+.metal-props li::before{content:'▸';color:var(--orange);flex-shrink:0;margin-top:2px}
+.process-steps{display:flex;flex-direction:column;gap:12px;margin:32px 0}
+.ps-item{display:flex;gap:16px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:16px 20px;align-items:flex-start}
+.ps-num{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:var(--orange);flex-shrink:0;width:32px}
+.ps-title{font-family:'Noto Sans SC',sans-serif;font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.ps-desc{font-size:13px;color:var(--ink2);line-height:1.7}
+.info-box{background:var(--bg3);border:1.5px solid var(--sky);border-radius:12px;padding:20px 24px;margin:24px 0;display:flex;gap:16px;align-items:flex-start}
+.info-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.info-text{font-size:14px;color:var(--ink2);line-height:1.8}.info-text strong{color:var(--ink);font-weight:600}
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:24px 0}
+.ref-card{background:var(--card);border:1.5px solid var(--border2);border-radius:12px;padding:16px 18px;text-decoration:none;display:block;transition:all 0.2s}
+.ref-card:hover{border-color:var(--orange);background:var(--bg3);transform:translateY(-2px)}
+.ref-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+.ref-title{font-family:'Noto Sans SC',sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.4}
+.ref-desc{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:1.6}
+@media(max-width:900px){.chapter-nav{display:none}.content-wrap{padding:0 24px}.chapter-hero{padding:56px 24px 48px}#top-nav{padding:0 20px}.nav-progress{display:none}.compare-2col{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="abbr-tooltip" id="abbrTooltip"><span class="tt-abbr" id="ttAbbr"></span><span class="tt-en" id="ttEn"></span><span class="tt-def" id="ttDef"></span></div>
+<nav id="top-nav">
+  <a class="nav-back" href="index.html">← 返回主页</a>
+  <div class="nav-chapter">CH.04 · 金属包装</div>
+  <div class="nav-progress">Metal Packaging · Tinplate &amp; Aluminium</div>
+</nav>
+<nav class="chapter-nav" id="chapterNav">
+  <a class="cnav-item active" href="#sec-overview" data-sec="sec-overview"><div class="cnav-dot"></div><span class="cnav-label">材料总览</span></a>
+  <a class="cnav-item" href="#sec-tinplate" data-sec="sec-tinplate"><div class="cnav-dot"></div><span class="cnav-label">马口铁 vs 铝</span></a>
+  <a class="cnav-item" href="#sec-process"  data-sec="sec-process"><div class="cnav-dot"></div><span class="cnav-label">制罐工艺</span></a>
+  <a class="cnav-item" href="#sec-coating"  data-sec="sec-coating"><div class="cnav-dot"></div><span class="cnav-label">内涂层</span></a>
+  <a class="cnav-item" href="#sec-refs"     data-sec="sec-refs"><div class="cnav-dot"></div><span class="cnav-label">参考资料</span></a>
+</nav>
+<header class="chapter-hero">
+  <div class="hero-eyebrow">Chapter 04 · Packaging Materials Science</div>
+  <h1 class="hero-title"><span>金属包装</span><br>马口铁与铝</h1>
+  <p class="hero-subtitle">金属包装是 <span class="abbr-term" data-key="otr">OTR</span> 和 <span class="abbr-term" data-key="wvtr">WVTR</span> 最强的包装形式——完全阻绝氧气、水分、光线，可在常温下保存食品数年。理解制罐工艺与内涂层体系是关键。</p>
+  <div class="hero-tags"><span class="htag">马口铁</span><span class="htag">铝合金</span><span class="htag">DI 制罐</span><span class="htag">内涂层 BPA-free</span><span class="htag">易开盖</span><span class="htag">无限回收</span></div>
+</header>
+<div class="content-wrap">
+  <section class="section-block" id="sec-overview">
+    <div class="block-eyebrow">Section 01</div>
+    <h2 class="block-title">材料总览</h2>
+    <p class="block-title-en">Overview · Metal as the Ultimate Barrier</p>
+    <p class="prose">金属包装以<strong>完全阻隔</strong>著称——铝箔厚度超过 6.5 μm 时，氧气和水分透过量实际为零。这是塑料和纸质材料无法企及的性能优势，使金属容器成为长货架期食品（罐头、奶粉、咖啡）和易燃易挥发产品（气雾剂、润滑油）的首选。</p>
+    <p class="prose">金属包装的两大主角是<strong>马口铁（镀锡钢板）</strong>和<strong>铝</strong>。前者强度更高、成本更低，适合大容量罐；后者重量轻约 65%、延展性好，是饮料罐和软管的主流材料。两者的内涂层化学体系是影响食品安全的关键。</p>
+  </section>
+  <section class="section-block" id="sec-tinplate">
+    <div class="block-eyebrow">Section 02</div>
+    <h2 class="block-title">马口铁 vs 铝</h2>
+    <p class="block-title-en">Tinplate vs Aluminium · Material Comparison</p>
+    <div class="compare-2col">
+      <div class="metal-card tinplate">
+        <div class="metal-label">Tinplate · 马口铁</div>
+        <div class="metal-title">镀锡钢板</div>
+        <ul class="metal-props">
+          <li>基材：低碳钢板（厚 0.15–0.49 mm），双面电镀锡层（1.1–11.2 g/m²）</li>
+          <li>强度高，适合三片罐（顶、底、罐身焊接）</li>
+          <li>密度约 7.8 g/cm³，重量是铝的约 2.7 倍</li>
+          <li>可磁吸，分选回收率高（钢铁回收率全球约 85%）</li>
+          <li>典型用途：<span class="abbr-term" data-key="map">MAP</span> 气调罐、食品罐头、奶粉罐、涂料桶</li>
+        </ul>
+      </div>
+      <div class="metal-card aluminium">
+        <div class="metal-label">Aluminium · 铝</div>
+        <div class="metal-title">铝合金板/箔</div>
+        <ul class="metal-props">
+          <li>包装用合金：3004（罐身）/ 3104（罐盖），厚 0.25–0.30 mm</li>
+          <li>密度 2.7 g/cm³，重量仅为钢的 1/3，显著降低物流成本</li>
+          <li>延展性优异，适合 <span class="abbr-term" data-key="di">DI 拉伸减薄</span>两片罐</li>
+          <li>无磁性，需涡流分选；回收率高，可无限次循环利用</li>
+          <li>典型用途：碳酸饮料罐、啤酒罐、铝软管、铝箔</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="section-block" id="sec-process">
+    <div class="block-eyebrow">Section 03</div>
+    <h2 class="block-title">制罐工艺</h2>
+    <p class="block-title-en">Can Making Process · Two-Piece vs Three-Piece</p>
+    <p class="prose">金属罐按结构分为<strong>两片罐</strong>（罐身+底一体成型，加罐盖）和<strong>三片罐</strong>（罐身、罐顶、罐底三片焊/卷接）。两片罐是饮料铝罐的主流工艺，三片罐则主导食品罐头市场。</p>
+    <div class="process-steps">
+      <div class="ps-item"><div class="ps-num">1</div><div><div class="ps-title">冲杯（Drawing）</div><div class="ps-desc">铝卷经模具冲压成浅杯，直径约 90mm，这是罐体的初始形态。冲压速度可达 400 杯/分钟。</div></div></div>
+      <div class="ps-item"><div class="ps-num">2</div><div><div class="ps-title"><span class="abbr-term" data-key="di">减薄拉伸（DI）</span></div><div class="ps-desc">浅杯经过多道减薄模具，罐壁厚度从约 0.30mm 减至 0.10mm（<span class="abbr-term" data-key="di">DI</span> 工艺核心），罐体高度增加至最终尺寸。此工序是两片罐轻量化的关键。</div></div></div>
+      <div class="ps-item"><div class="ps-num">3</div><div><div class="ps-title">修边 &amp; 清洗</div><div class="ps-desc">切除顶部不均匀边缘，内外壁化学清洗去除润滑剂，为涂层做准备。</div></div></div>
+      <div class="ps-item"><div class="ps-num">4</div><div><div class="ps-title">内涂 &amp; 外印</div><div class="ps-desc">内壁喷涂食品级涂层（环氧树脂或 BPA-free 替代品），外壁进行彩色印刷（4–6 色）并罩光。</div></div></div>
+      <div class="ps-item"><div class="ps-num">5</div><div><div class="ps-title">缩颈 &amp; 翻边</div><div class="ps-desc">罐口经多道缩颈模具缩小直径，再翻边形成卷封接合边，准备与罐盖双重卷封。</div></div></div>
+    </div>
+  </section>
+  <section class="section-block" id="sec-coating">
+    <div class="block-eyebrow">Section 04</div>
+    <h2 class="block-title">内涂层体系</h2>
+    <p class="block-title-en">Internal Coatings · Food Safety &amp; BPA Transition</p>
+    <p class="prose">金属罐内涂层是隔离金属基材与食品接触的关键屏障，防止金属离子迁移（腐蚀）和内容物色香味改变。传统内涂层以<strong>环氧-酚醛树脂</strong>为主，固化后性能优异但原料含 BPA（双酚A）——一种潜在内分泌干扰物，已在多国食品接触材料中受到限制。</p>
+    <div class="info-box">
+      <div class="info-icon">🧪</div>
+      <div class="info-text"><strong>BPA-free 替代方案：</strong>目前主流替代涂层包括丙烯酸-环氧体系（Acrylic-Epoxy）、聚酯涂层（PET-based）和聚烯烃涂层。各方案在附着力、耐酸性（番茄罐头 pH≈4）和高温蒸煮（121°C/30min）适应性上各有取舍，至今尚无完美替代。</div>
+    </div>
+    <p class="prose">食品接触安全的核心监管指标是<strong>特定迁移量（SML）</strong>——涂层组分在食品模拟液中的最大允许迁移浓度。中国 <span class="abbr-term" data-key="gbt">GB 9685</span>、欧盟 EU 10/2011 和美国 FDA 21 CFR 175 均对各类涂层助剂规定了 SML 限值。</p>
+  </section>
+  <section class="section-block" id="sec-refs">
+    <div class="block-eyebrow">Section 05</div>
+    <h2 class="block-title">参考资料</h2>
+    <div class="ref-grid">
+      <a class="ref-card" href="https://www.cancentral.com" target="_blank" rel="noopener"><div class="ref-type">行业协会</div><div class="ref-title">Can Manufacturers Institute · 美国制罐协会</div><div class="ref-desc">金属包装技术规范与可持续性报告</div></a>
+      <a class="ref-card" href="https://www.worldsteel.org" target="_blank" rel="noopener"><div class="ref-type">行业数据</div><div class="ref-title">World Steel Association</div><div class="ref-desc">全球钢铁/马口铁产量与回收率数据</div></a>
+      <a class="ref-card" href="https://www.european-aluminium.eu" target="_blank" rel="noopener"><div class="ref-type">行业协会</div><div class="ref-title">European Aluminium</div><div class="ref-desc">铝包装技术与可持续发展报告</div></a>
+    </div>
+  </section>
+</div>
+<footer style="background:var(--bg2);border-top:2px solid var(--orange);padding:32px 72px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">
+  <span>CH.04 · 金属包装 · Packaging Materials Science</span>
+  <div style="display:flex;gap:24px"><a href="ch03.html" style="color:var(--muted);text-decoration:none">← CH.03</a><a href="ch05.html" style="color:var(--orange);text-decoration:none">CH.05 →</a><a href="index.html" style="color:var(--cyan);text-decoration:none">主页</a></div>
+</footer>
+<script>
+const ABBR_DB={di:{abbr:'DI',en:'Draw and Iron',def:'拉伸减薄工艺：两片罐主流制造工艺，将金属杯形坯通过多道减薄模具，罐壁厚度从0.30mm减至约0.10mm，实现轻量化。生产速度可达2000罐/分钟。'},drd:{abbr:'DRD',en:'Draw and Redraw',def:'多次拉伸工艺：壁厚基本不变的深拉伸成型，适合食品罐头等厚壁容器，如金枪鱼罐、宠物食品罐。'},};
+const tt=document.getElementById('abbrTooltip');
+document.querySelectorAll('.abbr-term').forEach(el=>{const d=ABBR_DB[el.dataset.key];if(!d)return;function show(x,y){document.getElementById('ttAbbr').textContent=d.abbr;document.getElementById('ttEn').textContent=d.en;document.getElementById('ttDef').textContent=d.def;let tx=x+14,ty=y-10;if(tx+300>window.innerWidth)tx=x-300;if(ty+120>window.innerHeight)ty=y-120;tt.style.left=tx+'px';tt.style.top=ty+'px';tt.style.display='block';}
+el.addEventListener('mouseenter',e=>show(e.clientX,e.clientY));el.addEventListener('mousemove',e=>show(e.clientX,e.clientY));el.addEventListener('mouseleave',()=>tt.style.display='none');el.addEventListener('click',e=>{e.stopPropagation();tt.style.display==='block'?tt.style.display='none':show(e.clientX,e.clientY);});});
+document.addEventListener('click',()=>tt.style.display='none');
+const nav=document.getElementById('chapterNav');const hero=document.querySelector('.chapter-hero');
+nav.style.cssText='opacity:0;pointer-events:none;transition:opacity 0.3s';
+new IntersectionObserver(entries=>{const v=entries[0].isIntersecting;nav.style.opacity=v?'0':'1';nav.style.pointerEvents=v?'none':'auto';},{threshold:0}).observe(hero);
+document.querySelectorAll('.section-block').forEach(s=>{new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)return;document.querySelectorAll('.cnav-item').forEach(n=>n.classList.remove('active'));const a=document.querySelector(`.cnav-item[data-sec="${entries[0].target.id}"]`);if(a)a.classList.add('active');},{rootMargin:'-20% 0px -60% 0px'}).observe(s);});
+</script>
+</body>
+</html>

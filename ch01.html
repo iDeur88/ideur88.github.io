@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CH.01 · 绪论与选材框架 | 包装材料学</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+:root{
+  --bg:#FFFFFF; --bg2:#F8FBFF; --bg3:#F0F9FF; --card:#FFFFFF;
+  --ink:#1A1A2E; --ink2:#2D3561; --muted:#6B7280;
+  --border:#E8F4FD; --border2:#B3E5FC;
+  --yellow:#FFD700; --cyan:#4DD0E1; --orange:#FF8A65; --sky:#81D4FA;
+  --fw-light:300; --fw-regular:400; --fw-medium:500; --fw-semibold:600; --fw-bold:700;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-weight:400;overflow-x:hidden;line-height:1.7}
+
+/* ══ 缩写浮窗 · 毛玻璃 ══ */
+.abbr-term{border-bottom:1.5px dashed var(--cyan);cursor:help;color:var(--cyan);font-weight:500;display:inline}
+.abbr-tooltip{
+  display:none;position:fixed;z-index:9999;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border:1px solid rgba(77,208,225,0.30);
+  border-radius:12px;padding:12px 16px;max-width:290px;
+  font-family:'DM Mono',monospace;font-size:11px;line-height:1.65;
+  pointer-events:none;
+  box-shadow:0 8px 32px rgba(77,208,225,0.18),0 2px 8px rgba(0,0,0,0.06);
+  color:var(--ink);
+}
+.abbr-tooltip .tt-abbr{color:var(--orange);font-size:13px;font-weight:600;display:block;margin-bottom:3px}
+.abbr-tooltip .tt-en{color:var(--muted);font-size:10px;display:block;margin-bottom:6px}
+.abbr-tooltip .tt-def{color:var(--ink2);font-size:11px}
+
+/* ══ 顶部导航 ══ */
+#top-nav{position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);
+  border-bottom:2px solid var(--yellow);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 52px;height:56px}
+.nav-back{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;
+  letter-spacing:0.08em;display:flex;align-items:center;gap:8px;transition:color 0.2s}
+.nav-back:hover{color:var(--orange)}
+.nav-chapter{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;color:var(--ink)}
+.nav-progress{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em}
+
+/* ══ Hero ══ */
+.chapter-hero{margin-top:56px;padding:80px 72px 64px;
+  background:linear-gradient(135deg,#FFFDE7 0%,#E0F7FA 60%,#E1F5FE 100%);
+  border-bottom:1px solid var(--border2);position:relative;overflow:hidden}
+.chapter-hero::after{content:'01';position:absolute;right:-10px;top:-20px;
+  font-family:'Noto Sans SC',sans-serif;font-size:260px;font-weight:700;
+  color:transparent;-webkit-text-stroke:1.5px rgba(255,215,0,0.18);
+  line-height:1;pointer-events:none}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+.hero-title{font-family:'Noto Sans SC',sans-serif;font-size:clamp(36px,5.5vw,64px);
+  font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:20px}
+.hero-title span{color:var(--orange)}
+.hero-subtitle{font-size:14px;font-weight:300;color:var(--ink2);max-width:560px;line-height:1.9;margin-bottom:36px}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap}
+.htag{font-family:'DM Mono',monospace;font-size:10px;padding:5px 14px;border-radius:20px;
+  border:1.5px solid var(--border2);color:var(--ink2);letter-spacing:0.06em;background:var(--bg)}
+
+/* ══ 左侧章节导航 ══ */
+.chapter-nav{position:fixed;left:20px;top:50%;transform:translateY(-50%);
+  z-index:150;display:flex;flex-direction:column;gap:8px}
+.cnav-item{display:flex;align-items:center;gap:8px;text-decoration:none;
+  opacity:0.4;transition:opacity 0.2s}
+.cnav-item:hover,.cnav-item.active{opacity:1}
+.cnav-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);
+  flex-shrink:0;transition:background 0.2s,transform 0.2s}
+.cnav-item.active .cnav-dot{background:var(--orange);transform:scale(1.4)}
+.cnav-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink2);
+  letter-spacing:0.06em;white-space:nowrap}
+
+/* ══ 内容区 ══ */
+.content-wrap{max-width:900px;margin:0 auto;padding:0 72px}
+.section-block{padding:64px 0;border-bottom:1px solid var(--border)}
+.block-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--cyan);margin-bottom:8px;
+  display:flex;align-items:center;gap:12px}
+.block-eyebrow::after{content:'';display:block;height:2px;width:40px;
+  background:linear-gradient(90deg,var(--cyan),var(--sky));border-radius:2px}
+.block-title{font-family:'Noto Sans SC',sans-serif;font-size:32px;font-weight:600;
+  color:var(--ink);margin-bottom:8px;line-height:1.25}
+.block-title-en{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);
+  letter-spacing:0.1em;margin-bottom:32px}
+.prose{font-size:15px;color:var(--ink2);line-height:1.9;margin-bottom:24px;max-width:720px}
+.prose strong{font-weight:600;color:var(--ink)}
+
+/* ══ 五维度卡片 ══ */
+.dim-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:32px 0}
+.dim-card{background:var(--card);border:1.5px solid var(--border2);border-radius:16px;
+  padding:24px 20px;transition:transform 0.2s,box-shadow 0.2s;cursor:default;position:relative;overflow:hidden}
+.dim-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.dim-card:nth-child(1)::before{background:var(--yellow)}
+.dim-card:nth-child(2)::before{background:var(--cyan)}
+.dim-card:nth-child(3)::before{background:var(--orange)}
+.dim-card:nth-child(4)::before{background:var(--sky)}
+.dim-card:nth-child(5)::before{background:linear-gradient(90deg,var(--yellow),var(--orange))}
+.dim-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(77,208,225,0.15)}
+.dim-num{font-family:'DM Mono',monospace;font-size:32px;font-weight:500;
+  color:var(--border2);line-height:1;margin-bottom:8px}
+.dim-title{font-family:'Noto Sans SC',sans-serif;font-size:16px;font-weight:600;
+  color:var(--ink);margin-bottom:6px}
+.dim-en{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);
+  letter-spacing:0.08em;margin-bottom:12px}
+.dim-desc{font-size:13px;color:var(--ink2);line-height:1.7}
+.dim-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.dim-tag{font-family:'DM Mono',monospace;font-size:9px;padding:3px 8px;
+  border-radius:10px;background:var(--bg3);color:var(--ink2);letter-spacing:0.04em}
+
+/* ══ 决策流程图 ══ */
+.flow-wrap{margin:32px 0;background:var(--bg2);border:1px solid var(--border2);
+  border-radius:16px;padding:32px;overflow-x:auto}
+.flow-steps{display:flex;align-items:center;gap:0;min-width:600px}
+.flow-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative}
+.flow-step::after{content:'→';position:absolute;right:-12px;top:24px;
+  font-size:18px;color:var(--cyan);font-weight:300}
+.flow-step:last-child::after{display:none}
+.flow-num{width:48px;height:48px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Mono',monospace;font-size:16px;font-weight:500;
+  margin-bottom:10px;border:2px solid}
+.flow-step:nth-child(1) .flow-num{background:#FFF9C4;border-color:var(--yellow);color:#8B6914}
+.flow-step:nth-child(2) .flow-num{background:#E0F7FA;border-color:var(--cyan);color:#00838F}
+.flow-step:nth-child(3) .flow-num{background:#FFF3E0;border-color:var(--orange);color:#C75B39}
+.flow-step:nth-child(4) .flow-num{background:#E1F5FE;border-color:var(--sky);color:#0277BD}
+.flow-step:nth-child(5) .flow-num{background:#FFFDE7;border-color:var(--yellow);color:#8B6914}
+.flow-label{font-family:'Noto Sans SC',sans-serif;font-size:12px;font-weight:600;
+  color:var(--ink);margin-bottom:4px}
+.flow-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:1.5}
+
+/* ══ 信息卡 ══ */
+.info-box{background:var(--bg3);border:1.5px solid var(--sky);border-radius:12px;
+  padding:20px 24px;margin:24px 0;display:flex;gap:16px;align-items:flex-start}
+.info-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.info-text{font-size:14px;color:var(--ink2);line-height:1.8}
+.info-text strong{color:var(--ink);font-weight:600}
+
+/* ══ 比较表格 ══ */
+.compare-table{width:100%;border-collapse:collapse;margin:32px 0;font-size:13px}
+.compare-table th{background:var(--ink);color:#fff;padding:12px 16px;
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;
+  text-transform:uppercase;text-align:left;font-weight:500}
+.compare-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--ink2)}
+.compare-table tr:nth-child(even) td{background:var(--bg2)}
+.compare-table tr:hover td{background:#FFF9C4}
+.td-material{font-weight:600;color:var(--ink)}
+.td-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;
+  padding:2px 7px;border-radius:8px;letter-spacing:0.04em}
+.tag-y{background:#FFF9C4;color:#8B6914}
+.tag-c{background:#E0F7FA;color:#00838F}
+.tag-o{background:#FFF3E0;color:#C75B39}
+.tag-s{background:#E1F5FE;color:#0277BD}
+
+/* ══ 参考资料 ══ */
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:24px 0}
+.ref-card{background:var(--card);border:1.5px solid var(--border2);border-radius:12px;
+  padding:16px 18px;text-decoration:none;display:block;transition:all 0.2s}
+.ref-card:hover{border-color:var(--cyan);background:var(--bg3);transform:translateY(-2px)}
+.ref-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--cyan);margin-bottom:6px}
+.ref-title{font-family:'Noto Sans SC',sans-serif;font-size:13px;font-weight:600;
+  color:var(--ink);margin-bottom:4px;line-height:1.4}
+.ref-desc{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:1.6}
+
+/* ══ 响应式 ══ */
+@media(max-width:900px){
+  .chapter-nav{display:none}
+  .content-wrap{padding:0 24px}
+  .chapter-hero{padding:56px 24px 48px}
+  #top-nav{padding:0 20px}
+  .nav-progress{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="abbr-tooltip" id="abbrTooltip">
+  <span class="tt-abbr" id="ttAbbr"></span>
+  <span class="tt-en"   id="ttEn"></span>
+  <span class="tt-def"  id="ttDef"></span>
+</div>
+
+<nav id="top-nav">
+  <a class="nav-back" href="index.html">← 返回主页</a>
+  <div class="nav-chapter">CH.01 · 绪论与选材框架</div>
+  <div class="nav-progress">Introduction · Five-Dimension Framework</div>
+</nav>
+
+<nav class="chapter-nav" id="chapterNav">
+  <a class="cnav-item active" href="#sec-intro"     data-sec="sec-intro"><div class="cnav-dot"></div><span class="cnav-label">学科定位</span></a>
+  <a class="cnav-item" href="#sec-framework" data-sec="sec-framework"><div class="cnav-dot"></div><span class="cnav-label">五维度框架</span></a>
+  <a class="cnav-item" href="#sec-flow"      data-sec="sec-flow"><div class="cnav-dot"></div><span class="cnav-label">决策流程</span></a>
+  <a class="cnav-item" href="#sec-compare"   data-sec="sec-compare"><div class="cnav-dot"></div><span class="cnav-label">材料横向对比</span></a>
+  <a class="cnav-item" href="#sec-refs"      data-sec="sec-refs"><div class="cnav-dot"></div><span class="cnav-label">参考资料</span></a>
+</nav>
+
+<header class="chapter-hero">
+  <div class="hero-eyebrow">Chapter 01 · Packaging Materials Science</div>
+  <h1 class="hero-title">绪论与<span>选材五维度</span><br>决策框架</h1>
+  <p class="hero-subtitle">包装材料学研究的核心命题不是"哪种材料最好"，而是"在特定约束条件下，哪种材料最合适"。五维度框架提供了一套系统化的评估语言。</p>
+  <div class="hero-tags">
+    <span class="htag"><span class="abbr-term" data-key="bct">BCT</span>保护性</span><span class="htag">适用性</span><span class="htag">经济性</span>
+    <span class="htag">可持续性</span><span class="htag">法规符合性</span><span class="htag">选材决策</span>
+  </div>
+</header>
+
+<div class="content-wrap">
+
+  <!-- §1 学科定位 -->
+  <section class="section-block" id="sec-intro">
+    <div class="block-eyebrow">Section 01</div>
+    <h2 class="block-title">学科定位</h2>
+    <p class="block-title-en">Discipline Overview · Why Materials Matter in Packaging</p>
+    <p class="prose">包装材料学是研究<strong>包装材料的组成、结构、性能及其在包装体系中应用规律</strong>的学科。它处于材料科学、力学、化学工程与工业设计的交叉地带——既要求理解材料的微观结构（纤维素氢键、聚合物链段、金属晶格），又必须将这些知识转化为工程决策（选哪种板材？用几层复合膜？）。</p>
+    <p class="prose">现代包装材料体系主要涵盖六大类：<strong>纸质材料</strong>（瓦楞纸板、折叠纸盒）、<strong>塑料</strong>（聚乙烯、聚丙烯、PET）、<strong>金属</strong>（马口铁、铝）、<strong>玻璃与陶瓷</strong>、<strong>复合软包装</strong>（多层共挤/干复）以及<strong>绿色/生物基材料</strong>（PLA、竹纤维）。每类材料有其不可替代的性能优势，也有明显的局限性。</p>
+    <div class="info-box">
+      <div class="info-icon">💡</div>
+      <div class="info-text"><strong>核心学习目标：</strong>在本课程结束时，你应能面对任意一个包装需求（商品类别 + 运输条件 + 市场定位），独立完成材料初选 → 参数核验 → 供应商沟通 → 成本估算的完整流程。</div>
+    </div>
+  </section>
+
+  <!-- §2 五维度框架 -->
+  <section class="section-block" id="sec-framework">
+    <div class="block-eyebrow">Section 02</div>
+    <h2 class="block-title">选材五维度框架</h2>
+    <p class="block-title-en">Five-Dimension Selection Framework</p>
+    <p class="prose">选材决策需要同时在五个维度上评估材料的适配性。这五个维度相互制约——提升某一维度的表现往往会降低另一维度的得分，因此选材本质上是一个<strong>多目标优化问题</strong>，不存在在所有维度上都最优的解。</p>
+    <div class="dim-grid">
+      <div class="dim-card">
+        <div class="dim-num">01</div>
+        <div class="dim-title">保护性</div>
+        <div class="dim-en">PROTECTION</div>
+        <div class="dim-desc">防止物理损伤（压、震、刺穿）、化学侵蚀（氧化、光降解）、生物污染（微生物、害虫）。是所有维度中的基础约束——未达到保护要求的方案直接淘汰。</div>
+        <div class="dim-tags"><span class="dim-tag">BCT/ECT</span><span class="dim-tag">WVTR</span><span class="dim-tag">OTR</span><span class="dim-tag">缓冲设计</span></div>
+      </div>
+      <div class="dim-card">
+        <div class="dim-num">02</div>
+        <div class="dim-title">适用性</div>
+        <div class="dim-en">COMPATIBILITY</div>
+        <div class="dim-desc">材料与内容物的相容性（食品接触安全、化学惰性）、与包装机械的匹配性（封口温度、摩擦系数）、消费者使用体验（易开性、重封性）。</div>
+        <div class="dim-tags"><span class="dim-tag">食品接触</span><span class="dim-tag">封口强度</span><span class="dim-tag">透明度</span></div>
+      </div>
+      <div class="dim-card">
+        <div class="dim-num">03</div>
+        <div class="dim-title">经济性</div>
+        <div class="dim-en">ECONOMICS</div>
+        <div class="dim-desc">材料采购成本、加工转换成本、物流重量成本（轻量化）、废弃物处理成本。全生命周期成本核算，而非仅看原料单价。</div>
+        <div class="dim-tags"><span class="dim-tag">材料利用率</span><span class="dim-tag">轻量化</span><span class="dim-tag">批量议价</span></div>
+      </div>
+      <div class="dim-card">
+        <div class="dim-num">04</div>
+        <div class="dim-title">可持续性</div>
+        <div class="dim-en">SUSTAINABILITY</div>
+        <div class="dim-desc">材料来源（可再生/石化）、生产碳排放、可回收性（单一材质优于复合材质）、生物降解性、减量化（少用材料）。<span class="abbr-term" data-key="epr">EPR</span>政策正推动品牌承担回收成本。</div>
+        <div class="dim-tags"><span class="dim-tag">可回收率</span><span class="dim-tag">碳足迹</span><span class="dim-tag">EPR合规</span></div>
+      </div>
+      <div class="dim-card">
+        <div class="dim-num">05</div>
+        <div class="dim-title">法规符合性</div>
+        <div class="dim-en">COMPLIANCE</div>
+        <div class="dim-desc">食品包装的食品安全法规（GB 9685、FDA 21 CFR）、危险品包装的联合国运输规范（UN 认证）、出口目标市场的禁限用清单（EU PPWR、美国 TSCA）。</div>
+        <div class="dim-tags"><span class="dim-tag">GB 9685</span><span class="dim-tag">EU PPWR</span><span class="dim-tag">UN认证</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §3 决策流程 -->
+  <section class="section-block" id="sec-flow">
+    <div class="block-eyebrow">Section 03</div>
+    <h2 class="block-title">选材决策流程</h2>
+    <p class="block-title-en">Decision Process · From Requirements to Specification</p>
+    <p class="prose">实际工程中，选材不是一次性决策，而是一个迭代收敛的过程。下面五步流程是工业实践中广泛采用的结构化方法：</p>
+    <div class="flow-wrap">
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <div class="flow-label">需求定义</div>
+          <div class="flow-sub">商品特性<br>运输条件<br>市场定位</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <div class="flow-label">约束筛选</div>
+          <div class="flow-sub">法规合规<br>保护底线<br>机械适配</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <div class="flow-label">方案生成</div>
+          <div class="flow-sub">材料初选<br>结构方案<br>克重规格</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <div class="flow-label">多维评分</div>
+          <div class="flow-sub">五维度打分<br>成本核算<br>供应商询价</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">5</div>
+          <div class="flow-label">验证确认</div>
+          <div class="flow-sub">样品测试<br>运输模拟<br>量产评审</div>
+        </div>
+      </div>
+    </div>
+    <p class="prose">第2步"约束筛选"是关键门槛——任何不满足法规要求或无法提供基本保护的方案，无论成本多低都应在此阶段淘汰。第3步生成方案时应尽量保持开放性，通常初选3–5个候选方案进入第4步比较。</p>
+    <div class="info-box">
+      <div class="info-icon">⚠️</div>
+      <div class="info-text"><strong>常见陷阱：</strong>过早在第2/3步就聚焦到"默认材料"（如：食品一定用PE袋、礼品一定用白卡纸），错过可能更优的替代方案。系统化的五维度打分能有效避免这一认知偏差。</div>
+    </div>
+  </section>
+
+  <!-- §4 材料横向对比 -->
+  <section class="section-block" id="sec-compare">
+    <div class="block-eyebrow">Section 04</div>
+    <h2 class="block-title">六大材料横向对比</h2>
+    <p class="block-title-en">Material Comparison · Six Categories at a Glance</p>
+    <p class="prose">以下对比表从五维度视角快速定位各类材料的优势与局限，为后续各章节的深度学习建立横向参照。</p>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>材料类别</th>
+          <th>保护性</th>
+          <th>适用性</th>
+          <th>经济性</th>
+          <th>可持续性</th>
+          <th>主要局限</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-material">纸质材料</td>
+          <td><span class="td-tag tag-c"><span class="abbr-term" data-key="ect">ECT</span>/抗压良好</span></td>
+          <td><span class="td-tag tag-y">印刷优异</span></td>
+          <td><span class="td-tag tag-y">成本低</span></td>
+          <td><span class="td-tag tag-c">可回收</span></td>
+          <td>遇水强度骤降，阻隔性差</td>
+        </tr>
+        <tr>
+          <td class="td-material">塑料</td>
+          <td><span class="td-tag tag-y">柔性好</span></td>
+          <td><span class="td-tag tag-c">热封可靠</span></td>
+          <td><span class="td-tag tag-y">成本低</span></td>
+          <td><span class="td-tag tag-o">回收率低</span></td>
+          <td>复合结构难回收，环境压力大</td>
+        </tr>
+        <tr>
+          <td class="td-material">金属</td>
+          <td><span class="td-tag tag-c">阻隔极强</span></td>
+          <td><span class="td-tag tag-s">食品安全</span></td>
+          <td><span class="td-tag tag-o">成本较高</span></td>
+          <td><span class="td-tag tag-c">可无限回收</span></td>
+          <td>重量大，开启性差，不透明</td>
+        </tr>
+        <tr>
+          <td class="td-material">玻璃</td>
+          <td><span class="td-tag tag-c">化学惰性</span></td>
+          <td><span class="td-tag tag-s">最安全</span></td>
+          <td><span class="td-tag tag-o">重且脆</span></td>
+          <td><span class="td-tag tag-c">可回收</span></td>
+          <td>重量大、易碎，物流成本高</td>
+        </tr>
+        <tr>
+          <td class="td-material">复合软包</td>
+          <td><span class="td-tag tag-y">阻隔强</span></td>
+          <td><span class="td-tag tag-c">轻便灵活</span></td>
+          <td><span class="td-tag tag-y">成本较低</span></td>
+          <td><span class="td-tag tag-o">难以回收</span></td>
+          <td>多层结构回收困难，是可持续短板</td>
+        </tr>
+        <tr>
+          <td class="td-material">绿色材料</td>
+          <td><span class="td-tag tag-s">发展中</span></td>
+          <td><span class="td-tag tag-s">部分适用</span></td>
+          <td><span class="td-tag tag-o">溢价明显</span></td>
+          <td><span class="td-tag tag-c">可降解</span></td>
+          <td>性能尚不稳定，成本较高，需工业堆肥条件</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- §5 参考资料 -->
+  <section class="section-block" id="sec-refs">
+    <div class="block-eyebrow">Section 05</div>
+    <h2 class="block-title">参考资料</h2>
+    <p class="block-title-en">References · Textbooks &amp; Standards</p>
+    <div class="ref-grid">
+      <a class="ref-card" href="#" target="_blank">
+        <div class="ref-type">教材</div>
+        <div class="ref-title">刘喜生《包装材料学》· 吉林大学</div>
+        <div class="ref-desc">国内主流教材，覆盖六大材料体系，系统性强</div>
+      </a>
+      <a class="ref-card" href="#" target="_blank">
+        <div class="ref-type">教材</div>
+        <div class="ref-title">尹章伟《包装材料与容器》· 武汉大学</div>
+        <div class="ref-desc">侧重容器设计与材料选用，案例丰富</div>
+      </a>
+      <a class="ref-card" href="https://www.iso.org/committee/54984.html" target="_blank" rel="noopener">
+        <div class="ref-type">标准体系</div>
+        <div class="ref-title">ISO TC 122 · 包装标准委员会</div>
+        <div class="ref-desc">国际包装标准的制定机构，含测试方法与材料规范</div>
+      </a>
+      <a class="ref-card" href="https://www.sciencedirect.com/journal/packaging-technology-and-science" target="_blank" rel="noopener">
+        <div class="ref-type">学术期刊</div>
+        <div class="ref-title">Packaging Technology and Science · Wiley</div>
+        <div class="ref-desc">包装领域核心期刊，含材料、结构、测试最新研究</div>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<footer style="background:var(--bg2);border-top:2px solid var(--yellow);padding:32px 72px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">
+  <span>CH.01 · 绪论与选材框架 · Packaging Materials Science</span>
+  <div style="display:flex;gap:24px">
+    <a href="#sec-intro" style="color:var(--muted);text-decoration:none">↑ 返回顶部</a>
+    <a href="ch02.html" style="color:var(--orange);text-decoration:none">CH.02 →</a>
+    <a href="index.html" style="color:var(--cyan);text-decoration:none">主页</a>
+  </div>
+</footer>
+
+<script>
+const ABBR_DB={
+  epr:{abbr:'EPR',en:'Extended Producer Responsibility',def:'生产者延伸责任：要求产品生产商对产品全生命周期（包括废弃处理）负责的政策体系。欧盟PPWR法规要求品牌商承担包装回收成本。'},
+  wvtr:{abbr:'WVTR',en:'Water Vapor Transmission Rate',def:'透湿率：单位面积材料每24小时通过的水蒸气量，单位g/(m²·24h)，越低阻湿性越好。食品包装关键指标。'},
+  otr:{abbr:'OTR',en:'Oxygen Transmission Rate',def:'透氧率：单位面积材料通过的氧气量，单位cm³/(m²·day·atm)，越低阻氧性越好。肉类/咖啡包装关键指标。'},
+};
+const tt=document.getElementById('abbrTooltip');
+document.querySelectorAll('.abbr-term').forEach(el=>{
+  const d=ABBR_DB[el.dataset.key];if(!d)return;
+  function show(x,y){
+    document.getElementById('ttAbbr').textContent=d.abbr;
+    document.getElementById('ttEn').textContent=d.en;
+    document.getElementById('ttDef').textContent=d.def;
+    let tx=x+14,ty=y-10;
+    if(tx+300>window.innerWidth)tx=x-300;
+    if(ty+120>window.innerHeight)ty=y-120;
+    tt.style.left=tx+'px';tt.style.top=ty+'px';tt.style.display='block';
+  }
+  el.addEventListener('mouseenter',e=>show(e.clientX,e.clientY));
+  el.addEventListener('mousemove',e=>show(e.clientX,e.clientY));
+  el.addEventListener('mouseleave',()=>tt.style.display='none');
+  el.addEventListener('click',e=>{e.stopPropagation();tt.style.display==='block'?tt.style.display='none':show(e.clientX,e.clientY);});
+});
+document.addEventListener('click',()=>tt.style.display='none');
+
+// 章节导航
+const nav=document.getElementById('chapterNav');
+const hero=document.querySelector('.chapter-hero');
+nav.style.cssText='opacity:0;pointer-events:none;transition:opacity 0.3s';
+new IntersectionObserver(entries=>{
+  const v=entries[0].isIntersecting;
+  nav.style.opacity=v?'0':'1';nav.style.pointerEvents=v?'none':'auto';
+},{threshold:0}).observe(hero);
+document.querySelectorAll('.section-block').forEach(s=>{
+  new IntersectionObserver(entries=>{
+    if(!entries[0].isIntersecting)return;
+    document.querySelectorAll('.cnav-item').forEach(n=>n.classList.remove('active'));
+    const a=document.querySelector(`.cnav-item[data-sec="${entries[0].target.id}"]`);
+    if(a)a.classList.add('active');
+  },{rootMargin:'-20% 0px -60% 0px'}).observe(s);
+});
+</script>
+</body>
+</html>

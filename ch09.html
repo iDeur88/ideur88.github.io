@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CH.09 · 绿色包装材料 | 包装材料学</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+:root{--bg:#FFFFFF;--bg2:#F8FBFF;--bg3:#F0F9FF;--card:#FFFFFF;--ink:#1A1A2E;--ink2:#2D3561;--muted:#6B7280;--border:#E8F4FD;--border2:#B3E5FC;--yellow:#FFD700;--cyan:#4DD0E1;--orange:#FF8A65;--sky:#81D4FA;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-weight:400;overflow-x:hidden;line-height:1.7}
+.abbr-term{border-bottom:1.5px dashed var(--cyan);cursor:help;color:var(--cyan);font-weight:500;display:inline}
+.abbr-tooltip{display:none;position:fixed;z-index:9999;background:rgba(255,255,255,0.85);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(77,208,225,0.30);border-radius:12px;padding:12px 16px;max-width:290px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.65;pointer-events:none;box-shadow:0 8px 32px rgba(77,208,225,0.18),0 2px 8px rgba(0,0,0,0.06);color:var(--ink)}
+.abbr-tooltip .tt-abbr{color:var(--orange);font-size:13px;font-weight:600;display:block;margin-bottom:3px}
+.abbr-tooltip .tt-en{color:var(--muted);font-size:10px;display:block;margin-bottom:6px}
+.abbr-tooltip .tt-def{color:var(--ink2);font-size:11px}
+#top-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:2px solid var(--accent);display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:56px}
+.nav-back{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.08em;display:flex;align-items:center;gap:8px;transition:color 0.2s}.nav-back:hover{color:var(--orange)}
+.nav-chapter{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;color:var(--ink)}
+.nav-progress{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em}
+.chapter-hero{margin-top:56px;padding:80px 72px 64px;border-bottom:1px solid var(--border2);position:relative;overflow:hidden}
+.chapter-hero::after{content:var(--ch-num);position:absolute;right:-10px;top:-20px;font-family:'Noto Sans SC',sans-serif;font-size:260px;font-weight:700;color:transparent;-webkit-text-stroke:1.5px rgba(77,208,225,0.12);line-height:1;pointer-events:none}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.hero-title{font-family:'Noto Sans SC',sans-serif;font-size:clamp(36px,5.5vw,64px);font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:20px}
+.hero-title .accent{color:var(--accent)}
+.hero-subtitle{font-size:14px;font-weight:300;color:var(--ink2);max-width:560px;line-height:1.9;margin-bottom:36px}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap}
+.htag{font-family:'DM Mono',monospace;font-size:10px;padding:5px 14px;border-radius:20px;border:1.5px solid var(--border2);color:var(--ink2);letter-spacing:0.06em;background:var(--bg)}
+.chapter-nav{position:fixed;left:20px;top:50%;transform:translateY(-50%);z-index:150;display:flex;flex-direction:column;gap:8px}
+.cnav-item{display:flex;align-items:center;gap:8px;text-decoration:none;opacity:0.4;transition:opacity 0.2s}.cnav-item:hover,.cnav-item.active{opacity:1}
+.cnav-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);flex-shrink:0;transition:background 0.2s,transform 0.2s}
+.cnav-item.active .cnav-dot{background:var(--accent);transform:scale(1.4)}
+.cnav-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink2);letter-spacing:0.06em;white-space:nowrap}
+.content-wrap{max-width:900px;margin:0 auto;padding:0 72px}
+.section-block{padding:64px 0;border-bottom:1px solid var(--border)}
+.block-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.block-eyebrow::after{content:'';display:block;height:2px;width:40px;background:var(--accent);border-radius:2px;opacity:0.6}
+.block-title{font-family:'Noto Sans SC',sans-serif;font-size:32px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.25}
+.block-title-en{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;margin-bottom:32px}
+.prose{font-size:15px;color:var(--ink2);line-height:1.9;margin-bottom:24px;max-width:720px}.prose strong{font-weight:600;color:var(--ink)}
+.info-box{background:var(--bg3);border:1.5px solid var(--sky);border-radius:12px;padding:20px 24px;margin:24px 0;display:flex;gap:16px;align-items:flex-start}
+.info-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.info-text{font-size:14px;color:var(--ink2);line-height:1.8}.info-text strong{color:var(--ink);font-weight:600}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin:32px 0}
+.content-card{background:var(--card);border:1.5px solid var(--border2);border-radius:14px;padding:22px 18px;transition:all 0.2s;cursor:default}
+.content-card:hover{border-color:var(--accent);background:var(--bg3);transform:translateY(-3px);box-shadow:0 8px 24px rgba(77,208,225,0.10)}
+.cc-title{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.cc-en{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:10px;letter-spacing:0.06em}
+.cc-desc{font-size:13px;color:var(--ink2);line-height:1.7}
+.cc-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:8px;background:var(--bg3);color:var(--ink2);margin-top:10px;margin-right:4px}
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:24px 0}
+.ref-card{background:var(--card);border:1.5px solid var(--border2);border-radius:12px;padding:16px 18px;text-decoration:none;display:block;transition:all 0.2s}
+.ref-card:hover{border-color:var(--accent);background:var(--bg3);transform:translateY(-2px)}
+.ref-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.ref-title{font-family:'Noto Sans SC',sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.4}
+.ref-desc{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:1.6}
+.data-table{width:100%;border-collapse:collapse;margin:32px 0;font-size:13px}
+.data-table th{background:var(--ink);color:#fff;padding:10px 14px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-align:left;font-weight:500}
+.data-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--ink2)}
+.data-table tr:hover td{background:var(--bg2)}
+@media(max-width:900px){.chapter-nav{display:none}.content-wrap{padding:0 24px}.chapter-hero{padding:56px 24px 48px}#top-nav{padding:0 20px}.nav-progress{display:none}}
+:root { --accent:#4DD0E1; }
+.chapter-hero { background:linear-gradient(135deg,#E8F5E9 0%,#F1F8E9 50%,#E0F7FA 100%); }
+.chapter-hero::after { content:'09'; }
+</style>
+</head>
+<body>
+<div class="abbr-tooltip" id="abbrTooltip"><span class="tt-abbr" id="ttAbbr"></span><span class="tt-en" id="ttEn"></span><span class="tt-def" id="ttDef"></span></div>
+<nav id="top-nav">
+  <a class="nav-back" href="index.html">← 返回主页</a>
+  <div class="nav-chapter">CH.09 · 绿色包装材料</div>
+  <div class="nav-progress">Sustainable Packaging Materials</div>
+</nav>
+<nav class="chapter-nav" id="chapterNav">
+  <a class="cnav-item active" href="#sec-overview" data-sec="sec-overview"><div class="cnav-dot"></div><span class="cnav-label">绿色包装概述</span></a>
+  <a class="cnav-item" href="#sec-bio" data-sec="sec-bio"><div class="cnav-dot"></div><span class="cnav-label">生物基材料</span></a>
+  <a class="cnav-item" href="#sec-recycle" data-sec="sec-recycle"><div class="cnav-dot"></div><span class="cnav-label">可回收设计</span></a>
+  <a class="cnav-item" href="#sec-regulation" data-sec="sec-regulation"><div class="cnav-dot"></div><span class="cnav-label">法规与趋势</span></a>
+  <a class="cnav-item" href="#sec-refs" data-sec="sec-refs"><div class="cnav-dot"></div><span class="cnav-label">参考资料</span></a>
+</nav>
+<header class="chapter-hero">
+  <div class="hero-eyebrow">Chapter 09 · Packaging Materials Science</div>
+  <h1 class="hero-title"><span class="accent">绿色包装</span></h1>
+  <p class="hero-subtitle">可持续包装不是口号，而是有精确定义的技术方向：可再生原料、可降解、可回收、减量化。理解各类绿色材料的真实性能与局限，避免「洗绿」陷阱。</p>
+  <div class="hero-tags"><span class="htag">PLA · PBAT</span><span class="htag">纤维基包装</span><span class="htag">可回收设计</span><span class="htag">EPR 法规</span><span class="htag">碳足迹</span><span class="htag">循环经济</span></div>
+</header>
+<div class="content-wrap">
+
+  <section class="section-block" id="sec-overview">
+    <div class="block-eyebrow">Section 01</div>
+    <h2 class="block-title">绿色包装概述</h2>
+    <p class="block-title-en">Overview · Beyond the Green Label</p>
+    <p class="prose">绿色包装（Sustainable Packaging）有四个核心维度：<strong>减量化</strong>（Reduce，使用更少材料）、<strong>再利用</strong>（Reuse，可重复使用容器）、<strong>可回收</strong>（Recycle，进入回收体系）和<strong>可降解</strong>（Compostable/Biodegradable，在特定条件下分解）。这四个维度没有高下之分——减量化往往比可降解带来更大的环境效益。</p>
+<div class="info-box"><div class="info-icon">⚠️</div><div class="info-text"><strong>"洗绿"（Greenwashing）常见手段：</strong>①宣传「可降解」但不注明需要工业堆肥条件；②使用少量可回收材料但整体结构无法回收；③声称"植物基"但仍是非降解塑料（如生物基 PE）；④碳中和声明未经第三方核查。</div></div>
+  </section>
+  <section class="section-block" id="sec-bio">
+    <div class="block-eyebrow">Section 02</div>
+    <h2 class="block-title">生物基与可降解材料</h2>
+    <p class="block-title-en">Biobased &amp; Compostable Materials</p>
+    <div class="card-grid">
+<div class="content-card"><div class="cc-title">PLA（聚乳酸）</div><div class="cc-en">Polylactic Acid</div><div class="cc-desc">玉米淀粉/甘蔗为原料。透明度好，刚性高，Tg≈60°C（耐热差）。须在 55°C 以上工业堆肥设施中才能在 12 周内降解。在自然环境中降解极慢。</div><span class="cc-tag">需工业堆肥</span><span class="cc-tag">不耐热饮</span></div>
+<div class="content-card"><div class="cc-title">纸基包装</div><div class="cc-en">Paper-based</div><div class="cc-desc">可再生（森林管理 FSC 认证）、可回收、可降解，是减塑的首选替代方向。挑战在于需要 <span class="abbr-term" data-key="wvtr">WVTR</span>/<span class="abbr-term" data-key="otr">OTR</span> 阻隔功能时仍需涂层，而涂层（如 PFAS 氟化物）可能带来新的环境风险。</div><span class="cc-tag">可回收</span><span class="cc-tag">FSC 认证</span></div>
+<div class="content-card"><div class="cc-title">纤维素模塑</div><div class="cc-en">Molded Fiber</div><div class="cc-desc">废纸浆成型，是聚苯乙烯泡沫（EPS）缓冲材料的主流替代品。苹果、三星等消费电子品牌已大量使用。可完全堆肥降解，但隔热性和精密成型能力弱于 EPS。</div><span class="cc-tag">可堆肥</span><span class="cc-tag">替代 EPS</span></div>
+<div class="content-card"><div class="cc-title">全 PE/全 PP 软包</div><div class="cc-en">Mono-material Flexible</div><div class="cc-desc">将传统 BOPP/<span class="abbr-term" data-key="evoh">EVOH</span>/LDPE 多材质复合替换为单一树脂体系，牺牲部分阻隔性但实现了可回收性（PE 软包可进入废旧塑料薄膜回收体系）。是目前最具可行性的 <span class="abbr-term" data-key="pe">PE</span> 软包可持续升级路径。</div><span class="cc-tag">可回收</span><span class="cc-tag">阻隔略降</span></div>
+</div>
+  </section>
+  <section class="section-block" id="sec-recycle">
+    <div class="block-eyebrow">Section 03</div>
+    <h2 class="block-title">可回收设计原则</h2>
+    <p class="block-title-en">Design for Recyclability</p>
+    <p class="prose">Ellen MacArthur 基金会提出的可回收设计原则被全球品牌广泛采纳，核心包括：<strong>单一材质优先</strong>（避免难分离的多材质复合）；<strong>避免有害添加剂</strong>（炭黑颜料会干扰近红外分选，使黑色塑料无法被识别回收）；<strong>标签与容器材质兼容</strong>（PE 瓶贴 PE 标签，或使用可剥离标签）；<strong>减少不必要的包装层</strong>。</p>
+<p class="prose">欧盟 PPWR（包装与包装废弃物法规）要求 2030 年所有包装技术上可回收；中国"十四五"规划要求包装减量化和可回收率提升。<span class="abbr-term" data-key="epr">EPR</span>（生产者延伸责任）制度正在推动品牌为包装回收买单，从经济上促进可回收设计。</p>
+  </section>
+  <section class="section-block" id="sec-regulation">
+    <div class="block-eyebrow">Section 04</div>
+    <h2 class="block-title">法规动态与行业趋势</h2>
+    <p class="block-title-en">Regulations &amp; Industry Trends</p>
+    <div class="card-grid">
+<div class="content-card"><div class="cc-title">EU PPWR（2024）</div><div class="cc-en">EU Packaging Regulation</div><div class="cc-desc">要求至 2030 年所有包装可回收，2040 年所有包装实现可持续。禁止过度包装（留白空间不得超过 50%），规定最低再生料比例（PET 瓶至 2030 年含 30% 再生 PET）。</div></div>
+<div class="content-card"><div class="cc-title">PFAS 禁令</div><div class="cc-en">PFAS Restrictions</div><div class="cc-desc">含氟有机物（PFAS，俗称"永久化学品"）广泛用于纸质食品包装的防油涂层（汉堡纸、披萨盒）。欧美多国已禁止或限制 PFAS，促使行业转向无氟防油涂层技术。</div></div>
+<div class="content-card"><div class="cc-title">再生内容声明</div><div class="cc-en">Recycled Content Claims</div><div class="cc-desc">品牌宣称产品含 X% 再生料，须通过质量守恒审计或 ISO 14021 认证。"海洋回收塑料"（OBP）等高端再生料认证体系（如 Plastic Bank）正成为品牌差异化工具。</div></div>
+</div>
+  </section>
+  <section class="section-block" id="sec-refs">
+    <div class="block-eyebrow">Section 05</div>
+    <h2 class="block-title">参考资料</h2>
+    <p class="block-title-en">References</p>
+    <div class="ref-grid">
+<a class="ref-card" href="https://www.ellenmacarthurfoundation.org" target="_blank" rel="noopener"><div class="ref-type">基金会</div><div class="ref-title">Ellen MacArthur Foundation</div><div class="ref-desc">循环经济与可回收包装设计指南，免费下载</div></a>
+<a class="ref-card" href="https://howtorecycle.info" target="_blank" rel="noopener"><div class="ref-type">工具</div><div class="ref-title">How2Recycle · 可回收评级体系</div><div class="ref-desc">北美最广泛采用的包装可回收性评级和标签体系</div></a>
+<a class="ref-card" href="#"><div class="ref-type">国标</div><div class="ref-title"><span class="abbr-term" data-key="gbt">GB/T</span> 16288 · 塑料包装制品回收标志</div><div class="ref-desc">中国塑料包装回收标识使用规范</div></a>
+</div>
+  </section>
+</div>
+<footer style="background:var(--bg2);border-top:2px solid var(--accent);padding:32px 72px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">
+  <span>CH.09 · 绿色包装材料 · Packaging Materials Science</span>
+  <div style="display:flex;gap:24px"><a href="ch08.html" style="color:var(--muted);text-decoration:none">← CH08</a><a href="index.html" style="color:var(--cyan);text-decoration:none">主页</a><a href="ch10.html" style="color:var(--orange);text-decoration:none">CH10 →</a></div>
+</footer>
+<script>
+window.ABBR_DB={
+  epr:{abbr:'EPR',en:'Extended Producer Responsibility',def:'生产者延伸责任：要求品牌商对包装全生命周期（含回收处理）负责并承担成本。欧盟 PPWR 的核心政策机制。'},
+  pla:{abbr:'PLA',en:'Polylactic Acid',def:'聚乳酸：玉米/甘蔗基生物降解塑料，Tg≈60°C，耐热差。需 55°C 以上工业堆肥环境才能降解，家庭环境无法快速分解。'},
+  pbat:{abbr:'PBAT',en:'Polybutylene Adipate Terephthalate',def:'可生物降解柔性塑料，常与 PLA 共混提升韧性，在工业堆肥条件下可降解。'},
+  wvtr:{abbr:'WVTR',en:'Water Vapor Transmission Rate',def:'透湿率：单位面积材料每 24 小时通过的水蒸气量，单位 g/(m²·24h)，数值越低阻湿性越好。'},
+  otr:{abbr:'OTR',en:'Oxygen Transmission Rate',def:'透氧率：单位面积材料通过的氧气量，单位 cm³/(m²·day·atm)，数值越低阻氧性越好。食品/药品包装关键指标。'},
+  gsm:{abbr:'GSM',en:'Grams per Square Meter',def:'克重（定量）：1平方米材料的质量，单位 g/m²。纸张常见 80–300 g/m²，面纸 140–200 g/m²，芯纸 100–160 g/m²。'},
+  tappi:{abbr:'TAPPI',en:'Technical Association of Pulp and Paper Industry',def:'美国纸浆与造纸工业技术协会，发布纸张和包装材料权威测试标准，如 TAPPI T 811 ECT 测试。'},
+  iso:{abbr:'ISO',en:'International Organization for Standardization',def:'国际标准化组织，发布全球通用测试标准：ISO 11607 无菌包装、ISO 14021 环保声明等。'},
+  gbt:{abbr:'GB/T',en:'Guobiao Recommended Standard (China)',def:'中国推荐性国家标准。GB/T 6543 瓦楞纸箱、GB/T 10004 复合膜、GB/T 4857 包装运输测试。'},
+  map:{abbr:'MAP',en:'Modified Atmosphere Packaging',def:'气调包装：用 N₂/CO₂ 等替换包装内空气，抑制微生物生长和氧化，延长生鲜食品货架期。'},
+  pe:{abbr:'PE',en:'Polyethylene',def:'聚乙烯：最常见的包装塑料，密度 &lt;1（浮于水），柔软蜡感，阻水好。LDPE 用于薄膜，HDPE 用于瓶罐。'},
+  pp:{abbr:'PP',en:'Polypropylene',def:'聚丙烯：耐热 105°C（微波可用），半透明，密度约 0.91，有铰链效应，用于食品容器、BOPP 薄膜、编织袋。'},
+  evoh:{abbr:'EVOH',en:'Ethylene Vinyl Alcohol',def:'乙烯-乙烯醇共聚物：阻氧性极强（OTR 接近铝箔），但吸湿后性能急降，须与 PE/PP 复合形成阻湿保护。'},
+};
+const tt=document.getElementById('abbrTooltip');
+document.querySelectorAll('.abbr-term').forEach(el=>{
+  const d=(window.ABBR_DB||{})[el.dataset.key];if(!d)return;
+  function show(x,y){document.getElementById('ttAbbr').textContent=d.abbr;document.getElementById('ttEn').textContent=d.en;document.getElementById('ttDef').textContent=d.def;let tx=x+14,ty=y-10;if(tx+300>window.innerWidth)tx=x-300;if(ty+120>window.innerHeight)ty=y-120;tt.style.left=tx+'px';tt.style.top=ty+'px';tt.style.display='block';}
+  el.addEventListener('mouseenter',e=>show(e.clientX,e.clientY));
+  el.addEventListener('mousemove',e=>show(e.clientX,e.clientY));
+  el.addEventListener('mouseleave',()=>tt.style.display='none');
+  el.addEventListener('click',e=>{e.stopPropagation();tt.style.display==='block'?tt.style.display='none':show(e.clientX,e.clientY);});
+});
+document.addEventListener('click',()=>tt.style.display='none');
+const nav=document.getElementById('chapterNav');const hero=document.querySelector('.chapter-hero');
+nav.style.cssText='opacity:0;pointer-events:none;transition:opacity 0.3s';
+new IntersectionObserver(entries=>{const v=entries[0].isIntersecting;nav.style.opacity=v?'0':'1';nav.style.pointerEvents=v?'none':'auto';},{threshold:0}).observe(hero);
+document.querySelectorAll('.section-block').forEach(s=>{new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)return;document.querySelectorAll('.cnav-item').forEach(n=>n.classList.remove('active'));const a=document.querySelector(`.cnav-item[data-sec="${entries[0].target.id}"]`);if(a)a.classList.add('active');},{rootMargin:'-20% 0px -60% 0px'}).observe(s);});
+</script>
+</body>
+</html>

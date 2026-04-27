@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CH.03 · 塑料包装材料 | 包装材料学</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+:root{
+  --bg:#FFFFFF;--bg2:#F8FBFF;--bg3:#F0F9FF;--card:#FFFFFF;
+  --ink:#1A1A2E;--ink2:#2D3561;--muted:#6B7280;
+  --border:#E8F4FD;--border2:#B3E5FC;
+  --yellow:#FFD700;--cyan:#4DD0E1;--orange:#FF8A65;--sky:#81D4FA;
+  --fw-light:300;--fw-regular:400;--fw-medium:500;--fw-semibold:600;--fw-bold:700;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-weight:400;overflow-x:hidden;line-height:1.7}
+.abbr-term{border-bottom:1.5px dashed var(--cyan);cursor:help;color:var(--cyan);font-weight:500;display:inline}
+.abbr-tooltip{display:none;position:fixed;z-index:9999;background:rgba(255,255,255,0.85);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(77,208,225,0.30);border-radius:12px;padding:12px 16px;max-width:290px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.65;pointer-events:none;box-shadow:0 8px 32px rgba(77,208,225,0.18),0 2px 8px rgba(0,0,0,0.06);color:var(--ink)}
+.abbr-tooltip .tt-abbr{color:var(--orange);font-size:13px;font-weight:600;display:block;margin-bottom:3px}
+.abbr-tooltip .tt-en{color:var(--muted);font-size:10px;display:block;margin-bottom:6px}
+.abbr-tooltip .tt-def{color:var(--ink2);font-size:11px}
+#top-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:2px solid var(--cyan);display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:56px}
+.nav-back{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.08em;display:flex;align-items:center;gap:8px;transition:color 0.2s}
+.nav-back:hover{color:var(--orange)}
+.nav-chapter{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;color:var(--ink)}
+.nav-progress{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em}
+.chapter-hero{margin-top:56px;padding:80px 72px 64px;background:linear-gradient(135deg,#E0F7FA 0%,#E1F5FE 50%,#F8FBFF 100%);border-bottom:1px solid var(--border2);position:relative;overflow:hidden}
+.chapter-hero::after{content:'03';position:absolute;right:-10px;top:-20px;font-family:'Noto Sans SC',sans-serif;font-size:260px;font-weight:700;color:transparent;-webkit-text-stroke:1.5px rgba(77,208,225,0.15);line-height:1;pointer-events:none}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+.hero-title{font-family:'Noto Sans SC',sans-serif;font-size:clamp(36px,5.5vw,64px);font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:20px}
+.hero-title span{color:var(--cyan)}
+.hero-subtitle{font-size:14px;font-weight:300;color:var(--ink2);max-width:560px;line-height:1.9;margin-bottom:36px}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap}
+.htag{font-family:'DM Mono',monospace;font-size:10px;padding:5px 14px;border-radius:20px;border:1.5px solid var(--border2);color:var(--ink2);letter-spacing:0.06em;background:var(--bg)}
+.chapter-nav{position:fixed;left:20px;top:50%;transform:translateY(-50%);z-index:150;display:flex;flex-direction:column;gap:8px}
+.cnav-item{display:flex;align-items:center;gap:8px;text-decoration:none;opacity:0.4;transition:opacity 0.2s}
+.cnav-item:hover,.cnav-item.active{opacity:1}
+.cnav-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);flex-shrink:0;transition:background 0.2s,transform 0.2s}
+.cnav-item.active .cnav-dot{background:var(--cyan);transform:scale(1.4)}
+.cnav-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink2);letter-spacing:0.06em;white-space:nowrap}
+.content-wrap{max-width:900px;margin:0 auto;padding:0 72px}
+.section-block{padding:64px 0;border-bottom:1px solid var(--border)}
+.block-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.block-eyebrow::after{content:'';display:block;height:2px;width:40px;background:linear-gradient(90deg,var(--cyan),var(--sky));border-radius:2px}
+.block-title{font-family:'Noto Sans SC',sans-serif;font-size:32px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.25}
+.block-title-en{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;margin-bottom:32px}
+.prose{font-size:15px;color:var(--ink2);line-height:1.9;margin-bottom:24px;max-width:720px}
+.prose strong{font-weight:600;color:var(--ink)}
+/* 塑料家族卡片 */
+.plastic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:32px 0}
+.plastic-card{background:var(--card);border:1.5px solid var(--border2);border-radius:12px;padding:20px 16px;transition:all 0.2s;cursor:default}
+.plastic-card:hover{border-color:var(--cyan);background:var(--bg3);transform:translateY(-3px);box-shadow:0 8px 24px rgba(77,208,225,0.12)}
+.pc-symbol{font-family:'DM Mono',monospace;font-size:26px;font-weight:500;color:var(--cyan);margin-bottom:4px}
+.pc-recycle{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;padding:2px 8px;border-radius:8px;background:#E0F7FA;color:#00838F;margin-bottom:8px}
+.pc-name{font-family:'Noto Sans SC',sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.pc-en{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:10px}
+.pc-props{font-size:12px;color:var(--ink2);line-height:1.6}
+.pc-uses{font-family:'DM Mono',monospace;font-size:10px;color:var(--orange);margin-top:8px}
+/* 性能雷达文字版 */
+.barrier-table{width:100%;border-collapse:collapse;margin:32px 0;font-size:13px}
+.barrier-table th{background:var(--ink);color:#fff;padding:10px 14px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-align:left;font-weight:500}
+.barrier-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--ink2)}
+.barrier-table tr:hover td{background:var(--bg2)}
+.bar-cell{display:flex;align-items:center;gap:8px}
+.bar-track{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px}
+/* 信息框 */
+.info-box{background:var(--bg3);border:1.5px solid var(--sky);border-radius:12px;padding:20px 24px;margin:24px 0;display:flex;gap:16px;align-items:flex-start}
+.info-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.info-text{font-size:14px;color:var(--ink2);line-height:1.8}
+.info-text strong{color:var(--ink);font-weight:600}
+/* 参考资料 */
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:24px 0}
+.ref-card{background:var(--card);border:1.5px solid var(--border2);border-radius:12px;padding:16px 18px;text-decoration:none;display:block;transition:all 0.2s}
+.ref-card:hover{border-color:var(--cyan);background:var(--bg3);transform:translateY(-2px)}
+.ref-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:6px}
+.ref-title{font-family:'Noto Sans SC',sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.4}
+.ref-desc{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:1.6}
+@media(max-width:900px){.chapter-nav{display:none}.content-wrap{padding:0 24px}.chapter-hero{padding:56px 24px 48px}#top-nav{padding:0 20px}.nav-progress{display:none}}
+</style>
+</head>
+<body>
+<div class="abbr-tooltip" id="abbrTooltip"><span class="tt-abbr" id="ttAbbr"></span><span class="tt-en" id="ttEn"></span><span class="tt-def" id="ttDef"></span></div>
+<nav id="top-nav">
+  <a class="nav-back" href="index.html">← 返回主页</a>
+  <div class="nav-chapter">CH.03 · 塑料包装材料</div>
+  <div class="nav-progress">Plastic Packaging Materials</div>
+</nav>
+<nav class="chapter-nav" id="chapterNav">
+  <a class="cnav-item active" href="#sec-overview" data-sec="sec-overview"><div class="cnav-dot"></div><span class="cnav-label">材料总览</span></a>
+  <a class="cnav-item" href="#sec-family"   data-sec="sec-family"><div class="cnav-dot"></div><span class="cnav-label">塑料家族</span></a>
+  <a class="cnav-item" href="#sec-barrier"  data-sec="sec-barrier"><div class="cnav-dot"></div><span class="cnav-label">阻隔性能</span></a>
+  <a class="cnav-item" href="#sec-process"  data-sec="sec-process"><div class="cnav-dot"></div><span class="cnav-label">加工成型</span></a>
+  <a class="cnav-item" href="#sec-env"      data-sec="sec-env"><div class="cnav-dot"></div><span class="cnav-label">环境问题</span></a>
+  <a class="cnav-item" href="#sec-refs"     data-sec="sec-refs"><div class="cnav-dot"></div><span class="cnav-label">参考资料</span></a>
+</nav>
+<header class="chapter-hero">
+  <div class="hero-eyebrow">Chapter 03 · Packaging Materials Science</div>
+  <h1 class="hero-title"><span>塑料</span>包装材料</h1>
+  <p class="hero-subtitle">聚乙烯、聚丙烯、PET、EVOH……塑料家族种类繁多，性能各异。理解聚合物结构与性能的关系，是选择正确塑料牌号的基础。</p>
+  <div class="hero-tags">
+    <span class="htag">PE · PP · PET</span><span class="htag">EVOH 阻隔</span><span class="htag">Tg / Tm</span>
+    <span class="htag">共挤薄膜</span><span class="htag">回收标识</span><span class="htag">生物降解</span>
+  </div>
+</header>
+<div class="content-wrap">
+
+  <section class="section-block" id="sec-overview">
+    <div class="block-eyebrow">Section 01</div>
+    <h2 class="block-title">材料总览</h2>
+    <p class="block-title-en">Overview · Polymer Structure &amp; Performance</p>
+    <p class="prose">塑料的本质是<strong>高分子聚合物</strong>——由重复结构单元（单体）通过共价键连接而成的长链分子。链的长短（分子量）、链间排列（结晶度）、侧基类型，决定了最终材料的力学性能、热性能和阻隔性能。</p>
+    <p class="prose">包装领域常用的塑料，按聚合物主链结构分为两大类：<strong>聚烯烃</strong>（PE、PP——碳氢主链，非极性，阻水好但阻氧差）和<strong>极性聚合物</strong>（PET、EVOH、PA——含氧/氮，阻氧好但吸湿后性能下降）。这一规律是记忆各类塑料性能的核心线索。</p>
+    <div class="info-box">
+      <div class="info-icon">🔬</div>
+      <div class="info-text"><strong>结构→性能核心规律：</strong>结晶度↑ → 强度↑、阻隔↑、透明度↓。<span class="abbr-term" data-key="tg">Tg</span>（玻璃化温度）决定低温脆性；<span class="abbr-term" data-key="tm">Tm</span>（熔点）决定热封上限和微波适用性。</div>
+    </div>
+  </section>
+
+  <section class="section-block" id="sec-family">
+    <div class="block-eyebrow">Section 02</div>
+    <h2 class="block-title">包装塑料家族</h2>
+    <p class="block-title-en">The Plastics Family · Common Resins in Packaging</p>
+    <p class="prose">以下六种树脂覆盖了包装行业约 90% 的塑料用量，熟练掌握它们的性能特征是包装工程师的基本功。</p>
+    <div class="plastic-grid">
+      <div class="plastic-card">
+        <div class="pc-symbol">PE</div>
+        <div class="pc-recycle">① HDPE / ④ LDPE</div>
+        <div class="pc-name">聚乙烯</div>
+        <div class="pc-en">Polyethylene</div>
+        <div class="pc-props">密度&lt;1，浮于水。柔软蜡感，阻水好，阻氧差。<span class="abbr-term" data-key="pe">PE</span> 家族：LDPE 柔软用于薄膜；HDPE 硬挺用于瓶罐；LLDPE 韧性佳用于拉伸膜。</div>
+        <div class="pc-uses">薄膜袋 · 瓶盖 · 牛奶瓶</div>
+      </div>
+      <div class="plastic-card">
+        <div class="pc-symbol">PP</div>
+        <div class="pc-recycle">⑤ PP</div>
+        <div class="pc-name">聚丙烯</div>
+        <div class="pc-en">Polypropylene</div>
+        <div class="pc-props">耐热可达 105°C，微波可用。<span class="abbr-term" data-key="pp">PP</span> 有铰链效应（可反复折叠不断裂）。半透明，密度 0.91，可漂浮。<span class="abbr-term" data-key="bopp">BOPP</span> 薄膜透明高强。</div>
+        <div class="pc-uses">食品容器 · BOPP 薄膜 · 编织袋</div>
+      </div>
+      <div class="plastic-card">
+        <div class="pc-symbol">PET</div>
+        <div class="pc-recycle">① PET</div>
+        <div class="pc-name">聚酯</div>
+        <div class="pc-en">Polyethylene Terephthalate</div>
+        <div class="pc-props"><span class="abbr-term" data-key="pet">PET</span> 透明硬挺，密度 1.38（沉水）。阻隔性较好（中等阻氧）。<span class="abbr-term" data-key="bopet">BOPET</span> 薄膜用于高阻隔复合基材。耐热约 70°C（普通）。</div>
+        <div class="pc-uses">饮料瓶 · 复合基材 · 托盘</div>
+      </div>
+      <div class="plastic-card">
+        <div class="pc-symbol">PS</div>
+        <div class="pc-recycle">⑥ PS</div>
+        <div class="pc-name">聚苯乙烯</div>
+        <div class="pc-en">Polystyrene</div>
+        <div class="pc-props">透明脆硬，发泡后（EPS）隔热缓冲性能极好。食品接触安全性受限，回收率低，已在多国受限。</div>
+        <div class="pc-uses">泡沫缓冲 · 一次性餐盒</div>
+      </div>
+      <div class="plastic-card">
+        <div class="pc-symbol">EVOH</div>
+        <div class="pc-recycle">复合层</div>
+        <div class="pc-name">乙烯-乙烯醇</div>
+        <div class="pc-en">Ethylene Vinyl Alcohol</div>
+        <div class="pc-props"><span class="abbr-term" data-key="evoh">EVOH</span> 阻氧性能极强（OTR 接近铝箔），但吸湿后阻隔性急剧下降，必须与 PE/PP 复合形成阻湿保护层。</div>
+        <div class="pc-uses">番茄酱瓶 · 真空袋 · 保鲜膜</div>
+      </div>
+      <div class="plastic-card">
+        <div class="pc-symbol">PA</div>
+        <div class="pc-recycle">复合层</div>
+        <div class="pc-name">尼龙</div>
+        <div class="pc-en">Polyamide (Nylon)</div>
+        <div class="pc-props">高强度，耐穿刺性极好，阻氧中等，耐热约 180°C。常用作复合软包的中间结构层，赋予软包抗针孔和抗撕裂能力。</div>
+        <div class="pc-uses">真空袋 · 高温蒸煮包 · 冷冻食品</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block" id="sec-barrier">
+    <div class="block-eyebrow">Section 03</div>
+    <h2 class="block-title">阻隔性能比较</h2>
+    <p class="block-title-en">Barrier Performance · O₂ &amp; Moisture Resistance</p>
+    <p class="prose">阻隔性是食品和药品包装选材的核心指标。<strong>阻氧（OTR）</strong>和<strong>阻水（WVTR）</strong>两个维度往往相互制约——非极性聚合物阻水好但阻氧差，极性聚合物则相反。</p>
+    <table class="barrier-table">
+      <thead><tr><th>材料</th><th>阻氧（OTR）</th><th>阻水（WVTR）</th><th>透明度</th><th>耐热</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>EVOH</strong></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:98%;background:var(--cyan)"></div></div><span style="font-size:11px;color:var(--cyan)">极强</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:20%;background:var(--orange)"></div></div><span style="font-size:11px;color:var(--muted)">差（吸湿）</span></div></td>
+          <td>透明</td><td>~70°C</td>
+        </tr>
+        <tr>
+          <td><strong>PET</strong></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:55%;background:var(--cyan)"></div></div><span style="font-size:11px;color:var(--ink2)">中等</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%;background:var(--sky)"></div></div><span style="font-size:11px;color:var(--ink2)">中等</span></div></td>
+          <td>高透明</td><td>~70°C</td>
+        </tr>
+        <tr>
+          <td><strong>PA (Nylon)</strong></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:65%;background:var(--cyan)"></div></div><span style="font-size:11px;color:var(--ink2)">良好</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:35%;background:var(--sky)"></div></div><span style="font-size:11px;color:var(--muted)">较差</span></div></td>
+          <td>半透明</td><td>~180°C</td>
+        </tr>
+        <tr>
+          <td><strong>PP</strong></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:30%;background:var(--cyan)"></div></div><span style="font-size:11px;color:var(--muted)">较差</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:88%;background:var(--sky)"></div></div><span style="font-size:11px;color:var(--cyan)">优秀</span></div></td>
+          <td>半透明</td><td>105°C</td>
+        </tr>
+        <tr>
+          <td><strong>LDPE</strong></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:15%;background:var(--orange)"></div></div><span style="font-size:11px;color:var(--muted)">很差</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:92%;background:var(--sky)"></div></div><span style="font-size:11px;color:var(--cyan)">极强</span></div></td>
+          <td>半透明</td><td>~80°C</td>
+        </tr>
+        <tr>
+          <td><strong>铝箔（对比）</strong></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--yellow)"></div></div><span style="font-size:11px;color:#8B6914">完全隔绝</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--yellow)"></div></div><span style="font-size:11px;color:#8B6914">完全隔绝</span></div></td>
+          <td>不透明</td><td>高温</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="prose"><strong>设计原则：</strong>对 <span class="abbr-term" data-key="otr">OTR</span> 和 <span class="abbr-term" data-key="wvtr">WVTR</span> 均有要求时（如咖啡袋、肉制品包装），单一材料无法满足，需要多层复合——典型结构为 BOPP/EVOH/LDPE 或 BOPET/Al/LDPE，各层各司其职。</p>
+  </section>
+
+  <section class="section-block" id="sec-process">
+    <div class="block-eyebrow">Section 04</div>
+    <h2 class="block-title">加工成型工艺</h2>
+    <p class="block-title-en">Processing Methods · From Resin to Package</p>
+    <p class="prose">塑料包装的常见成型方式：<strong>吹塑薄膜</strong>（挤出机将熔体通过环形模头吹胀成筒膜，适合 PE/PP 袋膜）、<strong>拉伸取向</strong>（BOPP、BOPET——双向拉伸提升强度和阻隔性）、<strong>注塑成型</strong>（高压注射入模腔，适合瓶盖、容器）、<strong>吹瓶成型</strong>（拉伸吹塑 ISBM，PET 饮料瓶主流工艺）、<strong>热成型</strong>（片材加热后真空贴模，适合托盘和罩盖）。</p>
+    <div class="info-box">
+      <div class="info-icon">⚙️</div>
+      <div class="info-text"><strong>共挤复合 vs 干式复合：</strong>共挤（Co-extrusion）是多种树脂在同一模头同时挤出贴合，无溶剂，层间结合力强，是食品软包的趋势。干式复合（Dry Lamination）用胶黏剂将已制成的薄膜黏合，工艺灵活但有溶剂残留风险，适合高阻隔结构（含铝箔/EVOH 层）。</div>
+    </div>
+  </section>
+
+  <section class="section-block" id="sec-env">
+    <div class="block-eyebrow">Section 05</div>
+    <h2 class="block-title">塑料与环境</h2>
+    <p class="block-title-en">Environment · Recyclability &amp; Bioplastics</p>
+    <p class="prose">塑料包装最大的可持续挑战是<strong>回收体系</strong>的缺失与<strong>复合材料难分离</strong>的矛盾。单一材质塑料（纯 PE 袋、PET 瓶）可进入现有回收流，而多层复合膜（BOPP/EVOH/PE）在现有技术下基本无法分层回收。</p>
+    <p class="prose">生物基/可降解塑料是当前热点：<span class="abbr-term" data-key="pla">PLA</span> 透明度好但耐热差（Tg≈60°C），需工业堆肥环境才能降解；<span class="abbr-term" data-key="pbat">PBAT</span> 柔韧性好，常与 PLA 共混提升韧性。两者都不能在普通家庭环境快速降解，"可降解"标签容易误导消费者。</p>
+    <div class="info-box">
+      <div class="info-icon">♻️</div>
+      <div class="info-text"><strong>设计为回收原则（Design for Recyclability）：</strong>尽量使用单一树脂体系（如全 PE 软包）；避免不必要的添加剂（炭黑着色剂会污染回收流）；标签材质应与容器相同或可轻易剥离。欧盟 PPWR 法规要求 2030 年前所有包装可回收。</div>
+    </div>
+  </section>
+
+  <section class="section-block" id="sec-refs">
+    <div class="block-eyebrow">Section 06</div>
+    <h2 class="block-title">参考资料</h2>
+    <p class="block-title-en">References</p>
+    <div class="ref-grid">
+      <a class="ref-card" href="https://www.sciencedirect.com/journal/polymer" target="_blank" rel="noopener">
+        <div class="ref-type">学术期刊</div><div class="ref-title">Polymer · Elsevier</div>
+        <div class="ref-desc">聚合物科学顶级期刊，含结构-性能关系研究</div>
+      </a>
+      <a class="ref-card" href="https://www.plasticseurope.org" target="_blank" rel="noopener">
+        <div class="ref-type">行业数据</div><div class="ref-title">Plastics Europe · 欧洲塑料工业协会</div>
+        <div class="ref-desc">年度塑料产量与回收率数据，免费下载</div>
+      </a>
+      <a class="ref-card" href="https://www.iso.org/standard/62807.html" target="_blank" rel="noopener">
+        <div class="ref-type">标准</div><div class="ref-title">ISO 17088 · 可堆肥塑料规范</div>
+        <div class="ref-desc">定义工业堆肥条件下的生物降解塑料标准</div>
+      </a>
+      <a class="ref-card" href="https://www.gbstandards.org/GB_standard_english/GB-T-4456.asp" target="_blank" rel="noopener">
+        <div class="ref-type">国标</div><div class="ref-title">GB/T 4456 · 包装用聚乙烯吹塑薄膜</div>
+        <div class="ref-desc">国内PE包装薄膜的物理性能要求</div>
+      </a>
+    </div>
+  </section>
+</div>
+<footer style="background:var(--bg2);border-top:2px solid var(--cyan);padding:32px 72px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">
+  <span>CH.03 · 塑料包装材料 · Packaging Materials Science</span>
+  <div style="display:flex;gap:24px">
+    <a href="ch02.html" style="color:var(--muted);text-decoration:none">← CH.02</a>
+    <a href="ch04.html" style="color:var(--orange);text-decoration:none">CH.04 →</a>
+    <a href="index.html" style="color:var(--cyan);text-decoration:none">主页</a>
+  </div>
+</footer>
+<script>
+const ABBR_DB={
+  tg:{abbr:'Tg',en:'Glass Transition Temperature',def:'玻璃化转变温度：聚合物从玻璃态（硬脆）转变为橡胶态（柔软）的温度。PLA约60°C，PP约-10°C，低于Tg材料硬脆，高于Tg变柔韧。'},
+  tm:{abbr:'Tm',en:'Melting Temperature',def:'熔融温度：结晶性聚合物从固态转变为熔融态的温度。PP约165°C，PET约260°C，决定热封上限和微波适用性。'},
+  bopp:{abbr:'BOPP',en:'Biaxially Oriented Polypropylene',def:'双向拉伸聚丙烯：PP薄膜经双向拉伸后，强度提升3-5倍，透明度高，是零食/糖果包装的常见外层基材。'},
+  bopet:{abbr:'BOPET',en:'Biaxially Oriented PET',def:'双向拉伸聚酯薄膜（俗称Mylar）：透明，阻隔性好，耐热，常用作复合软包的外层基材或阻隔层。'},
+  evoh:{abbr:'EVOH',en:'Ethylene Vinyl Alcohol',def:'乙烯-乙烯醇共聚物：阻氧性能极强的塑料，OTR可低至0.1 cm³/(m²·day·atm)。吸湿后阻隔性急降，须与PE/PP复合形成保护。'},
+  pla:{abbr:'PLA',en:'Polylactic Acid',def:'聚乳酸：玉米淀粉/甘蔗为原料的生物基塑料。Tg约60°C，耐热差，热饮不适用。需55°C以上工业堆肥环境才能降解，家庭环境无法快速降解。'},
+  pbat:{abbr:'PBAT',en:'Polybutylene Adipate Terephthalate',def:'聚己二酸/对苯二甲酸丁二酯：柔韧型可生物降解塑料，常与PLA共混提升韧性。可在工业堆肥条件下降解。'},
+};
+const tt=document.getElementById('abbrTooltip');
+document.querySelectorAll('.abbr-term').forEach(el=>{
+  const d=ABBR_DB[el.dataset.key];if(!d)return;
+  function show(x,y){document.getElementById('ttAbbr').textContent=d.abbr;document.getElementById('ttEn').textContent=d.en;document.getElementById('ttDef').textContent=d.def;let tx=x+14,ty=y-10;if(tx+300>window.innerWidth)tx=x-300;if(ty+120>window.innerHeight)ty=y-120;tt.style.left=tx+'px';tt.style.top=ty+'px';tt.style.display='block';}
+  el.addEventListener('mouseenter',e=>show(e.clientX,e.clientY));
+  el.addEventListener('mousemove',e=>show(e.clientX,e.clientY));
+  el.addEventListener('mouseleave',()=>tt.style.display='none');
+  el.addEventListener('click',e=>{e.stopPropagation();tt.style.display==='block'?tt.style.display='none':show(e.clientX,e.clientY);});
+});
+document.addEventListener('click',()=>tt.style.display='none');
+const nav=document.getElementById('chapterNav');const hero=document.querySelector('.chapter-hero');
+nav.style.cssText='opacity:0;pointer-events:none;transition:opacity 0.3s';
+new IntersectionObserver(entries=>{const v=entries[0].isIntersecting;nav.style.opacity=v?'0':'1';nav.style.pointerEvents=v?'none':'auto';},{threshold:0}).observe(hero);
+document.querySelectorAll('.section-block').forEach(s=>{new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)return;document.querySelectorAll('.cnav-item').forEach(n=>n.classList.remove('active'));const a=document.querySelector(`.cnav-item[data-sec="${entries[0].target.id}"]`);if(a)a.classList.add('active');},{rootMargin:'-20% 0px -60% 0px'}).observe(s);});
+</script>
+</body>
+</html>

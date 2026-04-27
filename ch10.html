@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CH.10 · 综合选材决策 | 包装材料学</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+:root{--bg:#FFFFFF;--bg2:#F8FBFF;--bg3:#F0F9FF;--card:#FFFFFF;--ink:#1A1A2E;--ink2:#2D3561;--muted:#6B7280;--border:#E8F4FD;--border2:#B3E5FC;--yellow:#FFD700;--cyan:#4DD0E1;--orange:#FF8A65;--sky:#81D4FA;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-weight:400;overflow-x:hidden;line-height:1.7}
+.abbr-term{border-bottom:1.5px dashed var(--cyan);cursor:help;color:var(--cyan);font-weight:500;display:inline}
+.abbr-tooltip{display:none;position:fixed;z-index:9999;background:rgba(255,255,255,0.85);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(77,208,225,0.30);border-radius:12px;padding:12px 16px;max-width:290px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.65;pointer-events:none;box-shadow:0 8px 32px rgba(77,208,225,0.18),0 2px 8px rgba(0,0,0,0.06);color:var(--ink)}
+.abbr-tooltip .tt-abbr{color:var(--orange);font-size:13px;font-weight:600;display:block;margin-bottom:3px}
+.abbr-tooltip .tt-en{color:var(--muted);font-size:10px;display:block;margin-bottom:6px}
+.abbr-tooltip .tt-def{color:var(--ink2);font-size:11px}
+#top-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:2px solid var(--accent);display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:56px}
+.nav-back{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.08em;display:flex;align-items:center;gap:8px;transition:color 0.2s}.nav-back:hover{color:var(--orange)}
+.nav-chapter{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;color:var(--ink)}
+.nav-progress{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em}
+.chapter-hero{margin-top:56px;padding:80px 72px 64px;border-bottom:1px solid var(--border2);position:relative;overflow:hidden}
+.chapter-hero::after{content:var(--ch-num);position:absolute;right:-10px;top:-20px;font-family:'Noto Sans SC',sans-serif;font-size:260px;font-weight:700;color:transparent;-webkit-text-stroke:1.5px rgba(77,208,225,0.12);line-height:1;pointer-events:none}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.hero-title{font-family:'Noto Sans SC',sans-serif;font-size:clamp(36px,5.5vw,64px);font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:20px}
+.hero-title .accent{color:var(--accent)}
+.hero-subtitle{font-size:14px;font-weight:300;color:var(--ink2);max-width:560px;line-height:1.9;margin-bottom:36px}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap}
+.htag{font-family:'DM Mono',monospace;font-size:10px;padding:5px 14px;border-radius:20px;border:1.5px solid var(--border2);color:var(--ink2);letter-spacing:0.06em;background:var(--bg)}
+.chapter-nav{position:fixed;left:20px;top:50%;transform:translateY(-50%);z-index:150;display:flex;flex-direction:column;gap:8px}
+.cnav-item{display:flex;align-items:center;gap:8px;text-decoration:none;opacity:0.4;transition:opacity 0.2s}.cnav-item:hover,.cnav-item.active{opacity:1}
+.cnav-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);flex-shrink:0;transition:background 0.2s,transform 0.2s}
+.cnav-item.active .cnav-dot{background:var(--accent);transform:scale(1.4)}
+.cnav-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink2);letter-spacing:0.06em;white-space:nowrap}
+.content-wrap{max-width:900px;margin:0 auto;padding:0 72px}
+.section-block{padding:64px 0;border-bottom:1px solid var(--border)}
+.block-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.block-eyebrow::after{content:'';display:block;height:2px;width:40px;background:var(--accent);border-radius:2px;opacity:0.6}
+.block-title{font-family:'Noto Sans SC',sans-serif;font-size:32px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.25}
+.block-title-en{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;margin-bottom:32px}
+.prose{font-size:15px;color:var(--ink2);line-height:1.9;margin-bottom:24px;max-width:720px}.prose strong{font-weight:600;color:var(--ink)}
+.info-box{background:var(--bg3);border:1.5px solid var(--sky);border-radius:12px;padding:20px 24px;margin:24px 0;display:flex;gap:16px;align-items:flex-start}
+.info-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.info-text{font-size:14px;color:var(--ink2);line-height:1.8}.info-text strong{color:var(--ink);font-weight:600}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin:32px 0}
+.content-card{background:var(--card);border:1.5px solid var(--border2);border-radius:14px;padding:22px 18px;transition:all 0.2s;cursor:default}
+.content-card:hover{border-color:var(--accent);background:var(--bg3);transform:translateY(-3px);box-shadow:0 8px 24px rgba(77,208,225,0.10)}
+.cc-title{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.cc-en{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:10px;letter-spacing:0.06em}
+.cc-desc{font-size:13px;color:var(--ink2);line-height:1.7}
+.cc-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:8px;background:var(--bg3);color:var(--ink2);margin-top:10px;margin-right:4px}
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:24px 0}
+.ref-card{background:var(--card);border:1.5px solid var(--border2);border-radius:12px;padding:16px 18px;text-decoration:none;display:block;transition:all 0.2s}
+.ref-card:hover{border-color:var(--accent);background:var(--bg3);transform:translateY(-2px)}
+.ref-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.ref-title{font-family:'Noto Sans SC',sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.4}
+.ref-desc{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:1.6}
+.data-table{width:100%;border-collapse:collapse;margin:32px 0;font-size:13px}
+.data-table th{background:var(--ink);color:#fff;padding:10px 14px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-align:left;font-weight:500}
+.data-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--ink2)}
+.data-table tr:hover td{background:var(--bg2)}
+@media(max-width:900px){.chapter-nav{display:none}.content-wrap{padding:0 24px}.chapter-hero{padding:56px 24px 48px}#top-nav{padding:0 20px}.nav-progress{display:none}}
+:root { --accent:#FFD700; }
+.chapter-hero { background:linear-gradient(135deg,#FFFDE7 0%,#E0F7FA 40%,#FFF3E0 100%); }
+.chapter-hero::after { content:'10'; }
+</style>
+</head>
+<body>
+<div class="abbr-tooltip" id="abbrTooltip"><span class="tt-abbr" id="ttAbbr"></span><span class="tt-en" id="ttEn"></span><span class="tt-def" id="ttDef"></span></div>
+<nav id="top-nav">
+  <a class="nav-back" href="index.html">← 返回主页</a>
+  <div class="nav-chapter">CH.10 · 综合选材决策</div>
+  <div class="nav-progress">Integrated Material Selection</div>
+</nav>
+<nav class="chapter-nav" id="chapterNav">
+  <a class="cnav-item active" href="#sec-overview" data-sec="sec-overview"><div class="cnav-dot"></div><span class="cnav-label">综合框架回顾</span></a>
+  <a class="cnav-item" href="#sec-case1" data-sec="sec-case1"><div class="cnav-dot"></div><span class="cnav-label">案例：电商重货</span></a>
+  <a class="cnav-item" href="#sec-case2" data-sec="sec-case2"><div class="cnav-dot"></div><span class="cnav-label">案例：冷链食品</span></a>
+  <a class="cnav-item" href="#sec-spec" data-sec="sec-spec"><div class="cnav-dot"></div><span class="cnav-label">规格书撰写</span></a>
+  <a class="cnav-item" href="#sec-refs" data-sec="sec-refs"><div class="cnav-dot"></div><span class="cnav-label">参考资料</span></a>
+</nav>
+<header class="chapter-hero">
+  <div class="hero-eyebrow">Chapter 10 · Packaging Materials Science</div>
+  <h1 class="hero-title"><span class="accent">综合选材</span></h1>
+  <p class="hero-subtitle">本章是全课程的综合应用——将五维度框架、各类材料知识与真实工程约束整合，通过典型案例演练从需求定义到材料规格书的完整决策链路。</p>
+  <div class="hero-tags"><span class="htag">综合案例</span><span class="htag">选材规格书</span><span class="htag">供应商评估</span><span class="htag">成本核算</span><span class="htag">ESG 包装报告</span><span class="htag">课程总结</span></div>
+</header>
+<div class="content-wrap">
+
+  <section class="section-block" id="sec-overview">
+    <div class="block-eyebrow">Section 01</div>
+    <h2 class="block-title">综合框架回顾</h2>
+    <p class="block-title-en">Framework Review · Connecting the Dots</p>
+    <p class="prose">至此，我们已完成六大材料体系的学习。回到第一章的五维度框架，现在可以用具体数据填充每个维度：<strong>保护性</strong>（<span class="abbr-term" data-key="bct">BCT</span>/<span class="abbr-term" data-key="ect">ECT</span>/<span class="abbr-term" data-key="otr">OTR</span> 的具体数值）、<strong>适用性</strong>（特定食品接触标准合规）、<strong>经济性</strong>（材料克重 × 单价 + 加工成本）、<strong>可持续性</strong>（<span class="abbr-term" data-key="epr">EPR</span> 合规 / 可回收性评级 / LCA 碳足迹）、<strong>法规符合性</strong>（GB 9685 / EU PPWR / FDA 合规清单）。</p>
+<div class="info-box"><div class="info-icon">🎯</div><div class="info-text"><strong>实战能力目标：</strong>面对任意包装需求，能在 30 分钟内完成：① 确定主要失效风险；② 初选 2–3 个候选材料方案；③ 列出每个方案的关键测试项目；④ 估算材料成本范围；⑤ 识别主要合规风险。</div></div>
+  </section>
+  <section class="section-block" id="sec-case1">
+    <div class="block-eyebrow">Section 02</div>
+    <h2 class="block-title">案例：电商重货运输箱</h2>
+    <p class="block-title-en">Case Study · E-commerce Heavy Goods Box</p>
+    <p class="prose"><strong>需求背景：</strong>15 kg 家用电器（小型加湿器），从华南仓库快递发货至全国，平均经历 2–3 次分拣中转，预期跌落高度 76 cm，需防水溅。年需求约 50,000 只，要求可打印品牌 logo。</p>
+<div class="card-grid">
+<div class="content-card"><div class="cc-title">Step 1：约束识别</div><div class="cc-desc">重量 15 kg → 需 <span class="abbr-term" data-key="bct">BCT</span> ≥ 1200 N（参考 McKee 估算，4 层码垛）；防水溅 → 面纸需防潮处理；印刷需求 → 白卡面纸（B 楞或 C 楞）。</div></div>
+<div class="content-card"><div class="cc-title">Step 2：方案生成</div><div class="cc-desc">方案 A：BC 双瓦楞 + 牛卡面纸 180 g/m²；方案 B：C 楞 + 白卡面纸 175 g/m²（含防潮剂）；方案 C：BC 楞 + 白卡面纸 150 g/m²（轻量化）。</div></div>
+<div class="content-card"><div class="cc-title">Step 3：验证推荐</div><div class="cc-desc">方案 A BCT 最高（约 1,800 N）但成本高 15%；方案 B 满足需求且可印刷，推荐首选；方案 C 需测试验证 BCT 是否达标，适合低成本敏感场景。</div></div>
+</div>
+  </section>
+  <section class="section-block" id="sec-case2">
+    <div class="block-eyebrow">Section 03</div>
+    <h2 class="block-title">案例：冷链生鲜软包</h2>
+    <p class="block-title-en">Case Study · Fresh Food Cold Chain Flexible Pack</p>
+    <p class="prose"><strong>需求背景：</strong>冷鲜猪肉（200 g 分割），需要气调包装（<span class="abbr-term" data-key="map">MAP</span>，60% N₂ + 40% CO₂），货架期 10 天（4°C），需微波可加热，消费端易撕开。</p>
+<p class="prose"><strong>分析过程：</strong>气调包装要求高阻氧（OTR &lt;5 cm³/m²·day·atm）和中等阻湿；微波可加热排除铝箔结构；猪肉有刺骨风险需要抗穿刺层；易撕要求内层热封膜具有易剥离性。</p>
+<p class="prose"><strong>推荐结构：</strong><span class="abbr-term" data-key="bopet">BOPET</span>（12μm）/ PA（15μm，抗穿刺）/ CPP（50μm，微波安全，易撕热封）。三层结构，无铝箔，满足微波和易撕要求，PA 层提供足够阻氧（OTR≈8，略高于理想值，可考虑升级为 EVOH 替代 PA）。</p>
+  </section>
+  <section class="section-block" id="sec-spec">
+    <div class="block-eyebrow">Section 04</div>
+    <h2 class="block-title">材料规格书撰写</h2>
+    <p class="block-title-en">Writing the Material Specification</p>
+    <p class="prose">材料规格书（Material Specification）是品牌方与供应商之间的技术合同，定义材料必须满足的所有性能要求。一份完整规格书应包含：</p>
+<div class="card-grid">
+<div class="content-card"><div class="cc-title">结构说明</div><div class="cc-desc">层结构（材料/厚度/顺序）、总厚度/克重、允许公差（±5%）、复合方式（干复/共挤）。</div></div>
+<div class="content-card"><div class="cc-title">物理性能</div><div class="cc-desc">拉伸强度（MD/CD）、断裂伸长率、摩擦系数（COF，影响包装机运行）、雾度（Haze，影响透明度）。</div></div>
+<div class="content-card"><div class="cc-title">阻隔性能</div><div class="cc-desc"><span class="abbr-term" data-key="otr">OTR</span>（23°C/0% RH）、<span class="abbr-term" data-key="wvtr">WVTR</span>（38°C/90% RH）、具体数值上限，并注明测试方法标准（ASTM D3985 等）。</div></div>
+<div class="content-card"><div class="cc-title">食品安全</div><div class="cc-desc">适用的食品接触法规（<span class="abbr-term" data-key="gbt">GB</span> 9685 / EU 10/2011 / FDA）、特定迁移物限值、使用食品类别（干性/水性/脂肪性）。</div></div>
+</div>
+  </section>
+  <section class="section-block" id="sec-refs">
+    <div class="block-eyebrow">Section 05</div>
+    <h2 class="block-title">课程总结与延伸阅读</h2>
+    <p class="block-title-en">Course Summary &amp; Further Reading</p>
+    <p class="prose">恭喜你完成《包装材料学》全部十章的学习。本课程覆盖了从单一材料的微观结构到综合选材决策的完整知识体系。包装行业持续演进——可持续法规趋严、新型生物基材料涌现、数字化供应链改变采购模式——保持对行业动态的关注，是继续深化专业能力的关键。</p>
+<div class="ref-grid">
+<a class="ref-card" href="https://www.sciencedirect.com/journal/packaging-technology-and-science" target="_blank" rel="noopener"><div class="ref-type">学术期刊</div><div class="ref-title">Packaging Technology and Science</div><div class="ref-desc">包装领域综合性学术期刊，跟踪前沿研究</div></a>
+<a class="ref-card" href="https://www.packworld.com" target="_blank" rel="noopener"><div class="ref-type">行业媒体</div><div class="ref-title">Packaging World</div><div class="ref-desc">包装行业新技术、新材料、新法规动态</div></a>
+<a class="ref-card" href="https://www.ellenmacarthurfoundation.org/topics/packaging/overview" target="_blank" rel="noopener"><div class="ref-type">延伸阅读</div><div class="ref-title">Ellen MacArthur · 包装循环经济</div><div class="ref-desc">深入理解可持续包装的系统性解决方案</div></a>
+<a class="ref-card" href="https://www.ista.org/certification" target="_blank" rel="noopener"><div class="ref-type">认证参考</div><div class="ref-title">ISTA 运输测试认证</div><div class="ref-desc">进阶：取得 ISTA 认证测试员资格</div></a>
+</div>
+  </section>
+</div>
+<footer style="background:var(--bg2);border-top:2px solid var(--accent);padding:32px 72px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">
+  <span>CH.10 · 综合选材决策 · Packaging Materials Science</span>
+  <div style="display:flex;gap:24px"><a href="ch09.html" style="color:var(--muted);text-decoration:none">← CH09</a><a href="index.html" style="color:var(--cyan);text-decoration:none">主页</a></div>
+</footer>
+<script>
+window.ABBR_DB={
+  ect:{abbr:'ECT',en:'Edge Crush Test',def:'边压强度：沿瓦楞纸板截面边缘方向施压测得的强度，是预测纸箱 BCT 最关键的单一材料指标，单位 kN/m。'},
+  bct:{abbr:'BCT',en:'Box Compression Test',def:'纸箱抗压强度：对整只成型纸箱垂直施压至压溃时的最大力值，选材的最终验证指标，单位 N 或 kgf。'},
+  wvtr:{abbr:'WVTR',en:'Water Vapor Transmission Rate',def:'透湿率：单位面积材料每 24 小时通过的水蒸气量，单位 g/(m²·24h)，数值越低阻湿性越好。'},
+  otr:{abbr:'OTR',en:'Oxygen Transmission Rate',def:'透氧率：单位面积材料通过的氧气量，单位 cm³/(m²·day·atm)，数值越低阻氧性越好。食品/药品包装关键指标。'},
+  gsm:{abbr:'GSM',en:'Grams per Square Meter',def:'克重（定量）：1平方米材料的质量，单位 g/m²。纸张常见 80–300 g/m²，面纸 140–200 g/m²，芯纸 100–160 g/m²。'},
+  fefco:{abbr:'FEFCO',en:'European Federation of Corrugated Board Manufacturers',def:'欧洲瓦楞纸板工业联合会，制定国际通用的纸箱箱型编码标准（0201、0204 等）。'},
+  tappi:{abbr:'TAPPI',en:'Technical Association of Pulp and Paper Industry',def:'美国纸浆与造纸工业技术协会，发布纸张和包装材料权威测试标准，如 TAPPI T 811 ECT 测试。'},
+  iso:{abbr:'ISO',en:'International Organization for Standardization',def:'国际标准化组织，发布全球通用测试标准：ISO 11607 无菌包装、ISO 14021 环保声明等。'},
+  astm:{abbr:'ASTM',en:'American Society for Testing and Materials',def:'美国材料与试验协会，包装常用：ASTM D4169 运输模拟、D3985 OTR 测试、D882 拉伸强度测试。'},
+  epr:{abbr:'EPR',en:'Extended Producer Responsibility',def:'生产者延伸责任：要求品牌商对包装全生命周期（含回收处理）负责并承担成本。欧盟 PPWR 的核心政策机制。'},
+  map:{abbr:'MAP',en:'Modified Atmosphere Packaging',def:'气调包装：用 N₂/CO₂ 等替换包装内空气，抑制微生物生长和氧化，延长生鲜食品货架期。'},
+  bopp:{abbr:'BOPP',en:'Biaxially Oriented Polypropylene',def:'双向拉伸聚丙烯：强度和透明度均优于普通 PP，是零食/糖果软包外层基材的主流选择。'},
+  bopet:{abbr:'BOPET',en:'Biaxially Oriented PET',def:'双向拉伸聚酯薄膜（俗称 Mylar）：透明、阻隔好、耐热，是复合软包外层基材或阻隔层的常见选择。'},
+  pe:{abbr:'PE',en:'Polyethylene',def:'聚乙烯：最常见的包装塑料，密度 &lt;1（浮于水），柔软蜡感，阻水好。LDPE 用于薄膜，HDPE 用于瓶罐。'},
+  evoh:{abbr:'EVOH',en:'Ethylene Vinyl Alcohol',def:'乙烯-乙烯醇共聚物：阻氧性极强（OTR 接近铝箔），但吸湿后性能急降，须与 PE/PP 复合形成阻湿保护。'},
+};
+const tt=document.getElementById('abbrTooltip');
+document.querySelectorAll('.abbr-term').forEach(el=>{
+  const d=(window.ABBR_DB||{})[el.dataset.key];if(!d)return;
+  function show(x,y){document.getElementById('ttAbbr').textContent=d.abbr;document.getElementById('ttEn').textContent=d.en;document.getElementById('ttDef').textContent=d.def;let tx=x+14,ty=y-10;if(tx+300>window.innerWidth)tx=x-300;if(ty+120>window.innerHeight)ty=y-120;tt.style.left=tx+'px';tt.style.top=ty+'px';tt.style.display='block';}
+  el.addEventListener('mouseenter',e=>show(e.clientX,e.clientY));
+  el.addEventListener('mousemove',e=>show(e.clientX,e.clientY));
+  el.addEventListener('mouseleave',()=>tt.style.display='none');
+  el.addEventListener('click',e=>{e.stopPropagation();tt.style.display==='block'?tt.style.display='none':show(e.clientX,e.clientY);});
+});
+document.addEventListener('click',()=>tt.style.display='none');
+const nav=document.getElementById('chapterNav');const hero=document.querySelector('.chapter-hero');
+nav.style.cssText='opacity:0;pointer-events:none;transition:opacity 0.3s';
+new IntersectionObserver(entries=>{const v=entries[0].isIntersecting;nav.style.opacity=v?'0':'1';nav.style.pointerEvents=v?'none':'auto';},{threshold:0}).observe(hero);
+document.querySelectorAll('.section-block').forEach(s=>{new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)return;document.querySelectorAll('.cnav-item').forEach(n=>n.classList.remove('active'));const a=document.querySelector(`.cnav-item[data-sec="${entries[0].target.id}"]`);if(a)a.classList.add('active');},{rootMargin:'-20% 0px -60% 0px'}).observe(s);});
+</script>
+</body>
+</html>

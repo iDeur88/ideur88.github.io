@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CH.02 · 纸与瓦楞纸板 | 包装材料学</title>
+<style>
+/* ══ 字体：思源黑体 VF (Source Han Sans VF) ══
+   Google Fonts 托管版，Variable Font，支持 wght 100–900 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg:      #FFFFFF;
+  --bg2:     #F8FBFF;
+  --bg3:     #F0F9FF;
+  --card:    #FFFFFF;
+  --ink:     #1A1A2E;
+  --ink2:    #2D3561;
+  --muted:   #6B7280;
+  --border:  #E8F4FD;
+  --border2: #B3E5FC;
+  --yellow:  #FFD700;
+  --cyan:    #4DD0E1;
+  --orange:  #FF8A65;
+  --sky:     #81D4FA;
+  
+
+  /* 字重分级（思源黑体） */
+  --fw-light:   300;
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semibold:600;
+  --fw-bold:    700;
+}
+
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Noto Sans SC', sans-serif;
+  font-weight:var(--fw-regular);
+  overflow-x:hidden;
+  line-height:1.7;
+}
+
+/* ══ 缩写浮窗系统 ══ */
+.abbr-term {
+  border-bottom:1.5px dashed var(--orange);
+  cursor:help;
+  color:var(--orange);
+  font-weight:var(--fw-medium);
+  position:relative;
+  display:inline;
+}
+.abbr-tooltip {
+  display:none;
+  position:fixed;
+  z-index:9999;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border:1px solid rgba(77,208,225,0.30);
+  color:var(--ink);
+  border-radius:12px;
+  padding:12px 16px;
+  max-width:290px;
+  font-family:'DM Mono',monospace;
+  font-size:11px;
+  line-height:1.65;
+  letter-spacing:0.03em;
+  pointer-events:none;
+  box-shadow:0 8px 32px rgba(77,208,225,0.18),0 2px 8px rgba(0,0,0,0.06);
+}
+.abbr-tooltip .tt-abbr {
+  color:var(--yellow);
+  font-size:13px;
+  font-weight:var(--fw-medium);
+  display:block;
+  margin-bottom:4px;
+  letter-spacing:0.06em;
+}
+.abbr-tooltip .tt-en {
+  color:var(--muted);
+  font-size:10px;
+  display:block;
+  margin-bottom:6px;
+}
+.abbr-tooltip .tt-def { color:var(--ink2); }
+
+/* ══ 顶部导航 ══ */
+#top-nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:2px solid var(--yellow);
+  display:flex; align-items:center;
+  justify-content:space-between;
+  padding:0 52px; height:56px;
+}
+.nav-back {
+  font-family:'DM Mono',monospace;
+  font-size:11px; color:var(--muted);
+  text-decoration:none; letter-spacing:0.08em;
+  display:flex; align-items:center; gap:8px;
+  transition:color 0.2s;
+}
+.nav-back:hover { color:var(--orange); }
+.nav-chapter {
+  font-family:'Noto Sans SC', sans-serif;
+  font-size:15px; font-weight:var(--fw-semibold);
+  color:var(--ink); letter-spacing:0.04em;
+}
+.nav-progress {
+  font-family:'DM Mono',monospace;
+  font-size:10px; color:var(--muted);
+  letter-spacing:0.1em;
+}
+
+/* ══ 章节 Hero ══ */
+.chapter-hero {
+  margin-top:56px;
+  padding:80px 72px 64px;
+  background:linear-gradient(135deg,#FFFDE7 0%,#E0F7FA 50%,#F8FBFF 100%);
+  border-bottom:1px solid var(--border);
+  position:relative; overflow:hidden;
+}
+.chapter-hero::after {
+  content:'02';
+  position:absolute; right:-20px; top:-30px;
+  font-family:'Noto Sans SC', sans-serif;
+  font-size:280px; font-weight:var(--fw-bold);
+  color:transparent;
+  -webkit-text-stroke:1.5px rgba(155,58,26,0.08);
+  line-height:1; pointer-events:none;
+}
+.hero-eyebrow {
+  font-family:'DM Mono',monospace;
+  font-size:11px; letter-spacing:0.22em;
+  text-transform:uppercase; color:var(--orange);
+  margin-bottom:14px;
+}
+.hero-title {
+  font-family:'Noto Sans SC', sans-serif;
+  font-size:clamp(36px,5.5vw,64px);
+  font-weight:var(--fw-bold); line-height:1.15;
+  color:var(--ink); margin-bottom:20px;
+  letter-spacing:-0.01em;
+}
+.hero-subtitle {
+  font-family:'Noto Sans SC', sans-serif;
+  font-size:13px; font-weight:var(--fw-light);
+  color:var(--muted);
+  letter-spacing:0.02em; max-width:560px;
+  line-height:1.9; margin-bottom:36px;
+}
+.hero-tags { display:flex; gap:8px; flex-wrap:wrap; }
+.htag {
+  font-family:'DM Mono',monospace; font-size:10px;
+  padding:5px 14px; border-radius:2px;
+  border:1px solid var(--border2);
+  color:var(--ink2); letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+
+/* ══ 章节内导航（浮动左侧）══ */
+.chapter-nav {
+  position:fixed;
+  left:24px; top:50%;
+  transform:translateY(-50%);
+  z-index:150;
+  display:flex; flex-direction:column; gap:8px;
+}
+.cnav-item {
+  display:flex; align-items:center; gap:8px;
+  text-decoration:none; cursor:pointer;
+  opacity:0.45; transition:opacity 0.2s;
+}
+.cnav-item:hover, .cnav-item.active { opacity:1; }
+.cnav-dot {
+  width:6px; height:6px; border-radius:50%;
+  background:var(--border2); flex-shrink:0;
+  transition:background 0.2s, transform 0.2s;
+}
+.cnav-item.active .cnav-dot { background:var(--orange); transform:scale(1.4); }
+.cnav-label {
+  font-family:'DM Mono',monospace;
+  font-size:10px; color:var(--ink2);
+  letter-spacing:0.08em; white-space:nowrap;
+}
+
+/* ══ 内容区通用 ══ */
+.content-wrap {
+  max-width:900px; margin:0 auto; padding:0 72px;
+}
+.section-block {
+  padding:64px 0; border-bottom:1px solid var(--border);
+}
+.block-eyebrow {
+  font-family:'DM Mono',monospace;
+  font-size:10px; letter-spacing:0.22em;
+  text-transform:uppercase; color:var(--orange);
+  margin-bottom:8px; display:flex;
+  align-items:center; gap:12px;
+}
+.block-eyebrow::after {
+  content:''; display:block; height:1px;
+  width:40px; background:var(--orange); opacity:0.3;
+}
+.block-title {
+  font-family:'Noto Sans SC', sans-serif;
+  font-size:32px; font-weight:var(--fw-semibold);
+  color:var(--ink); margin-bottom:8px;
+  letter-spacing:-0.01em; line-height:1.25;
+}
+.block-title-en {
+  font-family:'DM Mono',monospace;
+  font-size:11px; color:var(--muted);
+  letter-spacing:0.1em; margin-bottom:32px;
+}
+.prose {
+  font-size:15px; font-weight:var(--fw-regular);
+  color:var(--ink2); line-height:1.9;
+  margin-bottom:24px; max-width:720px;
+}
+.prose strong {
+  font-weight:var(--fw-semibold); color:var(--ink);
+}
+
+/* ══ 图片画廊 ══ */
+.img-gallery {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(220px,1fr));
+  gap:12px; margin:32px 0;
+}
+.img-card {
+  border-radius:8px; overflow:hidden;
+  border:1px solid var(--border);
+  background:var(--card);
+  cursor:zoom-in;
+  transition:transform 0.2s, box-shadow 0.2s;
+}
+.img-card:hover {
+  transform:translateY(-3px);
+  box-shadow:0 8px 24px rgba(0,0,0,0.1);
+}
+.img-card .svg-thumb {
+  width:100%; height:160px; display:block;
+  background:#FDFAF5;
+}
+.img-card-label {
+  padding:10px 12px;
+  font-family:'DM Mono',monospace;
+  font-size:10px; color:var(--muted);
+  letter-spacing:0.06em; line-height:1.5;
+}
+.img-card-label strong {
+  display:block; color:var(--ink2);
+  font-size:11px; margin-bottom:2px;
+}
+
+/* ══ SVG 灯箱 ══
+   使用克隆 SVG 内容的方案，不依赖 img src */
+.lightbox {
+  display:none; position:fixed; inset:0;
+  background:rgba(14,12,10,0.92); z-index:1000;
+  align-items:center; justify-content:center;
+  cursor:zoom-out;
+}
+.lightbox.open { display:flex; }
+.lightbox-inner {
+  max-width:90vw; max-height:88vh;
+  background:var(--card);
+  border-radius:10px; overflow:hidden;
+  padding:24px; position:relative;
+}
+.lightbox-inner svg {
+  width:100%; height:auto;
+  max-height:80vh;
+}
+.lightbox-close {
+  position:absolute; top:12px; right:16px;
+  font-family:'DM Mono',monospace;
+  font-size:11px; color:var(--muted);
+  cursor:pointer; letter-spacing:0.1em;
+}
+.lightbox-caption {
+  font-family:'DM Mono',monospace;
+  font-size:10px; color:var(--muted);
+  margin-top:12px; text-align:center;
+  letter-spacing:0.06em;
+}
+
+/* ══ 视频区（懒加载方案）══ */
+.video-block {
+  margin:32px 0;
+  border-radius:10px; overflow:hidden;
+  border:1px solid var(--border);
+  background:var(--ink);
+  position:relative;
+}
+/* 点击前显示的封面占位 */
+.video-cover {
+  width:100%; aspect-ratio:16/9;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  background:var(--ink); cursor:pointer;
+  position:relative; overflow:hidden;
+  transition:opacity 0.2s;
+}
+.video-cover:hover { opacity:0.88; }
+.video-cover-bg {
+  position:absolute; inset:0;
+  background:linear-gradient(135deg,#2A2520 0%,#1A1410 100%);
+}
+.video-play-btn {
+  position:relative; z-index:2;
+  width:64px; height:64px; border-radius:50%;
+  background:var(--orange);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:16px;
+  box-shadow:0 4px 24px rgba(155,58,26,0.4);
+  transition:transform 0.2s, box-shadow 0.2s;
+}
+.video-cover:hover .video-play-btn {
+  transform:scale(1.08);
+  box-shadow:0 6px 32px rgba(155,58,26,0.55);
+}
+.video-play-btn svg { margin-left:4px; }
+.video-cover-title {
+  position:relative; z-index:2;
+  font-family:'DM Mono',monospace;
+  font-size:12px; color:#C4BBAD;
+  letter-spacing:0.08em; text-align:center;
+  max-width:360px; line-height:1.6; padding:0 24px;
+}
+.video-cover-hint {
+  position:relative; z-index:2;
+  font-family:'DM Mono',monospace;
+  font-size:10px; color:var(--muted);
+  letter-spacing:0.06em; margin-top:8px;
+}
+/* iframe 加载后替换封面 */
+.video-embed {
+  width:100%; aspect-ratio:16/9;
+  border:none; display:block;
+}
+.video-label {
+  padding:14px 20px;
+  font-family:'DM Mono',monospace;
+  font-size:11px; color:#C4BBAD;
+  letter-spacing:0.06em;
+  background:var(--ink);
+}
+.video-fallback {
+  padding:16px 20px;
+  background:var(--bg2);
+  border-top:1px solid var(--border);
+  display:flex; align-items:center;
+  justify-content:space-between; flex-wrap:wrap; gap:12px;
+}
+.video-fallback-label {
+  font-family:'DM Mono',monospace;
+  font-size:10px; color:var(--muted); letter-spacing:0.06em;
+}
+.video-fallback a {
+  font-family:'DM Mono',monospace;
+  font-size:11px; color:var(--orange);
+  text-decoration:none; letter-spacing:0.06em;
+  border-bottom:1px solid var(--orange); padding-bottom:1px;
+  transition:opacity 0.2s;
+}
+.video-fallback a:hover { opacity:0.7; }
+
+/* ══ 楞型参数表 ══ */
+.flute-visual {
+  margin:32px 0; display:flex; flex-direction:column; gap:12px;
+}
+.flute-row {
+  display:grid;
+  grid-template-columns:60px 1fr 80px 100px 180px;
+  gap:0; border:1px solid var(--border);
+  border-radius:6px; overflow:hidden;
+  background:var(--card); transition:background 0.2s;
+}
+.flute-row:hover { background:var(--bg2); }
+.flute-row.header {
+  background:var(--ink); border-color:var(--ink);
+  font-family:'DM Mono',monospace;
+  font-size:9px; letter-spacing:0.12em;
+  text-transform:uppercase; color:#C4BBAD;
+}
+.flute-cell {
+  padding:14px 16px; border-right:1px solid var(--border);
+  display:flex; align-items:center;
+  font-family:'DM Mono',monospace; font-size:12px; color:var(--muted);
+}
+.flute-cell:last-child { border-right:none; }
+.flute-row.header .flute-cell { color:#8A8070; font-size:9px; }
+.flute-type {
+  font-family:'Noto Sans SC', sans-serif;
+  font-size:20px; font-weight:var(--fw-bold);
+  color:var(--orange); min-width:60px;
+}
+.flute-bar-wrap { display:flex; align-items:center; gap:8px; flex:1; }
+.flute-bar {
+  height:8px; border-radius:2px;
+  background:var(--orange); opacity:0.7; transition:opacity 0.2s;
+}
+.flute-row:hover .flute-bar { opacity:1; }
+.flute-height { color:var(--ink2); font-weight:var(--fw-medium); }
+.flute-tag {
+  display:inline-block; font-family:'DM Mono',monospace;
+  font-size:9px; padding:3px 8px; border-radius:2px;
+  letter-spacing:0.06em; text-transform:uppercase;
+}
+.tag-common { background:rgba(155,58,26,0.1); color:var(--orange); }
+.tag-print  { background:rgba(26,107,107,0.1); color:var(--cyan); }
+.tag-micro  { background:rgba(140,106,26,0.1); color:var(--yellow); }
+.tag-heavy  { background:rgba(61,54,41,0.12);  color:var(--ink2); }
+
+/* ══ 性能指标 ══ */
+.metric-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(200px,1fr));
+  gap:1px; background:var(--border);
+  border:1px solid var(--border);
+  border-radius:8px; overflow:hidden; margin:32px 0;
+}
+.metric-card {
+  background:var(--card); padding:24px 20px;
+  transition:background 0.2s; cursor:pointer;
+}
+.metric-card:hover { background:var(--bg2); }
+.metric-abbr {
+  font-family:'DM Mono',monospace;
+  font-size:22px; font-weight:var(--fw-medium);
+  color:var(--orange); letter-spacing:0.04em; margin-bottom:4px;
+}
+.metric-cn {
+  font-family:'Noto Sans SC', sans-serif;
+  font-size:13px; font-weight:var(--fw-semibold);
+  color:var(--ink); margin-bottom:2px;
+}
+.metric-en {
+  font-family:'DM Mono',monospace;
+  font-size:10px; color:var(--muted);
+  letter-spacing:0.06em; margin-bottom:12px;
+}
+.metric-desc {
+  font-family:'DM Mono',monospace;
+  font-size:11px; color:var(--muted); line-height:1.7;
+}
+.metric-unit {
+  font-family:'DM Mono',monospace;
+  font-size:10px; color:var(--yellow); margin-top:8px; letter-spacing:0.06em;
+}
+.metric-diagram { width:100%; height:60px; margin:10px 0; }
+
+/* ══ 选材决策树 ══ */
+.decision-tree {
+  margin:32px 0; border:1px solid var(--border);
+  border-radius:10px; overflow:hidden; background:var(--card);
+}
+.dt-header {
+  background:var(--ink); padding:16px 24px;
+  font-family:'DM Mono',monospace; font-size:11px; color:#C4BBAD;
+  letter-spacing:0.08em; display:flex; align-items:center;
+  justify-content:space-between;
+}
+.dt-body { padding:24px; }
+.dt-question {
+  font-family:'Noto Sans SC', sans-serif;
+  font-size:14px; font-weight:var(--fw-semibold);
+  color:var(--ink); margin-bottom:16px;
+}
+.dt-options { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
+.dt-btn {
+  font-family:'DM Mono',monospace; font-size:11px; padding:8px 16px;
+  border-radius:4px; cursor:pointer; border:1px solid var(--border2);
+  background:transparent; color:var(--ink2); letter-spacing:0.06em;
+  transition:all 0.2s; text-align:left;
+}
+.dt-btn:hover { border-color:var(--orange); color:var(--orange); background:rgba(155,58,26,0.04); }
+.dt-btn.selected { border-color:var(--orange); color:var(--orange); background:rgba(155,58,26,0.08); }
+.dt-result {
+  display:none; background:var(--bg2);
+  border:1px solid var(--border); border-radius:6px;
+  padding:20px 24px; margin-top:16px;
+}
+.dt-result.show { display:block; }
+.dt-result-title {
+  font-family:'DM Mono',monospace; font-size:10px; color:var(--orange);
+  letter-spacing:0.14em; text-transform:uppercase; margin-bottom:10px;
+}
+.dt-result-rec {
+  font-family:'Noto Sans SC', sans-serif;
+  font-size:18px; font-weight:var(--fw-semibold);
+  color:var(--ink); margin-bottom:8px;
+}
+.dt-result-why {
+  font-family:'DM Mono',monospace; font-size:11px;
+  color:var(--muted); line-height:1.8;
+}
+.dt-reset {
+  font-family:'DM Mono',monospace; font-size:10px; color:var(--muted);
+  cursor:pointer; letter-spacing:0.08em;
+  text-decoration:underline; margin-top:12px; display:inline-block;
+}
+.dt-progress { display:flex; gap:6px; margin-bottom:20px; }
+.dt-step-dot {
+  width:20px; height:3px; border-radius:2px;
+  background:var(--border2); transition:background 0.2s;
+}
+.dt-step-dot.done { background:var(--orange); }
+
+/* ══ 展开图 ══ */
+.box-diagram { margin:32px 0; position:relative; }
+.box-svg-wrap {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:10px; overflow:hidden; padding:32px; text-align:center;
+}
+.part-info {
+  display:none; margin-top:16px; padding:16px 20px;
+  background:var(--bg2); border:1px solid var(--border);
+  border-radius:6px; font-family:'DM Mono',monospace;
+  font-size:11px; color:var(--muted); line-height:1.8;
+}
+.part-info.show { display:block; }
+.part-info strong {
+  display:block; font-size:13px;
+  color:var(--orange); margin-bottom:6px; letter-spacing:0.06em;
+}
+
+/* ══ McKee 公式 ══ */
+.formula-block {
+  background:var(--ink); border-radius:10px;
+  padding:32px; margin:32px 0; color:#EDE8DF;
+}
+.formula-title {
+  font-family:'DM Mono',monospace; font-size:10px; color:#8A8070;
+  letter-spacing:0.14em; text-transform:uppercase; margin-bottom:16px;
+}
+.formula-display {
+  font-family:'Noto Sans SC', sans-serif;
+  font-size:clamp(18px,3vw,26px); font-weight:var(--fw-medium);
+  color:var(--yellow); margin-bottom:24px; line-height:1.5;
+}
+.formula-vars {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:12px; margin-bottom:28px;
+}
+.fvar {
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:4px; padding:12px 14px;
+}
+.fvar-sym {
+  font-family:'DM Mono',monospace; font-size:16px;
+  color:var(--yellow); margin-bottom:4px;
+}
+.fvar-name {
+  font-family:'DM Mono',monospace; font-size:10px;
+  color:#8A8070; letter-spacing:0.06em; margin-bottom:6px;
+}
+.fvar-desc {
+  font-family:'DM Mono',monospace; font-size:11px;
+  color:#C4BBAD; line-height:1.6;
+}
+.mckee-calc {
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:6px; padding:20px;
+}
+.calc-title {
+  font-family:'DM Mono',monospace; font-size:10px; color:#8A8070;
+  letter-spacing:0.12em; text-transform:uppercase; margin-bottom:16px;
+}
+.calc-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;
+}
+.calc-field { display:flex; flex-direction:column; gap:4px; }
+.calc-label { font-family:'DM Mono',monospace; font-size:10px; color:#8A8070; letter-spacing:0.06em; }
+.calc-input {
+  background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+  border-radius:4px; padding:8px 12px; color:#EDE8DF;
+  font-family:'DM Mono',monospace; font-size:13px; outline:none;
+  transition:border-color 0.2s;
+}
+.calc-input:focus { border-color:var(--yellow); }
+.calc-btn {
+  background:var(--orange); border:none; border-radius:4px;
+  padding:10px 20px; color:#FDFAF5; font-family:'DM Mono',monospace;
+  font-size:11px; letter-spacing:0.08em; cursor:pointer;
+  transition:opacity 0.2s; text-transform:uppercase;
+}
+.calc-btn:hover { opacity:0.85; }
+.calc-result {
+  display:none; margin-top:14px;
+  background:rgba(184,134,11,0.12);
+  border:1px solid rgba(184,134,11,0.25);
+  border-radius:4px; padding:14px 16px;
+}
+.calc-result.show { display:block; }
+.calc-result-val {
+  font-family:'Noto Sans SC', sans-serif;
+  font-size:32px; font-weight:var(--fw-bold);
+  color:var(--yellow); margin-bottom:4px;
+}
+.calc-result-unit {
+  font-family:'DM Mono',monospace; font-size:10px;
+  color:#8A8070; letter-spacing:0.06em;
+}
+.calc-result-note {
+  font-family:'DM Mono',monospace; font-size:10px;
+  color:#8A8070; line-height:1.6; margin-top:8px;
+}
+
+/* ══ 参考资料 ══ */
+.ref-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:12px; margin:24px 0;
+}
+.ref-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:6px; padding:16px 18px; text-decoration:none;
+  display:block; transition:border-color 0.2s, background 0.2s;
+}
+.ref-card:hover { border-color:var(--orange); background:var(--bg2); }
+.ref-type {
+  font-family:'DM Mono',monospace; font-size:9px;
+  letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--orange); margin-bottom:6px;
+}
+.ref-title {
+  font-family:'Noto Sans SC', sans-serif;
+  font-size:13px; font-weight:var(--fw-semibold);
+  color:var(--ink); margin-bottom:4px; line-height:1.4;
+}
+.ref-desc {
+  font-family:'DM Mono',monospace; font-size:10px;
+  color:var(--muted); line-height:1.6;
+}
+
+/* ══ 响应式 ══ */
+@media(max-width:900px) {
+  .chapter-nav { display:none; }
+  .content-wrap { padding:0 24px; }
+  .chapter-hero { padding:56px 24px 48px; }
+  #top-nav { padding:0 20px; }
+  .nav-progress { display:none; }
+  .flute-row { grid-template-columns:50px 1fr 70px; }
+  .flute-cell:nth-child(4),.flute-cell:nth-child(5) { display:none; }
+  .calc-grid { grid-template-columns:1fr; }
+}
+@media(max-width:480px) {
+  .img-gallery { grid-template-columns:1fr 1fr; }
+  .metric-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ 缩写浮窗容器 ══ -->
+<div class="abbr-tooltip" id="abbrTooltip">
+  <span class="tt-abbr" id="ttAbbr"></span>
+  <span class="tt-en"   id="ttEn"></span>
+  <span class="tt-def"  id="ttDef"></span>
+</div>
+
+<!-- ══ SVG 灯箱
+     lightbox-inner 内的内容由 JS 动态注入克隆的 SVG ══ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner" id="lightboxInner">
+    <span class="lightbox-close" onclick="closeLightbox(event)">✕ 关闭</span>
+    <div id="lightboxSVGWrap"></div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
+
+<!-- ══ 顶部导航 ══ -->
+<nav id="top-nav">
+  <a class="nav-back" href="index.html">← 返回主页</a>
+  <div class="nav-chapter">CH.02 · 纸与瓦楞纸板</div>
+  <div class="nav-progress">Paper &amp; Corrugated Board</div>
+</nav>
+
+<!-- ══ 左侧章节内导航 ══ -->
+<nav class="chapter-nav" id="chapterNav">
+  <a class="cnav-item active" href="#sec-overview"   data-sec="sec-overview">
+    <div class="cnav-dot"></div><span class="cnav-label">材料总览</span>
+  </a>
+  <a class="cnav-item" href="#sec-production" data-sec="sec-production">
+    <div class="cnav-dot"></div><span class="cnav-label">生产工艺</span>
+  </a>
+  <a class="cnav-item" href="#sec-flute"      data-sec="sec-flute">
+    <div class="cnav-dot"></div><span class="cnav-label">楞型系统</span>
+  </a>
+  <a class="cnav-item" href="#sec-metrics"    data-sec="sec-metrics">
+    <div class="cnav-dot"></div><span class="cnav-label">性能指标</span>
+  </a>
+  <a class="cnav-item" href="#sec-selection"  data-sec="sec-selection">
+    <div class="cnav-dot"></div><span class="cnav-label">选材决策</span>
+  </a>
+  <a class="cnav-item" href="#sec-structure"  data-sec="sec-structure">
+    <div class="cnav-dot"></div><span class="cnav-label">结构设计</span>
+  </a>
+  <a class="cnav-item" href="#sec-refs"       data-sec="sec-refs">
+    <div class="cnav-dot"></div><span class="cnav-label">参考资料</span>
+  </a>
+</nav>
+
+<!-- ══ Hero ══ -->
+<header class="chapter-hero">
+  <div class="hero-eyebrow">Chapter 02 · Packaging Materials Science</div>
+  <h1 class="hero-title">纸与瓦楞纸板<br>Paper &amp; Corrugated Board</h1>
+  <p class="hero-subtitle">
+    从天然纤维素纤维到工业包装材料——理解纸质包装的结构逻辑、
+    性能参数与选材决策，是包装结构工程师最基础也最核心的能力之一。
+  </p>
+  <div class="hero-tags">
+    <span class="htag">纤维素结构</span>
+    <span class="htag">楞型 A/B/C/E/F</span>
+    <span class="htag">ECT · CCT · RCT</span>
+    <span class="htag">McKee 公式</span>
+    <span class="htag">FEFCO 箱型</span>
+    <span class="htag">选材决策</span>
+  </div>
+</header>
+
+<!-- ══ 内容主体 ══ -->
+<div class="content-wrap">
+
+  <!-- § 1 材料总览 -->
+  <section class="section-block" id="sec-overview">
+    <div class="block-eyebrow">Section 01</div>
+    <h2 class="block-title">材料总览</h2>
+    <p class="block-title-en">Overview · What It Is &amp; Why It Matters</p>
+
+    <p class="prose">
+      纸质包装材料的本质是<strong>植物纤维素纤维的交织网络</strong>。
+      木材、竹子、蔗渣等植物原料经过制浆、漂白、抄纸等工艺，
+      形成由氢键结合的纤维网络——这就是纸张强度的来源，也是它遇水变软的根本原因。
+    </p>
+    <p class="prose">
+      在包装领域，纸质材料按结构分为两大类：
+      <span class="abbr-term" data-key="paperboard">纸板</span>（单层或多层压合，用于折叠纸盒）
+      和<span class="abbr-term" data-key="corrugated">瓦楞纸板</span>
+      （面纸 + 瓦楞芯纸 + 里纸的夹层结构，用于运输包装箱）。
+      两者的核心差异在于：纸板靠厚度和密度取得强度，
+      瓦楞纸板靠<strong>拱形结构</strong>分散压力，以更少的材料实现更高的抗压性能。
+    </p>
+
+    <!-- SVG 图示画廊：点击可放大 -->
+    <div class="img-gallery">
+
+      <!-- 图示 1：瓦楞纸板截面 -->
+      <div class="img-card" onclick="openLightbox(this,'瓦楞纸板截面 · 面纸 + 瓦楞芯 + 里纸三层结构')">
+        <svg class="svg-thumb" viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="14" width="260" height="16" rx="2" fill="#C4BBAD" opacity="0.6"/>
+          <text x="140" y="24" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">面纸 Liner</text>
+          <path d="M10,52 Q27,32 44,52 Q61,72 78,52 Q95,32 112,52 Q129,72 146,52 Q163,32 180,52 Q197,72 214,52 Q231,32 248,52 Q265,72 270,52" fill="none" stroke="#FF8A65" stroke-width="3" stroke-linecap="round"/>
+          <text x="140" y="78" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#FF8A65">瓦楞芯 Fluted Medium</text>
+          <rect x="10" y="90" width="260" height="16" rx="2" fill="#C4BBAD" opacity="0.6"/>
+          <text x="140" y="100" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">里纸 Liner</text>
+          <line x1="272" y1="14" x2="272" y2="106" stroke="#D6CFC3" stroke-width="1"/>
+          <line x1="268" y1="14"  x2="276" y2="14"  stroke="#D6CFC3" stroke-width="1"/>
+          <line x1="268" y1="106" x2="276" y2="106" stroke="#D6CFC3" stroke-width="1"/>
+          <text x="140" y="132" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#8A8070">单瓦楞三层结构 · Single Wall Corrugated</text>
+          <text x="140" y="148" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#C4BBAD">面纸 + 瓦楞芯 + 里纸</text>
+        </svg>
+        <div class="img-card-label">
+          <strong>瓦楞纸板截面 / Cross-section</strong>
+          面纸 + 瓦楞芯纸 + 里纸三层结构，拱形芯纸分散压力
+        </div>
+      </div>
+
+      <!-- 图示 2：纤维素网络 -->
+      <div class="img-card" onclick="openLightbox(this,'纤维素网络结构 · 氢键赋予纸张强度，遇水断裂')">
+        <svg class="svg-thumb" viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+          <line x1="20" y1="40"  x2="180" y2="55"  stroke="#FFD700" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+          <line x1="30" y1="70"  x2="200" y2="80"  stroke="#FFD700" stroke-width="2"   stroke-linecap="round" opacity="0.6"/>
+          <line x1="10" y1="100" x2="190" y2="110" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+          <line x1="60" y1="20"  x2="50"  y2="130" stroke="#FF8A65" stroke-width="2"   stroke-linecap="round" opacity="0.5"/>
+          <line x1="110" y1="15" x2="100" y2="125" stroke="#FF8A65" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+          <line x1="155" y1="25" x2="145" y2="120" stroke="#FF8A65" stroke-width="2"   stroke-linecap="round" opacity="0.5"/>
+          <circle cx="67"  cy="53"  r="3" fill="#4DD0E1" opacity="0.8"/>
+          <circle cx="112" cy="67"  r="3" fill="#4DD0E1" opacity="0.8"/>
+          <circle cx="103" cy="80"  r="3" fill="#4DD0E1" opacity="0.8"/>
+          <circle cx="148" cy="58"  r="3" fill="#4DD0E1" opacity="0.8"/>
+          <circle cx="57"  cy="100" r="3" fill="#4DD0E1" opacity="0.8"/>
+          <circle cx="150" cy="110" r="3" fill="#4DD0E1" opacity="0.8"/>
+          <rect x="195" y="35" width="80" height="70" rx="4" fill="rgba(237,232,223,0.9)" stroke="#D6CFC3" stroke-width="0.5"/>
+          <line x1="203" y1="50" x2="225" y2="50" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round"/>
+          <text x="230" y="54" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">纤维素纤维</text>
+          <line x1="203" y1="68" x2="225" y2="68" stroke="#FF8A65" stroke-width="2" stroke-linecap="round"/>
+          <text x="230" y="72" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">交叉纤维</text>
+          <circle cx="214" cy="87" r="3" fill="#4DD0E1" opacity="0.8"/>
+          <text x="230" y="91" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">氢键结合点</text>
+          <text x="140" y="140" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#8A8070">纤维素网络结构 · 氢键赋予纸张强度</text>
+          <text x="140" y="154" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#C4BBAD">遇水氢键断裂 → 强度下降</text>
+        </svg>
+        <div class="img-card-label">
+          <strong>纤维素网络 / Cellulose Network</strong>
+          纤维交织 + 氢键结合，遇水氢键断裂导致强度下降
+        </div>
+      </div>
+
+      <!-- 图示 3：纸板分类 -->
+      <div class="img-card" onclick="openLightbox(this,'纸板类型对比 · 白卡 / 牛卡 / 灰板')">
+        <svg class="svg-thumb" viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+          <rect x="14" y="20" width="70" height="90" rx="3" fill="#FDFAF5" stroke="#C4BBAD" stroke-width="1"/>
+          <rect x="14" y="20" width="70" height="12" rx="3" fill="#EDE8DF"/>
+          <line x1="14" y1="40" x2="84" y2="40" stroke="#D6CFC3" stroke-width="0.5"/>
+          <line x1="14" y1="55" x2="84" y2="55" stroke="#D6CFC3" stroke-width="0.5"/>
+          <line x1="14" y1="70" x2="84" y2="70" stroke="#D6CFC3" stroke-width="0.5"/>
+          <line x1="14" y1="85" x2="84" y2="85" stroke="#D6CFC3" stroke-width="0.5"/>
+          <text x="49" y="29" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#8A8070">白卡</text>
+          <text x="49" y="120" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">白卡纸</text>
+          <text x="49" y="132" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#8A8070">多层漂白</text>
+          <text x="49" y="142" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#8A8070">印刷优良</text>
+          <rect x="104" y="20" width="70" height="90" rx="3" fill="#D4A96A" opacity="0.25" stroke="#FFD700" stroke-width="1"/>
+          <rect x="104" y="20" width="70" height="12" rx="3" fill="#FFD700" opacity="0.4"/>
+          <text x="139" y="29" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#7A5C20">牛卡</text>
+          <text x="139" y="120" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">牛卡纸</text>
+          <text x="139" y="132" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#8A8070">本色浆</text>
+          <text x="139" y="142" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#8A8070">强度最高</text>
+          <rect x="194" y="20" width="70" height="90" rx="3" fill="#A8A8A8" opacity="0.2" stroke="#888580" stroke-width="1"/>
+          <rect x="194" y="20" width="70" height="12" rx="3" fill="#888580" opacity="0.4"/>
+          <text x="229" y="29" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#5F5E5A">灰板</text>
+          <text x="229" y="120" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">灰板纸</text>
+          <text x="229" y="132" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#8A8070">回收浆</text>
+          <text x="229" y="142" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#8A8070">成本最低</text>
+        </svg>
+        <div class="img-card-label">
+          <strong>纸板类型对比 / Paperboard Types</strong>
+          白卡（印刷好）· 牛卡（强度高）· 灰板（成本低）
+        </div>
+      </div>
+
+      <!-- 图示 4：单/双/三瓦 -->
+      <div class="img-card" onclick="openLightbox(this,'单瓦 / 双瓦 / 三瓦楞对比 · 层数越多强度越高')">
+        <svg class="svg-thumb" viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(10,20)">
+            <rect x="0" y="0"  width="70" height="6" rx="1" fill="#C4BBAD"/>
+            <path d="M0,18 Q9,6 18,18 Q27,30 36,18 Q45,6 54,18 Q63,30 70,18" fill="none" stroke="#FF8A65" stroke-width="2"/>
+            <rect x="0" y="30" width="70" height="6" rx="1" fill="#C4BBAD"/>
+            <text x="35" y="50" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">单瓦楞</text>
+            <text x="35" y="62" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#8A8070">3层 ~3.6mm</text>
+            <text x="35" y="74" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#FF8A65">C楞 / B楞</text>
+          </g>
+          <g transform="translate(100,10)">
+            <rect x="0" y="0"  width="70" height="5" rx="1" fill="#C4BBAD"/>
+            <path d="M0,15 Q9,5 18,15 Q27,25 36,15 Q45,5 54,15 Q63,25 70,15" fill="none" stroke="#FF8A65" stroke-width="2"/>
+            <rect x="0" y="25" width="70" height="5" rx="1" fill="#C4BBAD"/>
+            <path d="M0,40 Q9,30 18,40 Q27,50 36,40 Q45,30 54,40 Q63,50 70,40" fill="none" stroke="#FFD700" stroke-width="2"/>
+            <rect x="0" y="50" width="70" height="5" rx="1" fill="#C4BBAD"/>
+            <text x="35" y="68" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">双瓦楞</text>
+            <text x="35" y="80" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#8A8070">5层 ~6mm</text>
+            <text x="35" y="92" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#FF8A65">BC楞</text>
+          </g>
+          <g transform="translate(190,5)">
+            <rect x="0" y="0"  width="70" height="4" rx="1" fill="#C4BBAD"/>
+            <path d="M0,12 Q8,4 16,12 Q24,20 32,12 Q40,4 48,12 Q56,20 64,12 Q70,4 70,12" fill="none" stroke="#FF8A65" stroke-width="1.5"/>
+            <rect x="0" y="20" width="70" height="4" rx="1" fill="#C4BBAD"/>
+            <path d="M0,32 Q8,24 16,32 Q24,40 32,32 Q40,24 48,32 Q56,40 64,32 Q70,24 70,32" fill="none" stroke="#FFD700" stroke-width="1.5"/>
+            <rect x="0" y="40" width="70" height="4" rx="1" fill="#C4BBAD"/>
+            <path d="M0,52 Q8,44 16,52 Q24,60 32,52 Q40,44 48,52 Q56,60 64,52 Q70,44 70,52" fill="none" stroke="#FFD700" stroke-width="1.5"/>
+            <rect x="0" y="60" width="70" height="4" rx="1" fill="#C4BBAD"/>
+            <text x="35" y="80" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">三瓦楞</text>
+            <text x="35" y="92" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#8A8070">7层 ~9mm</text>
+            <text x="35" y="104" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#FF8A65">重型出口</text>
+          </g>
+          <text x="140" y="148" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#C4BBAD">层数越多 → 强度越高 · 成本越高</text>
+        </svg>
+        <div class="img-card-label">
+          <strong>单/双/三瓦楞对比 / Wall Types</strong>
+          单瓦（通用）· 双瓦 BC（重型）· 三瓦（超重出口）
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- § 2 生产工艺 -->
+  <section class="section-block" id="sec-production">
+    <div class="block-eyebrow">Section 02</div>
+    <h2 class="block-title">生产工艺</h2>
+    <p class="block-title-en">Manufacturing Process · How It's Made</p>
+
+    <p class="prose">
+      瓦楞纸板的生产在<span class="abbr-term" data-key="corrugator">瓦楞机</span>上完成，
+      是一个连续的高速工业过程。
+      芯纸经过蒸汽加热软化后，通过两个咬合的齿轮辊压出瓦楞形状，
+      再用<span class="abbr-term" data-key="starch">淀粉胶</span>将面纸和里纸分别贴合——
+      整个过程在 150–180°C 高温下完成，速度可达 300 米/分钟。
+    </p>
+    <p class="prose">
+      纸张本身的<span class="abbr-term" data-key="md">MD 纵向</span>
+      和<span class="abbr-term" data-key="cd">CD 横向</span>强度差异，
+      是因为造纸时纤维大多沿机器运行方向排列。
+      瓦楞纸箱设计时，瓦楞方向（与箱体高度平行）利用的正是
+      <span class="abbr-term" data-key="cd">CD</span>方向的抗压性能。
+    </p>
+
+    <!-- 视频 1：懒加载方案 ══
+         点击封面图才注入 iframe，避免 file:// 环境的 X-Frame-Options 错误
+         部署到 GitHub Pages (https://) 后 iframe 也能正常播放 -->
+    <div class="video-block" id="vblock1">
+      <div class="video-label">▶ 瓦楞纸板生产线全流程 · Corrugated Board Manufacturing</div>
+      <div class="video-cover" onclick="loadVideo('vblock1','s7RS1oLJcHM','瓦楞纸板生产线全流程')">
+        <div class="video-cover-bg"></div>
+        <!-- 播放按钮 -->
+        <div class="video-play-btn">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <polygon points="7,4 19,11 7,18" fill="#FDFAF5"/>
+          </svg>
+        </div>
+        <div class="video-cover-title">瓦楞纸板生产线全流程<br>Corrugated Board Manufacturing Process</div>
+        <div class="video-cover-hint">点击播放 · 需要网络连接</div>
+      </div>
+      <div class="video-fallback">
+        <span class="video-fallback-label">视频无法播放？直接跳转观看 →</span>
+        <a href="https://www.youtube.com/watch?v=s7RS1oLJcHM" target="_blank" rel="noopener">
+          YouTube · Corrugated Board Manufacturing ↗
+        </a>
+      </div>
+    </div>
+
+    <div class="video-block" id="vblock2">
+      <div class="video-label">▶ 瓦楞纸箱的制造与裁切过程 · Box Converting</div>
+      <div class="video-cover" onclick="loadVideo('vblock2','HiVuBmJNONw','瓦楞纸箱的制造与裁切过程')">
+        <div class="video-cover-bg"></div>
+        <div class="video-play-btn">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <polygon points="7,4 19,11 7,18" fill="#FDFAF5"/>
+          </svg>
+        </div>
+        <div class="video-cover-title">瓦楞纸箱的制造与裁切过程<br>Box Converting Process</div>
+        <div class="video-cover-hint">点击播放 · 需要网络连接</div>
+      </div>
+      <div class="video-fallback">
+        <span class="video-fallback-label">视频无法播放？直接跳转观看 →</span>
+        <a href="https://www.youtube.com/watch?v=HiVuBmJNONw" target="_blank" rel="noopener">
+          YouTube · Box Converting Process ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- § 3 楞型系统 -->
+  <section class="section-block" id="sec-flute">
+    <div class="block-eyebrow">Section 03</div>
+    <h2 class="block-title">楞型系统</h2>
+    <p class="block-title-en">Flute Profile System · A / B / C / E / F</p>
+
+    <p class="prose">
+      楞型（Flute Profile）决定了瓦楞纸板的厚度、缓冲性能和平压强度。
+      楞高越高，缓冲性越好但平整度越差；楞高越低，印刷效果越好但保护性下降。
+      实际包装设计中，选择楞型的核心逻辑是：
+      <strong>先看保护需求，再看印刷要求，最后考虑成本</strong>。
+    </p>
+
+    <div class="flute-visual">
+      <div class="flute-row header">
+        <div class="flute-cell">楞型</div>
+        <div class="flute-cell">楞高对比</div>
+        <div class="flute-cell">楞高 / mm</div>
+        <div class="flute-cell">特性标签</div>
+        <div class="flute-cell">典型用途</div>
+      </div>
+      <div class="flute-row" onclick="showFluteDetail('A')">
+        <div class="flute-cell"><span class="flute-type">A</span></div>
+        <div class="flute-cell"><div class="flute-bar-wrap"><div class="flute-bar" style="width:100%"></div></div></div>
+        <div class="flute-cell"><span class="flute-height">4.5 mm</span></div>
+        <div class="flute-cell"><span class="flute-tag tag-heavy">缓冲最强</span></div>
+        <div class="flute-cell" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">易碎品 · 精密仪器 · 玻璃器皿</div>
+      </div>
+      <div class="flute-row" onclick="showFluteDetail('B')">
+        <div class="flute-cell"><span class="flute-type">B</span></div>
+        <div class="flute-cell"><div class="flute-bar-wrap"><div class="flute-bar" style="width:55%"></div></div></div>
+        <div class="flute-cell"><span class="flute-height">2.5 mm</span></div>
+        <div class="flute-cell"><span class="flute-tag tag-print">印刷优良</span></div>
+        <div class="flute-cell" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">展示盒 · 食品零售 · 小家电</div>
+      </div>
+      <div class="flute-row" onclick="showFluteDetail('C')">
+        <div class="flute-cell"><span class="flute-type">C</span></div>
+        <div class="flute-cell"><div class="flute-bar-wrap"><div class="flute-bar" style="width:80%"></div></div></div>
+        <div class="flute-cell"><span class="flute-height">3.6 mm</span></div>
+        <div class="flute-cell"><span class="flute-tag tag-common">最常用</span></div>
+        <div class="flute-cell" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">通用运输箱 · 电商外箱</div>
+      </div>
+      <div class="flute-row" onclick="showFluteDetail('E')">
+        <div class="flute-cell"><span class="flute-type">E</span></div>
+        <div class="flute-cell"><div class="flute-bar-wrap"><div class="flute-bar" style="width:33%"></div></div></div>
+        <div class="flute-cell"><span class="flute-height">1.2 mm</span></div>
+        <div class="flute-cell"><span class="flute-tag tag-micro">微楞</span></div>
+        <div class="flute-cell" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">精品盒 · 化妆品 · 数码配件</div>
+      </div>
+      <div class="flute-row" onclick="showFluteDetail('F')">
+        <div class="flute-cell"><span class="flute-type">F</span></div>
+        <div class="flute-cell"><div class="flute-bar-wrap"><div class="flute-bar" style="width:22%"></div></div></div>
+        <div class="flute-cell"><span class="flute-height">0.8 mm</span></div>
+        <div class="flute-cell"><span class="flute-tag tag-micro">超微楞</span></div>
+        <div class="flute-cell" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">高精印刷 · 礼品包装 · 酒盒</div>
+      </div>
+      <div class="flute-row" onclick="showFluteDetail('BC')">
+        <div class="flute-cell"><span class="flute-type" style="font-size:16px">BC</span></div>
+        <div class="flute-cell"><div class="flute-bar-wrap"><div class="flute-bar" style="width:100%;background:var(--cyan)"></div></div></div>
+        <div class="flute-cell"><span class="flute-height">6.1 mm</span></div>
+        <div class="flute-cell"><span class="flute-tag" style="background:rgba(26,107,107,0.1);color:var(--cyan)">双瓦</span></div>
+        <div class="flute-cell" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">重型货物 · 出口箱 · 家具电器</div>
+      </div>
+    </div>
+
+    <div class="part-info" id="fluteDetail"></div>
+
+    <p class="prose" style="margin-top:24px">
+      <strong>双瓦楞（BC 楞）</strong>是将 B 楞和 C 楞背靠背复合的五层结构，
+      总厚度约 6 mm，综合了 B 楞的印刷适性和 C 楞的抗压能力，
+      是重型产品出口包装的首选。点击上表各行可查看详细参数。
+    </p>
+  </section>
+
+  <!-- § 4 性能指标 -->
+  <section class="section-block" id="sec-metrics">
+    <div class="block-eyebrow">Section 04</div>
+    <h2 class="block-title">性能指标</h2>
+    <p class="block-title-en">Performance Metrics · How to Read the Spec Sheet</p>
+
+    <p class="prose">
+      拿到供应商的规格书，你会看到一串数字和缩写。
+      这些指标各自测量纸张和纸板的不同性质，
+      理解它们是判断材料好坏、与供应商沟通的基础。
+      悬停在缩写上可查看详细解释。
+    </p>
+
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-abbr"><span class="abbr-term" data-key="gsm">GSM</span></div>
+        <div class="metric-cn">克重 / 定量</div>
+        <div class="metric-en">Grams per Square Meter</div>
+        <svg class="metric-diagram" viewBox="0 0 180 50">
+          <rect x="10" y="15" width="160" height="20" rx="2" fill="rgba(155,58,26,0.15)" stroke="rgba(155,58,26,0.3)" stroke-width="0.5"/>
+          <text x="90" y="29" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#FF8A65">1 m × 1 m 面积的质量</text>
+          <line x1="10" y1="10" x2="170" y2="10" stroke="#FF8A65" stroke-width="0.5" stroke-dasharray="2,2"/>
+          <text x="10" y="8" font-family="DM Mono,monospace" font-size="8" fill="#8A8070">1 m</text>
+        </svg>
+        <div class="metric-desc">面纸/里纸/芯纸均以 GSM 标注。<br>面纸常见：140–200 g/m²<br>芯纸常见：100–160 g/m²</div>
+        <div class="metric-unit">单位：g/m²</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-abbr"><span class="abbr-term" data-key="ect">ECT</span></div>
+        <div class="metric-cn">边压强度</div>
+        <div class="metric-en">Edge Crush Test</div>
+        <svg class="metric-diagram" viewBox="0 0 180 50">
+          <rect x="70" y="5" width="40" height="40" rx="2" fill="rgba(155,58,26,0.1)" stroke="rgba(155,58,26,0.4)" stroke-width="1"/>
+          <rect x="72" y="8" width="36" height="4" rx="1" fill="rgba(155,58,26,0.3)"/>
+          <rect x="72" y="38" width="36" height="4" rx="1" fill="rgba(155,58,26,0.3)"/>
+          <text x="120" y="28" font-family="DM Mono,monospace" font-size="9" fill="#8A8070">← 边缘方向施压</text>
+        </svg>
+        <div class="metric-desc">从截面边缘方向施加压力，<br>是预测纸箱抗压能力的<br>最关键单一指标。</div>
+        <div class="metric-unit">单位：kN/m</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-abbr"><span class="abbr-term" data-key="cct">CCT</span></div>
+        <div class="metric-cn">瓦楞芯压强度</div>
+        <div class="metric-en">Corrugating Medium Crush Test</div>
+        <svg class="metric-diagram" viewBox="0 0 180 50">
+          <path d="M10,35 Q25,10 40,35 Q55,10 70,35 Q85,10 100,35 Q115,10 130,35 Q145,10 160,35" fill="none" stroke="rgba(155,58,26,0.5)" stroke-width="1.5"/>
+          <text x="95" y="10" font-family="DM Mono,monospace" font-size="9" fill="#8A8070">芯纸受压</text>
+        </svg>
+        <div class="metric-desc">专门测试瓦楞芯纸自身<br>的抗压能力，反映芯纸<br>质量优劣。</div>
+        <div class="metric-unit">单位：kN/m</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-abbr"><span class="abbr-term" data-key="rct">RCT</span></div>
+        <div class="metric-cn">环压强度</div>
+        <div class="metric-en">Ring Crush Test</div>
+        <svg class="metric-diagram" viewBox="0 0 180 50">
+          <ellipse cx="90" cy="25" rx="35" ry="18" fill="none" stroke="rgba(155,58,26,0.4)" stroke-width="1.5"/>
+          <text x="135" y="28" font-family="DM Mono,monospace" font-size="9" fill="#8A8070">弯成环形垂直压缩</text>
+        </svg>
+        <div class="metric-desc">将纸条弯成圆环后垂直<br>压缩，测试面纸/里纸的<br>抗压能力，与 ECT 互补。</div>
+        <div class="metric-unit">单位：N</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-abbr"><span class="abbr-term" data-key="bst">BST</span></div>
+        <div class="metric-cn">耐破强度</div>
+        <div class="metric-en">Burst Strength Test (Mullen)</div>
+        <svg class="metric-diagram" viewBox="0 0 180 50">
+          <rect x="30" y="15" width="120" height="20" rx="2" fill="rgba(155,58,26,0.1)" stroke="rgba(155,58,26,0.3)" stroke-width="0.5"/>
+          <ellipse cx="90" cy="25" rx="15" ry="10" fill="rgba(155,58,26,0.2)" stroke="rgba(155,58,26,0.6)" stroke-width="1"/>
+          <text x="90" y="48" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#8A8070">液压球顶破纸面</text>
+        </svg>
+        <div class="metric-desc">用液压将橡皮膜顶破纸张<br>时的压力。反映纸张对<br>戳穿力的抵抗能力。</div>
+        <div class="metric-unit">单位：kPa</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-abbr"><span class="abbr-term" data-key="bct">BCT</span></div>
+        <div class="metric-cn">纸箱抗压强度</div>
+        <div class="metric-en">Box Compression Test</div>
+        <svg class="metric-diagram" viewBox="0 0 180 50">
+          <rect x="55" y="8" width="70" height="34" rx="2" fill="rgba(155,58,26,0.1)" stroke="rgba(155,58,26,0.4)" stroke-width="1"/>
+          <line x1="90" y1="0" x2="90" y2="8" stroke="#FF8A65" stroke-width="2"/>
+          <line x1="90" y1="50" x2="90" y2="42" stroke="#FF8A65" stroke-width="2"/>
+          <text x="135" y="28" font-family="DM Mono,monospace" font-size="9" fill="#8A8070">整箱垂直压</text>
+        </svg>
+        <div class="metric-desc">对整只成型纸箱施加垂直<br>压力至压溃时的最大力值，<br>是选材的最终验证指标。</div>
+        <div class="metric-unit">单位：N 或 kgf</div>
+      </div>
+    </div>
+
+    <p class="prose">
+      <strong>指标关联记忆法：</strong>
+      <span class="abbr-term" data-key="gsm">GSM</span>（原材料质量）
+      → <span class="abbr-term" data-key="rct">RCT</span> / <span class="abbr-term" data-key="cct">CCT</span>（单层纸性能）
+      → <span class="abbr-term" data-key="ect">ECT</span>（复合后板材性能）
+      → <span class="abbr-term" data-key="bct">BCT</span>（成箱后实际表现）。
+      这是一条从原材料到成品的因果链，前端的每个指标都会影响最终的 BCT 值。
+    </p>
+  </section>
+
+  <!-- § 5 选材决策 -->
+  <section class="section-block" id="sec-selection">
+    <div class="block-eyebrow">Section 05</div>
+    <h2 class="block-title">选材决策</h2>
+    <p class="block-title-en">Material Selection · Interactive Decision Guide</p>
+
+    <p class="prose">
+      选择合适的楞型和纸板规格，需要综合考虑产品特性、运输条件、成本要求。
+      以下决策工具模拟真实选材流程，根据你的需求逐步推导推荐方案。
+    </p>
+
+    <div class="decision-tree">
+      <div class="dt-header">
+        <span>选材决策向导 · Material Selection Guide</span>
+        <span id="dt-step-label" style="font-size:10px">步骤 1/4</span>
+      </div>
+      <div class="dt-body">
+        <div class="dt-progress">
+          <div class="dt-step-dot done" id="dstep0"></div>
+          <div class="dt-step-dot" id="dstep1"></div>
+          <div class="dt-step-dot" id="dstep2"></div>
+          <div class="dt-step-dot" id="dstep3"></div>
+        </div>
+        <div id="dt-question" class="dt-question">产品单件重量是多少？</div>
+        <div id="dt-options" class="dt-options"></div>
+        <div class="dt-result" id="dt-result">
+          <div class="dt-result-title">推荐方案</div>
+          <div class="dt-result-rec" id="dt-rec"></div>
+          <div class="dt-result-why" id="dt-why"></div>
+        </div>
+        <span class="dt-reset" onclick="resetDecisionTree()">↺ 重新选择</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- § 6 结构设计 -->
+  <section class="section-block" id="sec-structure">
+    <div class="block-eyebrow">Section 06</div>
+    <h2 class="block-title">结构设计入门</h2>
+    <p class="block-title-en">Structural Design · Box Types &amp; McKee Formula</p>
+
+    <p class="prose">
+      <span class="abbr-term" data-key="fefco">FEFCO</span> 是欧洲瓦楞纸板工业联合会制定的国际箱型标准，
+      用四位数字编码表示各种箱型。
+      国内也广泛参照这一体系，最常见的是
+      <strong>0201（RSC，Regular Slotted Container）</strong>——
+      四片摇盖上下交错封口的标准运输箱。
+    </p>
+
+    <div class="box-diagram">
+      <div class="box-svg-wrap">
+        <svg viewBox="0 0 640 300" style="width:100%;max-width:640px">
+          <g class="box-part" onclick="showPartInfo('top-flap')" style="cursor:pointer">
+            <rect x="220" y="10" width="200" height="70" rx="3" fill="rgba(155,58,26,0.08)" stroke="#FF8A65" stroke-width="1"/>
+            <text x="320" y="48" text-anchor="middle" font-family="DM Mono,monospace" font-size="11" fill="#FF8A65">顶盖摇翼</text>
+            <text x="320" y="63" text-anchor="middle" font-family="DM Mono,monospace" font-size="9"  fill="#8A8070">Top Flap</text>
+          </g>
+          <g onclick="showPartInfo('side-flap')" style="cursor:pointer">
+            <rect x="130" y="10" width="90" height="70" rx="3" fill="rgba(26,107,107,0.06)" stroke="#4DD0E1" stroke-width="1" stroke-dasharray="4,2"/>
+            <text x="175" y="48" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#4DD0E1">侧摇翼</text>
+            <text x="175" y="63" text-anchor="middle" font-family="DM Mono,monospace" font-size="9"  fill="#8A8070">Side Flap</text>
+          </g>
+          <g onclick="showPartInfo('side-flap')" style="cursor:pointer">
+            <rect x="420" y="10" width="90" height="70" rx="3" fill="rgba(26,107,107,0.06)" stroke="#4DD0E1" stroke-width="1" stroke-dasharray="4,2"/>
+            <text x="465" y="48" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#4DD0E1">侧摇翼</text>
+            <text x="465" y="63" text-anchor="middle" font-family="DM Mono,monospace" font-size="9"  fill="#8A8070">Side Flap</text>
+          </g>
+          <g onclick="showPartInfo('front-panel')" style="cursor:pointer">
+            <rect x="220" y="80" width="200" height="130" rx="3" fill="rgba(155,58,26,0.06)" stroke="#FF8A65" stroke-width="1.5"/>
+            <text x="320" y="142" text-anchor="middle" font-family="DM Mono,monospace" font-size="12" fill="#FF8A65">前面板</text>
+            <text x="320" y="158" text-anchor="middle" font-family="DM Mono,monospace" font-size="9"  fill="#8A8070">Front Panel (L × H)</text>
+          </g>
+          <g onclick="showPartInfo('side-panel')" style="cursor:pointer">
+            <rect x="120" y="80" width="100" height="130" rx="3" fill="rgba(140,106,26,0.06)" stroke="#FFD700" stroke-width="1"/>
+            <text x="170" y="142" text-anchor="middle" font-family="DM Mono,monospace" font-size="11" fill="#FFD700">侧面板</text>
+            <text x="170" y="157" text-anchor="middle" font-family="DM Mono,monospace" font-size="9"  fill="#8A8070">W × H</text>
+          </g>
+          <g onclick="showPartInfo('side-panel')" style="cursor:pointer">
+            <rect x="420" y="80" width="100" height="130" rx="3" fill="rgba(140,106,26,0.06)" stroke="#FFD700" stroke-width="1"/>
+            <text x="470" y="142" text-anchor="middle" font-family="DM Mono,monospace" font-size="11" fill="#FFD700">侧面板</text>
+            <text x="470" y="157" text-anchor="middle" font-family="DM Mono,monospace" font-size="9"  fill="#8A8070">W × H</text>
+          </g>
+          <g onclick="showPartInfo('back-panel')" style="cursor:pointer">
+            <rect x="520" y="80" width="100" height="130" rx="3" fill="rgba(155,58,26,0.04)" stroke="#FF8A65" stroke-width="1" stroke-dasharray="4,2"/>
+            <text x="570" y="142" text-anchor="middle" font-family="DM Mono,monospace" font-size="11" fill="#FF8A65">后面板</text>
+            <text x="570" y="157" text-anchor="middle" font-family="DM Mono,monospace" font-size="9"  fill="#8A8070">Back + Tab</text>
+          </g>
+          <g onclick="showPartInfo('glue-tab')" style="cursor:pointer">
+            <rect x="20" y="80" width="100" height="130" rx="3" fill="rgba(61,54,41,0.06)" stroke="#3D3629" stroke-width="1" stroke-dasharray="4,2"/>
+            <text x="70" y="142" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#3D3629">粘接舌</text>
+            <text x="70" y="157" text-anchor="middle" font-family="DM Mono,monospace" font-size="9"  fill="#8A8070">Glue Flap</text>
+          </g>
+          <g onclick="showPartInfo('bottom-flap')" style="cursor:pointer">
+            <rect x="220" y="210" width="200" height="70" rx="3" fill="rgba(155,58,26,0.08)" stroke="#FF8A65" stroke-width="1"/>
+            <text x="320" y="247" text-anchor="middle" font-family="DM Mono,monospace" font-size="11" fill="#FF8A65">底盖摇翼</text>
+            <text x="320" y="262" text-anchor="middle" font-family="DM Mono,monospace" font-size="9"  fill="#8A8070">Bottom Flap</text>
+          </g>
+          <g onclick="showPartInfo('side-flap')" style="cursor:pointer">
+            <rect x="130" y="210" width="90" height="70" rx="3" fill="rgba(26,107,107,0.06)" stroke="#4DD0E1" stroke-width="1" stroke-dasharray="4,2"/>
+            <text x="175" y="247" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#4DD0E1">侧摇翼</text>
+          </g>
+          <g onclick="showPartInfo('side-flap')" style="cursor:pointer">
+            <rect x="420" y="210" width="90" height="70" rx="3" fill="rgba(26,107,107,0.06)" stroke="#4DD0E1" stroke-width="1" stroke-dasharray="4,2"/>
+            <text x="465" y="247" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#4DD0E1">侧摇翼</text>
+          </g>
+          <line x1="220" y1="10"  x2="220" y2="280" stroke="#C4BBAD" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="420" y1="10"  x2="420" y2="280" stroke="#C4BBAD" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="120" y1="80"  x2="120" y2="210" stroke="#C4BBAD" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="520" y1="80"  x2="520" y2="210" stroke="#C4BBAD" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="20"  y1="80"  x2="20"  y2="210" stroke="#C4BBAD" stroke-width="1" stroke-dasharray="3,3"/>
+        </svg>
+        <p style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:8px;letter-spacing:0.06em">
+          点击各部位查看名称说明 · FEFCO 0201 / RSC 展开图
+        </p>
+      </div>
+      <div class="part-info" id="boxPartInfo"></div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-title">McKee 简化公式 · Box Compression Strength Estimation</div>
+      <div class="formula-display">BCT = 5.876 × ECT × √( Z × h )</div>
+      <div class="formula-vars">
+        <div class="fvar">
+          <div class="fvar-sym">BCT</div>
+          <div class="fvar-name">Box Compression Test</div>
+          <div class="fvar-desc">纸箱理论抗压强度<br>单位：N（牛顿）</div>
+        </div>
+        <div class="fvar">
+          <div class="fvar-sym">ECT</div>
+          <div class="fvar-name">Edge Crush Test</div>
+          <div class="fvar-desc">瓦楞纸板边压强度<br>单位：kN/m</div>
+        </div>
+        <div class="fvar">
+          <div class="fvar-sym">Z</div>
+          <div class="fvar-name">周长 Perimeter</div>
+          <div class="fvar-desc">箱体外周长 = 2×(L+W)<br>单位：m（米）</div>
+        </div>
+        <div class="fvar">
+          <div class="fvar-sym">h</div>
+          <div class="fvar-name">板厚 Caliper</div>
+          <div class="fvar-desc">瓦楞纸板厚度<br>单位：m（米）</div>
+        </div>
+      </div>
+      <div class="mckee-calc">
+        <div class="calc-title">McKee 公式计算器 · 输入参数估算抗压强度</div>
+        <div class="calc-grid">
+          <div class="calc-field">
+            <div class="calc-label">ECT 边压强度 (kN/m)</div>
+            <input class="calc-input" type="number" id="c-ect" value="6.5" step="0.1" min="0">
+          </div>
+          <div class="calc-field">
+            <div class="calc-label">箱长 L (mm)</div>
+            <input class="calc-input" type="number" id="c-l" value="400" step="1" min="0">
+          </div>
+          <div class="calc-field">
+            <div class="calc-label">箱宽 W (mm)</div>
+            <input class="calc-input" type="number" id="c-w" value="300" step="1" min="0">
+          </div>
+          <div class="calc-field">
+            <div class="calc-label">纸板厚度 h (mm)</div>
+            <input class="calc-input" type="number" id="c-h" value="3.6" step="0.1" min="0">
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcMckee()">计算理论抗压强度 →</button>
+        <div class="calc-result" id="calc-result">
+          <div class="calc-result-val" id="calc-val"></div>
+          <div class="calc-result-unit">牛顿 (N) · 理论抗压强度</div>
+          <div class="calc-result-note" id="calc-note"></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="prose">
+      <strong>注意：</strong>McKee 公式给出的是<strong>理论值</strong>，
+      实际 BCT 受含水率、压痕质量、堆码方式等因素影响，
+      通常取理论值的 <strong>60–70%</strong> 作为设计安全值。
+      对于多层码垛，还需乘以层数衰减系数（每增加一层约下降 10–15%）。
+    </p>
+  </section>
+
+  <!-- § 7 参考资料 -->
+  <section class="section-block" id="sec-refs">
+    <div class="block-eyebrow">Section 07</div>
+    <h2 class="block-title">参考资料</h2>
+    <p class="block-title-en">References · Standards &amp; Further Reading</p>
+
+    <div class="ref-grid">
+      <a class="ref-card" href="https://www.tappi.org/content/sarg/t822.pdf" target="_blank" rel="noopener">
+        <div class="ref-type">标准 · Standard</div>
+        <div class="ref-title">TAPPI T 811 · ECT 测试方法</div>
+        <div class="ref-desc">瓦楞纸板边压强度的官方测试标准，全文可下载</div>
+      </a>
+      <a class="ref-card" href="https://www.fefco.org/industry/fefco-ecma-code" target="_blank" rel="noopener">
+        <div class="ref-type">标准 · Standard</div>
+        <div class="ref-title">FEFCO / ECMA 箱型代码手册</div>
+        <div class="ref-desc">所有标准箱型的图示与尺寸规范，官方在线查询</div>
+      </a>
+      <a class="ref-card" href="https://www.youtube.com/watch?v=s7RS1oLJcHM" target="_blank" rel="noopener">
+        <div class="ref-type">视频 · Video</div>
+        <div class="ref-title">瓦楞纸板生产线全流程</div>
+        <div class="ref-desc">工厂实拍，清晰展示从原纸到成板的完整工艺</div>
+      </a>
+      <a class="ref-card" href="https://www.paperonweb.com/corrugated.htm" target="_blank" rel="noopener">
+        <div class="ref-type">参考资料</div>
+        <div class="ref-title">Corrugated Board Technology · Paper on Web</div>
+        <div class="ref-desc">瓦楞纸板技术综合参考，含楞型、材料、测试详解</div>
+      </a>
+      <a class="ref-card" href="https://www.gbstandards.org/GB_standard_english/GB-T-6543.asp" target="_blank" rel="noopener">
+        <div class="ref-type">国标 · GB Standard</div>
+        <div class="ref-title">GB/T 6543 · 瓦楞纸箱国家标准</div>
+        <div class="ref-desc">中国瓦楞纸箱强制性标准，规定尺寸偏差、抗压要求等</div>
+      </a>
+      <a class="ref-card" href="https://doi.org/10.15376/biores.16.4.8468-8483" target="_blank" rel="noopener">
+        <div class="ref-type">学术论文</div>
+        <div class="ref-title">McKee 公式精度研究</div>
+        <div class="ref-desc">BioResources 期刊，探讨 McKee 公式在不同箱型下的预测精度</div>
+      </a>
+    </div>
+  </section>
+
+</div><!-- /content-wrap -->
+
+<footer style="background:var(--bg2);border-top:2px solid var(--yellow);padding:32px 72px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">
+  <span>CH.02 · 纸与瓦楞纸板 · Packaging Materials Science</span>
+  <div style="display:flex;gap:24px">
+    <a href="#sec-overview" style="color:var(--muted);text-decoration:none">↑ 返回顶部</a>
+    <a href="index.html"    style="color:var(--orange);text-decoration:none">主页 →</a>
+  </div>
+</footer>
+
+<script>
+/* ══════════════════════════════════
+   缩写词库
+══════════════════════════════════ */
+window.ABBR_DB={
+  gsm:{abbr:'GSM',en:'Grams per Square Meter',def:'克重（定量）：1平方米纸张的质量，单位 g/m²。面纸常见 140–200 g/m²，芯纸 100–160 g/m²，克重越高纸张越厚实。'},
+  ect:{abbr:'ECT',en:'Edge Crush Test',def:'边压强度：沿瓦楞纸板截面边缘方向施压测得的强度，是预测纸箱 BCT 抗压能力最关键的单一指标，单位 kN/m。'},
+  cct:{abbr:'CCT',en:'Corrugating Medium Crush Test',def:'瓦楞芯压强度：测试瓦楞芯纸本身的抗压能力，反映芯纸质量，单位 kN/m。'},
+  rct:{abbr:'RCT',en:'Ring Crush Test',def:'环压强度：将纸条弯成圆环后垂直压缩至压溃时的力值，测试面纸/里纸的抗压能力，单位 N。'},
+  bst:{abbr:'BST',en:'Burst Strength Test (Mullen)',def:'耐破强度（穆伦）：液压将橡皮膜顶破纸张时的压力，反映对戳穿力的抵抗，单位 kPa。'},
+  bct:{abbr:'BCT',en:'Box Compression Test',def:'纸箱抗压强度：对整只成型纸箱施加垂直压力至压溃时的最大力值，是选材的最终验证指标，单位 N 或 kgf。'},
+  md:{abbr:'MD',en:'Machine Direction',def:'纵向（机器方向）：造纸时纤维排列方向，与造纸机运行方向平行。MD 方向拉伸强度高于 CD 方向。'},
+  cd:{abbr:'CD',en:'Cross Direction',def:'横向（交叉方向）：垂直于造纸机运行方向。CD 方向的 RCT/ECT 值用于预测纸箱抗压，因为瓦楞方向与箱高平行。'},
+  rsc:{abbr:'RSC',en:'Regular Slotted Container',def:'标准摇盖箱：FEFCO 0201 箱型，四片摇盖上下交错封口，是最常见的运输纸箱形式。'},
+  fefco:{abbr:'FEFCO',en:'European Federation of Corrugated Board Manufacturers',def:'欧洲瓦楞纸板工业联合会，制定国际通用纸箱箱型编码标准，如 0201 RSC、0204 等。'},
+  paperboard:{abbr:'纸板',en:'Paperboard / Cartonboard',def:'纸板：厚度 >0.3 mm 的多层压合纸，用于折叠纸盒（彩盒）。按表面分白卡纸、牛卡纸、灰板纸。'},
+  corrugated:{abbr:'瓦楞纸板',en:'Corrugated Board / Fiberboard',def:'瓦楞纸板：面纸+瓦楞芯纸+里纸的夹层结构，利用拱形结构分散压力，用于运输包装箱。'},
+  corrugator:{abbr:'瓦楞机',en:'Corrugator / Single Facer',def:'瓦楞机：生产瓦楞纸板的核心设备，将芯纸蒸汽加热后通过齿轮辊压出瓦楞形状，再贴合面纸。'},
+  starch:{abbr:'淀粉胶',en:'Starch Adhesive',def:'淀粉胶：瓦楞纸板生产中用于贴合各层的黏合剂，以玉米淀粉为主，在高温下糊化产生黏性，环保无毒。'},
+  wvtr:{abbr:'WVTR',en:'Water Vapor Transmission Rate',def:'透湿率：单位面积材料每 24 小时通过的水蒸气量，单位 g/(m²·24h)，数值越低阻湿性越好。'},
+  otr:{abbr:'OTR',en:'Oxygen Transmission Rate',def:'透氧率：单位面积材料通过的氧气量，单位 cm³/(m²·day·atm)，数值越低阻氧性越好。食品/药品包装关键指标。'},
+  tappi:{abbr:'TAPPI',en:'Technical Association of Pulp and Paper Industry',def:'美国纸浆与造纸工业技术协会，发布纸张和包装材料权威测试标准，如 TAPPI T 811 ECT 测试。'},
+  iso:{abbr:'ISO',en:'International Organization for Standardization',def:'国际标准化组织，发布全球通用测试标准：ISO 11607 无菌包装、ISO 14021 环保声明等。'},
+  gbt:{abbr:'GB/T',en:'Guobiao Recommended Standard (China)',def:'中国推荐性国家标准。GB/T 6543 瓦楞纸箱、GB/T 10004 复合膜、GB/T 4857 包装运输测试。'},
+  map:{abbr:'MAP',en:'Modified Atmosphere Packaging',def:'气调包装：用 N₂/CO₂ 等替换包装内空气，抑制微生物生长和氧化，延长生鲜食品货架期。'},
+};
+
+/* 浮窗逻辑 */
+const tooltip = document.getElementById('abbrTooltip');
+document.querySelectorAll('.abbr-term').forEach(el => {
+  const data = ABBR_DB[el.dataset.key];
+  if (!data) return;
+  function show(x, y) {
+    document.getElementById('ttAbbr').textContent = data.abbr;
+    document.getElementById('ttEn').textContent   = data.en;
+    document.getElementById('ttDef').textContent  = data.def;
+    let tx = x + 14, ty = y - 10;
+    if (tx + 300 > window.innerWidth)  tx = x - 300;
+    if (ty + 120 > window.innerHeight) ty = y - 120;
+    tooltip.style.left = tx + 'px';
+    tooltip.style.top  = ty + 'px';
+    tooltip.style.display = 'block';
+  }
+  el.addEventListener('mouseenter', e => show(e.clientX, e.clientY));
+  el.addEventListener('mousemove',  e => show(e.clientX, e.clientY));
+  el.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+  el.addEventListener('click', e => {
+    e.stopPropagation();
+    tooltip.style.display === 'block'
+      ? tooltip.style.display = 'none'
+      : show(e.clientX, e.clientY);
+  });
+});
+document.addEventListener('click', () => { tooltip.style.display = 'none'; });
+
+/* ══ SVG 灯箱
+   点击 .img-card 时，克隆卡片内的 SVG 放入灯箱，同时显示标题 ══ */
+function openLightbox(card, caption) {
+  const svg = card.querySelector('svg');
+  if (!svg) return;
+  const wrap = document.getElementById('lightboxSVGWrap');
+  wrap.innerHTML = '';
+  // 深克隆 SVG，放大 viewBox 不变，让它自适应宽度
+  const clone = svg.cloneNode(true);
+  clone.removeAttribute('class');
+  clone.style.cssText = 'width:100%;height:auto;max-height:75vh;display:block;background:#FDFAF5;border-radius:6px;';
+  wrap.appendChild(clone);
+  document.getElementById('lightboxCaption').textContent = caption || '';
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  // 只有点击遮罩或关闭按钮才关闭，点击内容区不关闭
+  if (e && e.target === document.getElementById('lightboxInner')) return;
+  if (e && e.currentTarget === document.getElementById('lightboxInner')) return;
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+});
+// 点击灯箱背景关闭，点击内容区不关闭
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+
+/* ══ 视频懒加载
+   点击封面图后，移除封面，注入 YouTube iframe
+   autoplay=1 参数让点击后立即开始播放
+   在 GitHub Pages (https://) 上 iframe 可正常嵌入
+   在本地 file:// 下仍会因 X-Frame-Options 受限，但备用链接始终可用 ══ */
+function loadVideo(blockId, youtubeId, title) {
+  const block  = document.getElementById(blockId);
+  const cover  = block.querySelector('.video-cover');
+  const label  = block.querySelector('.video-label');
+  // 创建 iframe
+  const iframe = document.createElement('iframe');
+  iframe.className   = 'video-embed';
+  iframe.src         = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
+  iframe.title       = title;
+  iframe.allow       = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+  iframe.allowFullscreen = true;
+  // 替换封面
+  cover.replaceWith(iframe);
+}
+
+/* ══ 楞型详情 ══ */
+const FLUTE_DETAIL = {
+  A:  { name:'A 楞', en:'A Flute',  h:'4.5 mm', info:'最高的楞型，每米约110个楞峰。缓冲性最好，适合易碎品和精密仪器。缺点是表面平整度差，不适合高质量印刷。常见用途：玻璃器皿、陶瓷、精密仪器外箱。' },
+  B:  { name:'B 楞', en:'B Flute',  h:'2.5 mm', info:'楞高低、楞峰密（每米约150个），表面平整，印刷效果好。抗压强度适中，但缓冲性不如A楞。常见用途：食品零售展示盒、小家电、化妆品外包装。' },
+  C:  { name:'C 楞', en:'C Flute',  h:'3.6 mm', info:'楞高和楞峰密度介于A、B之间（每米约130个），综合性能最均衡，是全球用量最大的楞型，约占60%。常见用途：通用运输箱、电商外箱、日用品包装。' },
+  E:  { name:'E 楞', en:'E Flute',  h:'1.2 mm', info:'微楞，厚度仅1.2mm，每米约295个楞峰。印刷精度接近纸板，兼具一定缓冲性，成本低于纸板但强度高于单层纸板。常见用途：精品包装盒、化妆品盒、数码配件包装。' },
+  F:  { name:'F 楞', en:'F Flute',  h:'0.8 mm', info:'超微楞，厚度仅0.8mm，表面极其平整，印刷效果接近铜版纸。强度略低于E楞。常见用途：高档礼品盒、酒盒、需要精细图案印刷的零售包装。' },
+  BC: { name:'BC 双瓦楞', en:'BC Double Wall', h:'6.1 mm', info:'将B楞和C楞背靠背复合的五层结构（面纸/B楞/中纸/C楞/里纸）。BCT抗压强度是单瓦楞的1.7–2倍，重量增加约40%。常见用途：重型货物（家电、家具）、出口包装、多层码垛箱。' },
+};
+function showFluteDetail(type) {
+  const d  = FLUTE_DETAIL[type];
+  if (!d) return;
+  const el = document.getElementById('fluteDetail');
+  el.innerHTML = `<strong>${d.name} / ${d.en} · 楞高 ${d.h}</strong>${d.info}`;
+  el.classList.add('show');
+}
+
+/* ══ 展开图部位说明 ══ */
+const BOX_PARTS = {
+  'top-flap':    { name:'顶盖摇翼 / Top Flap',     info:'尺寸 = 箱宽/2（RSC标准），四片摇翼交错封口。顶盖的摇翼长度 = W/2，短于箱长L，封口后中间留有缝隙。压痕线要准确，否则折叠后不平整。' },
+  'side-flap':   { name:'侧摇翼 / Side Flap',       info:'宽度 = 箱宽/2，连接侧面板与顶/底盖。侧摇翼先折叠，主摇翼后封，封口顺序影响箱体强度。' },
+  'front-panel': { name:'前面板 / Front Panel',     info:'尺寸 = 箱长(L) × 箱高(H)。压痕线位置决定成型精度，压痕深度通常为纸板厚度的50–60%。' },
+  'side-panel':  { name:'侧面板 / Side Panel',      info:'尺寸 = 箱宽(W) × 箱高(H)。注意：箱体实际内尺寸比标注外尺寸小约2倍纸板厚度，选材时需预留制造公差。' },
+  'back-panel':  { name:'后面板 / Back Panel',      info:'与前面板相同尺寸，带粘接舌（Manufacturer\'s Joint），是箱体成型时的接合处，通常以热熔胶或钉合方式固定。' },
+  'bottom-flap': { name:'底盖摇翼 / Bottom Flap',   info:'与顶盖对称，尺寸 = 箱宽/2。对于重载箱，底部可采用交叉底（Cross Bottom）或粘合底加强封口强度。' },
+  'glue-tab':    { name:'粘接舌 / Glue Flap',       info:'宽度约35mm，是箱体成型时的接合区域。生产时与后面板的背面用热熔胶（EVA）粘合，形成封闭的筒形箱体。' },
+};
+function showPartInfo(part) {
+  const d  = BOX_PARTS[part];
+  if (!d) return;
+  const el = document.getElementById('boxPartInfo');
+  el.innerHTML = `<strong>${d.name}</strong>${d.info}`;
+  el.classList.add('show');
+}
+
+/* ══ 选材决策树 ══ */
+const DT_TREE = [
+  { q:'产品单件重量是多少？', opts:[
+    { label:'≤ 2 kg · 轻量级',   val:'light'  },
+    { label:'2–10 kg · 中等重量', val:'medium' },
+    { label:'10–30 kg · 重型',    val:'heavy'  },
+  ]},
+  { q:'产品是否对振动/冲击敏感？', opts:[
+    { label:'是 · 易碎或精密', val:'fragile' },
+    { label:'否 · 一般耐冲击', val:'normal'  },
+  ]},
+  { q:'对外箱印刷质量有要求吗？', opts:[
+    { label:'有 · 需要精细印刷', val:'print'   },
+    { label:'无 · 运输箱即可',   val:'noprint' },
+  ]},
+  { q:'运输环境是否潮湿（船运/冷链）？', opts:[
+    { label:'是 · 潮湿环境', val:'wet' },
+    { label:'否 · 常规干燥', val:'dry' },
+  ]},
+];
+let dtAnswers = [], dtStep = 0;
+function renderDT() {
+  if (dtStep >= DT_TREE.length) { showDTResult(); return; }
+  const node = DT_TREE[dtStep];
+  document.getElementById('dt-question').textContent     = node.q;
+  document.getElementById('dt-step-label').textContent   = `步骤 ${dtStep+1}/${DT_TREE.length}`;
+  const optsEl = document.getElementById('dt-options');
+  optsEl.innerHTML = '';
+  node.opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className   = 'dt-btn';
+    btn.textContent = opt.label;
+    btn.onclick = () => {
+      dtAnswers.push(opt.val);
+      document.querySelectorAll('.dt-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      document.getElementById(`dstep${Math.min(dtStep+1,3)}`).classList.add('done');
+      dtStep++;
+      setTimeout(renderDT, 320);
+    };
+    optsEl.appendChild(btn);
+  });
+}
+function showDTResult() {
+  const [w, frag, print, wet] = dtAnswers;
+  let rec = '', why = '';
+  const isHeavy  = w === 'heavy';
+  const isMed    = w === 'medium';
+  const isFragile= frag === 'fragile';
+  const needPrint= print === 'print';
+  const isWet    = wet === 'wet';
+  if (isHeavy) {
+    rec = isWet ? 'BC 双瓦楞 + 防潮涂层面纸（200–250 g/m²）' : 'BC 双瓦楞（B+C 五层）+ 牛卡面纸 175 g/m²';
+    why = 'BC 双瓦楞抗压强度是单瓦楞约1.8倍，适合 10kg 以上重型货物。' + (isWet ? '防潮面纸可有效防止湿气导致的纸板软化失强。' : '');
+  } else if (isMed && isFragile) {
+    rec = needPrint ? 'B 楞 + 白卡面纸 170 g/m² + 内衬珍珠棉' : 'A 楞 + 牛卡面纸 140 g/m² + 内衬缓冲';
+    why = needPrint ? 'B 楞表面平整，印刷效果好；搭配内衬提供缓冲保护。' : 'A 楞缓冲性最强，适合易碎品；无印刷要求时牛卡面纸更经济。';
+  } else if (isMed) {
+    rec = needPrint ? 'C 楞 + 白卡面纸 160 g/m²' : 'C 楞 + 牛卡面纸 140 g/m²';
+    why = 'C 楞是全球最常用楞型，综合性能均衡。' + (needPrint ? '白卡面纸表面光滑，适合彩色印刷。' : '牛卡面纸成本低、强度够用。');
+  } else {
+    rec = needPrint ? 'E 楞 + 白卡面纸 140 g/m²（或 B 楞）' : 'B 楞 / C 楞 + 牛卡面纸 120 g/m²';
+    why = '轻量产品首选 E 楞（精品感强，可高精印刷）或 B 楞（经济实用）。' + (isWet ? '注意：轻型包装在湿环境下强度下降明显，建议加防潮处理。' : '');
+  }
+  document.getElementById('dt-rec').textContent = rec;
+  document.getElementById('dt-why').textContent = why;
+  document.getElementById('dt-result').classList.add('show');
+  document.getElementById('dt-options').innerHTML = '';
+  document.getElementById('dt-question').textContent = '✓ 根据您的需求，推荐方案如下：';
+}
+function resetDecisionTree() {
+  dtAnswers = []; dtStep = 0;
+  document.getElementById('dt-result').classList.remove('show');
+  [0,1,2,3].forEach(i => document.getElementById('dstep'+i).classList.remove('done'));
+  document.getElementById('dstep0').classList.add('done');
+  renderDT();
+}
+renderDT();
+
+/* ══ McKee 计算器 ══ */
+function calcMckee() {
+  const ect = parseFloat(document.getElementById('c-ect').value);
+  const l   = parseFloat(document.getElementById('c-l').value) / 1000;
+  const w   = parseFloat(document.getElementById('c-w').value) / 1000;
+  const h   = parseFloat(document.getElementById('c-h').value) / 1000;
+  if ([ect,l,w,h].some(v => isNaN(v) || v <= 0)) { alert('请输入有效的正数值'); return; }
+  const Z   = 2 * (l + w);
+  const bct = 5.876 * ect * Math.sqrt(Z * h) * 1000;
+  const safe= bct * 0.65;
+  document.getElementById('calc-val').textContent  = Math.round(bct).toLocaleString();
+  document.getElementById('calc-note').innerHTML   =
+    `周长 Z = ${(Z*1000).toFixed(0)} mm<br>` +
+    `设计安全值（× 0.65）≈ ${Math.round(safe).toLocaleString()} N ≈ ${(safe/9.81).toFixed(0)} kgf<br>` +
+    `若 4 层码垛，码垛安全值 ≈ ${Math.round(safe*0.6/9.81).toFixed(0)} kgf（每层衰减约15%）`;
+  document.getElementById('calc-result').classList.add('show');
+}
+
+/* ══ 左侧章节导航：滚过 Hero 后淡入 ══ */
+const chapterNav = document.getElementById('chapterNav');
+const heroEl     = document.querySelector('.chapter-hero');
+chapterNav.style.cssText = 'opacity:0;pointer-events:none;transition:opacity 0.3s;';
+
+new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    chapterNav.style.opacity        = en.isIntersecting ? '0' : '1';
+    chapterNav.style.pointerEvents  = en.isIntersecting ? 'none' : 'auto';
+  });
+}, { threshold: 0 }).observe(heroEl);
+
+new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    document.querySelectorAll('.cnav-item').forEach(n => n.classList.remove('active'));
+    const a = document.querySelector(`.cnav-item[data-sec="${en.target.id}"]`);
+    if (a) a.classList.add('active');
+  });
+}, { rootMargin:'-20% 0px -60% 0px' }).observe;
+// 章节高亮
+document.querySelectorAll('.section-block').forEach(s => {
+  new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      document.querySelectorAll('.cnav-item').forEach(n => n.classList.remove('active'));
+      const a = document.querySelector(`.cnav-item[data-sec="${en.target.id}"]`);
+      if (a) a.classList.add('active');
+    });
+  }, { rootMargin:'-20% 0px -60% 0px' }).observe(s);
+});
+</script>
+</body>
+</html>

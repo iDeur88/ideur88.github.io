@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CH.05 · 玻璃与陶瓷 | 包装材料学</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+:root{--bg:#FFFFFF;--bg2:#F8FBFF;--bg3:#F0F9FF;--card:#FFFFFF;--ink:#1A1A2E;--ink2:#2D3561;--muted:#6B7280;--border:#E8F4FD;--border2:#B3E5FC;--yellow:#FFD700;--cyan:#4DD0E1;--orange:#FF8A65;--sky:#81D4FA;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-weight:400;overflow-x:hidden;line-height:1.7}
+.abbr-term{border-bottom:1.5px dashed var(--cyan);cursor:help;color:var(--cyan);font-weight:500;display:inline}
+.abbr-tooltip{display:none;position:fixed;z-index:9999;background:rgba(255,255,255,0.85);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(77,208,225,0.30);border-radius:12px;padding:12px 16px;max-width:290px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.65;pointer-events:none;box-shadow:0 8px 32px rgba(77,208,225,0.18),0 2px 8px rgba(0,0,0,0.06);color:var(--ink)}
+.abbr-tooltip .tt-abbr{color:var(--orange);font-size:13px;font-weight:600;display:block;margin-bottom:3px}
+.abbr-tooltip .tt-en{color:var(--muted);font-size:10px;display:block;margin-bottom:6px}
+.abbr-tooltip .tt-def{color:var(--ink2);font-size:11px}
+#top-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:2px solid var(--accent);display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:56px}
+.nav-back{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.08em;display:flex;align-items:center;gap:8px;transition:color 0.2s}.nav-back:hover{color:var(--orange)}
+.nav-chapter{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;color:var(--ink)}
+.nav-progress{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em}
+.chapter-hero{margin-top:56px;padding:80px 72px 64px;border-bottom:1px solid var(--border2);position:relative;overflow:hidden}
+.chapter-hero::after{content:var(--ch-num);position:absolute;right:-10px;top:-20px;font-family:'Noto Sans SC',sans-serif;font-size:260px;font-weight:700;color:transparent;-webkit-text-stroke:1.5px rgba(77,208,225,0.12);line-height:1;pointer-events:none}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.hero-title{font-family:'Noto Sans SC',sans-serif;font-size:clamp(36px,5.5vw,64px);font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:20px}
+.hero-title .accent{color:var(--accent)}
+.hero-subtitle{font-size:14px;font-weight:300;color:var(--ink2);max-width:560px;line-height:1.9;margin-bottom:36px}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap}
+.htag{font-family:'DM Mono',monospace;font-size:10px;padding:5px 14px;border-radius:20px;border:1.5px solid var(--border2);color:var(--ink2);letter-spacing:0.06em;background:var(--bg)}
+.chapter-nav{position:fixed;left:20px;top:50%;transform:translateY(-50%);z-index:150;display:flex;flex-direction:column;gap:8px}
+.cnav-item{display:flex;align-items:center;gap:8px;text-decoration:none;opacity:0.4;transition:opacity 0.2s}.cnav-item:hover,.cnav-item.active{opacity:1}
+.cnav-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);flex-shrink:0;transition:background 0.2s,transform 0.2s}
+.cnav-item.active .cnav-dot{background:var(--accent);transform:scale(1.4)}
+.cnav-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink2);letter-spacing:0.06em;white-space:nowrap}
+.content-wrap{max-width:900px;margin:0 auto;padding:0 72px}
+.section-block{padding:64px 0;border-bottom:1px solid var(--border)}
+.block-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.block-eyebrow::after{content:'';display:block;height:2px;width:40px;background:var(--accent);border-radius:2px;opacity:0.6}
+.block-title{font-family:'Noto Sans SC',sans-serif;font-size:32px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.25}
+.block-title-en{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;margin-bottom:32px}
+.prose{font-size:15px;color:var(--ink2);line-height:1.9;margin-bottom:24px;max-width:720px}.prose strong{font-weight:600;color:var(--ink)}
+.info-box{background:var(--bg3);border:1.5px solid var(--sky);border-radius:12px;padding:20px 24px;margin:24px 0;display:flex;gap:16px;align-items:flex-start}
+.info-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.info-text{font-size:14px;color:var(--ink2);line-height:1.8}.info-text strong{color:var(--ink);font-weight:600}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin:32px 0}
+.content-card{background:var(--card);border:1.5px solid var(--border2);border-radius:14px;padding:22px 18px;transition:all 0.2s;cursor:default}
+.content-card:hover{border-color:var(--accent);background:var(--bg3);transform:translateY(-3px);box-shadow:0 8px 24px rgba(77,208,225,0.10)}
+.cc-title{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.cc-en{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:10px;letter-spacing:0.06em}
+.cc-desc{font-size:13px;color:var(--ink2);line-height:1.7}
+.cc-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:8px;background:var(--bg3);color:var(--ink2);margin-top:10px;margin-right:4px}
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:24px 0}
+.ref-card{background:var(--card);border:1.5px solid var(--border2);border-radius:12px;padding:16px 18px;text-decoration:none;display:block;transition:all 0.2s}
+.ref-card:hover{border-color:var(--accent);background:var(--bg3);transform:translateY(-2px)}
+.ref-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.ref-title{font-family:'Noto Sans SC',sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.4}
+.ref-desc{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:1.6}
+.data-table{width:100%;border-collapse:collapse;margin:32px 0;font-size:13px}
+.data-table th{background:var(--ink);color:#fff;padding:10px 14px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-align:left;font-weight:500}
+.data-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--ink2)}
+.data-table tr:hover td{background:var(--bg2)}
+@media(max-width:900px){.chapter-nav{display:none}.content-wrap{padding:0 24px}.chapter-hero{padding:56px 24px 48px}#top-nav{padding:0 20px}.nav-progress{display:none}}
+:root { --accent:#81D4FA; }
+.chapter-hero { background:linear-gradient(135deg,#E1F5FE 0%,#E8F5E9 60%,#F1F8E9 100%); }
+.chapter-hero::after { content:'05'; }
+</style>
+</head>
+<body>
+<div class="abbr-tooltip" id="abbrTooltip"><span class="tt-abbr" id="ttAbbr"></span><span class="tt-en" id="ttEn"></span><span class="tt-def" id="ttDef"></span></div>
+<nav id="top-nav">
+  <a class="nav-back" href="index.html">← 返回主页</a>
+  <div class="nav-chapter">CH.05 · 玻璃与陶瓷</div>
+  <div class="nav-progress">Glass &amp; Ceramics</div>
+</nav>
+<nav class="chapter-nav" id="chapterNav">
+  <a class="cnav-item active" href="#sec-overview" data-sec="sec-overview"><div class="cnav-dot"></div><span class="cnav-label">材料总览</span></a>
+  <a class="cnav-item" href="#sec-structure" data-sec="sec-structure"><div class="cnav-dot"></div><span class="cnav-label">玻璃结构</span></a>
+  <a class="cnav-item" href="#sec-process" data-sec="sec-process"><div class="cnav-dot"></div><span class="cnav-label">成型工艺</span></a>
+  <a class="cnav-item" href="#sec-ceramic" data-sec="sec-ceramic"><div class="cnav-dot"></div><span class="cnav-label">陶瓷包装</span></a>
+  <a class="cnav-item" href="#sec-refs" data-sec="sec-refs"><div class="cnav-dot"></div><span class="cnav-label">参考资料</span></a>
+</nav>
+<header class="chapter-hero">
+  <div class="hero-eyebrow">Chapter 05 · Packaging Materials Science</div>
+  <h1 class="hero-title"><span class="accent">玻璃与陶瓷</span></h1>
+  <p class="hero-subtitle">玻璃是最古老的包装材料之一，化学惰性极强，完全食品安全。理解玻璃的成型工艺、热冲击性能与陶瓷包装的特殊用途，是高端食品和化妆品包装设计的基础。</p>
+  <div class="hero-tags"><span class="htag">钠钙玻璃</span><span class="htag">硼硅酸玻璃</span><span class="htag">吹制成型</span><span class="htag">热冲击</span><span class="htag">陶瓷釉料</span><span class="htag">可回收</span></div>
+</header>
+<div class="content-wrap">
+
+  <section class="section-block" id="sec-overview">
+    <div class="block-eyebrow">Section 01</div>
+    <h2 class="block-title">材料总览</h2>
+    <p class="block-title-en">Overview · The Oldest Packaging Material</p>
+    <p class="prose">玻璃的本质是<strong>无定形（非晶态）硅酸盐</strong>，以 SiO₂ 为主体网络，掺入 Na₂O（降低熔点）、CaO（提高化学稳定性）、Al₂O₃（提高强度）等氧化物。包装最常用的是<strong>钠钙玻璃</strong>（Soda-lime glass），约占玻璃瓶产量的 90%。</p>
+<p class="prose">玻璃最显著的优势是<strong>化学惰性极强</strong>——不与绝大多数食品、药品、香精发生反应，不产生任何迁移物。这使玻璃成为婴儿食品、高档葡萄酒、香水和注射剂的首选容器（<span class="abbr-term" data-key="otr">OTR</span> 和 <span class="abbr-term" data-key="wvtr">WVTR</span> 均为零）。缺点同样明显：重量大（<span class="abbr-term" data-key="bct">BCT</span> 测试时须配合适当衬垫）（密度约 2.5 g/cm³）、易碎、生产能耗高。</p>
+<div class="info-box"><div class="info-icon">💎</div><div class="info-text"><strong>为什么香水一定用玻璃瓶？</strong>香精成分（萜烯类、醛类）会与塑料发生化学迁移，影响香味稳定性。玻璃完全惰性，且其视觉质感能传递高端品牌价值，这是任何其他材料无法复制的。</div></div>
+  </section>
+  <section class="section-block" id="sec-structure">
+    <div class="block-eyebrow">Section 02</div>
+    <h2 class="block-title">玻璃的性能特征</h2>
+    <p class="block-title-en">Properties · Strength, Thermal &amp; Optical</p>
+    <p class="prose">玻璃是脆性材料——抗压强度高（可承受 10,000 N 压力），抗拉/弯强度低（极易从表面缺陷处起裂）。实际玻璃瓶的失效几乎都源于表面划伤，这是为何新瓶体面缝处会施涂保护性冷端涂层（聚乙烯蜡）。</p>
+<div class="card-grid">
+<div class="content-card"><div class="cc-title">热冲击抗性</div><div class="cc-en">Thermal Shock Resistance</div><div class="cc-desc">钠钙玻璃热膨胀系数约 9×10⁻⁶/°C，温差 ΔT 超过 40°C 时易炸裂。巴氏杀菌（62°C/30min）时应缓慢升温。硼硅酸玻璃（如 Pyrex）热膨胀系数更低，耐热冲击更强。</div></div>
+<div class="content-card"><div class="cc-title">光线透过性</div><div class="cc-en">Light Transmission</div><div class="cc-desc">普通白玻璃透紫外线，会导致啤酒光氧化（"日光臭味"）。棕色玻璃可过滤 99% 的紫外和蓝光，是啤酒和药品的首选颜色。绿色玻璃阻UV约 60%。</div></div>
+<div class="content-card"><div class="cc-title">化学稳定性</div><div class="cc-en">Chemical Resistance</div><div class="cc-desc">钠钙玻璃对强酸中等抵抗，对强碱（NaOH）抵抗性较差。药用玻璃（I 型硼硅）水解电阻最高，用于注射剂瓶。<span class="abbr-term" data-key="gbt">GB/T</span> 4547 规定了玻璃容器水解级别。</div></div>
+</div>
+  </section>
+  <section class="section-block" id="sec-process">
+    <div class="block-eyebrow">Section 03</div>
+    <h2 class="block-title">成型工艺</h2>
+    <p class="block-title-en">Manufacturing · Blow-and-Blow vs Press-and-Blow</p>
+    <p class="prose">现代玻璃瓶生产采用 IS（Individual Section）机，从熔融玻璃料滴到成型的完整过程在约 6 秒内完成，产能可达 600 瓶/分钟（小瓶）。两种主流成型工艺为：</p>
+<div class="card-grid">
+<div class="content-card"><div class="cc-title">吹-吹法</div><div class="cc-en">Blow-and-Blow</div><div class="cc-desc">料滴先用压缩空气吹制成初型（倒置），再翻转后二次吹制至终型。适合细口瓶（如酒瓶、饮料瓶）。吹制过程形成随机壁厚分布，底部相对较厚。</div></div>
+<div class="content-card"><div class="cc-title">压-吹法</div><div class="cc-en">Press-and-Blow</div><div class="cc-desc">料滴先用金属芯轴压制成初型（内腔精确），再吹制至终型。壁厚更均匀，可实现轻量化（比吹-吹法轻 20–30%）。适合宽口瓶和要求均匀壁厚的容器。</div></div>
+</div>
+  </section>
+  <section class="section-block" id="sec-ceramic">
+    <div class="block-eyebrow">Section 04</div>
+    <h2 class="block-title">陶瓷包装</h2>
+    <p class="block-title-en">Ceramics · Traditional &amp; Specialty Uses</p>
+    <p class="prose">陶瓷包装在现代工业中已相对小众，主要集中在<strong>传统食品文化领域</strong>（酱菜坛、酒坛、茶叶罐）和<strong>高端礼品包装</strong>（白酒礼盒、茶道器具）。陶瓷的核心优势是<strong>文化象征价值</strong>和<strong>遮光性</strong>（完全不透光）。</p>
+<p class="prose">陶瓷包装的食品安全关注点是<strong>釉料中的重金属迁移</strong>——传统彩釉含铅（Pb）和镉（Cd），在酸性食品（醋、柠檬汁）长期接触下会超标迁移。现代食品级陶瓷必须通过 <span class="abbr-term" data-key="gbt">GB</span> 4806.4（陶瓷制品）铅镉溶出测试，要求低铅无铅釉料。</p>
+  </section>
+  <section class="section-block" id="sec-refs">
+    <div class="block-eyebrow">Section 05</div>
+    <h2 class="block-title">参考资料</h2>
+    <p class="block-title-en">References</p>
+    <div class="ref-grid">
+<a class="ref-card" href="https://www.gpi.org" target="_blank" rel="noopener"><div class="ref-type">行业协会</div><div class="ref-title">Glass Packaging Institute</div><div class="ref-desc">玻璃包装技术标准与可持续性数据，含 <span class="abbr-term" data-key="tappi">TAPPI</span>/<span class="abbr-term" data-key="iso">ISO</span> 交叉测试方法</div></a>
+<a class="ref-card" href="#"><div class="ref-type">国标</div><div class="ref-title">GB/T 4547 · 玻璃容器耐内压力测试</div><div class="ref-desc">玻璃容器物理性能（含 <span class="abbr-term" data-key="bst">BST</span> 耐破强度）国家标准</div></a>
+<a class="ref-card" href="#"><div class="ref-type">国标</div><div class="ref-title">GB 4806.4 · 陶瓷制品食品安全</div><div class="ref-desc">食品接触陶瓷铅镉溶出限量标准（参考 <span class="abbr-term" data-key="iso">ISO</span> 6486）</div></a>
+</div>
+  </section>
+</div>
+<footer style="background:var(--bg2);border-top:2px solid var(--accent);padding:32px 72px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">
+  <span>CH.05 · 玻璃与陶瓷 · Packaging Materials Science</span>
+  <div style="display:flex;gap:24px"><a href="ch04.html" style="color:var(--muted);text-decoration:none">← CH04</a><a href="index.html" style="color:var(--cyan);text-decoration:none">主页</a><a href="ch06.html" style="color:var(--orange);text-decoration:none">CH06 →</a></div>
+</footer>
+<script>
+window.ABBR_DB={
+  gsm:{abbr:'GSM',en:'Grams per Square Meter',def:'克重（定量）：1平方米材料的质量，单位 g/m²。纸张常见 80–300 g/m²，面纸 140–200 g/m²，芯纸 100–160 g/m²。'},
+  wvtr:{abbr:'WVTR',en:'Water Vapor Transmission Rate',def:'透湿率：单位面积材料每 24 小时通过的水蒸气量，单位 g/(m²·24h)，数值越低阻湿性越好。'},
+  otr:{abbr:'OTR',en:'Oxygen Transmission Rate',def:'透氧率：单位面积材料通过的氧气量，单位 cm³/(m²·day·atm)，数值越低阻氧性越好。食品/药品包装关键指标。'},
+  bct:{abbr:'BCT',en:'Box Compression Test',def:'纸箱抗压强度：对整只成型纸箱垂直施压至压溃时的最大力值，选材的最终验证指标，单位 N 或 kgf。'},
+  bst:{abbr:'BST',en:'Burst Strength Test (Mullen)',def:'耐破强度（穆伦）：液压将橡皮膜顶破纸张时的压力，反映对戳穿力的抵抗能力，单位 kPa。'},
+  tappi:{abbr:'TAPPI',en:'Technical Association of Pulp and Paper Industry',def:'美国纸浆与造纸工业技术协会，发布纸张和包装材料权威测试标准，如 TAPPI T 811 ECT 测试。'},
+  iso:{abbr:'ISO',en:'International Organization for Standardization',def:'国际标准化组织，发布全球通用测试标准：ISO 11607 无菌包装、ISO 14021 环保声明等。'},
+  gbt:{abbr:'GB/T',en:'Guobiao Recommended Standard (China)',def:'中国推荐性国家标准。GB/T 6543 瓦楞纸箱、GB/T 10004 复合膜、GB/T 4857 包装运输测试。'},
+  map:{abbr:'MAP',en:'Modified Atmosphere Packaging',def:'气调包装：用 N₂/CO₂ 等替换包装内空气，抑制微生物生长和氧化，延长生鲜食品货架期。'},
+  pe:{abbr:'PE',en:'Polyethylene',def:'聚乙烯：最常见的包装塑料，密度 &lt;1（浮于水），柔软蜡感，阻水好。LDPE 用于薄膜，HDPE 用于瓶罐。'},
+  pp:{abbr:'PP',en:'Polypropylene',def:'聚丙烯：耐热 105°C（微波可用），半透明，密度约 0.91，有铰链效应，用于食品容器、BOPP 薄膜、编织袋。'},
+  pet:{abbr:'PET',en:'Polyethylene Terephthalate',def:'聚对苯二甲酸乙二酯：透明硬挺，密度 1.38（沉水），阻隔性中等，回收标识①，用于饮料瓶和复合基材。'},
+};
+const tt=document.getElementById('abbrTooltip');
+document.querySelectorAll('.abbr-term').forEach(el=>{
+  const d=(window.ABBR_DB||{})[el.dataset.key];if(!d)return;
+  function show(x,y){document.getElementById('ttAbbr').textContent=d.abbr;document.getElementById('ttEn').textContent=d.en;document.getElementById('ttDef').textContent=d.def;let tx=x+14,ty=y-10;if(tx+300>window.innerWidth)tx=x-300;if(ty+120>window.innerHeight)ty=y-120;tt.style.left=tx+'px';tt.style.top=ty+'px';tt.style.display='block';}
+  el.addEventListener('mouseenter',e=>show(e.clientX,e.clientY));
+  el.addEventListener('mousemove',e=>show(e.clientX,e.clientY));
+  el.addEventListener('mouseleave',()=>tt.style.display='none');
+  el.addEventListener('click',e=>{e.stopPropagation();tt.style.display==='block'?tt.style.display='none':show(e.clientX,e.clientY);});
+});
+document.addEventListener('click',()=>tt.style.display='none');
+const nav=document.getElementById('chapterNav');const hero=document.querySelector('.chapter-hero');
+nav.style.cssText='opacity:0;pointer-events:none;transition:opacity 0.3s';
+new IntersectionObserver(entries=>{const v=entries[0].isIntersecting;nav.style.opacity=v?'0':'1';nav.style.pointerEvents=v?'none':'auto';},{threshold:0}).observe(hero);
+document.querySelectorAll('.section-block').forEach(s=>{new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)return;document.querySelectorAll('.cnav-item').forEach(n=>n.classList.remove('active'));const a=document.querySelector(`.cnav-item[data-sec="${entries[0].target.id}"]`);if(a)a.classList.add('active');},{rootMargin:'-20% 0px -60% 0px'}).observe(s);});
+</script>
+</body>
+</html>

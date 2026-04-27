@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CH.06 · 复合软包装 | 包装材料学</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+:root{--bg:#FFFFFF;--bg2:#F8FBFF;--bg3:#F0F9FF;--card:#FFFFFF;--ink:#1A1A2E;--ink2:#2D3561;--muted:#6B7280;--border:#E8F4FD;--border2:#B3E5FC;--yellow:#FFD700;--cyan:#4DD0E1;--orange:#FF8A65;--sky:#81D4FA;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-weight:400;overflow-x:hidden;line-height:1.7}
+.abbr-term{border-bottom:1.5px dashed var(--cyan);cursor:help;color:var(--cyan);font-weight:500;display:inline}
+.abbr-tooltip{display:none;position:fixed;z-index:9999;background:rgba(255,255,255,0.85);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(77,208,225,0.30);border-radius:12px;padding:12px 16px;max-width:290px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.65;pointer-events:none;box-shadow:0 8px 32px rgba(77,208,225,0.18),0 2px 8px rgba(0,0,0,0.06);color:var(--ink)}
+.abbr-tooltip .tt-abbr{color:var(--orange);font-size:13px;font-weight:600;display:block;margin-bottom:3px}
+.abbr-tooltip .tt-en{color:var(--muted);font-size:10px;display:block;margin-bottom:6px}
+.abbr-tooltip .tt-def{color:var(--ink2);font-size:11px}
+#top-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:2px solid var(--accent);display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:56px}
+.nav-back{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.08em;display:flex;align-items:center;gap:8px;transition:color 0.2s}.nav-back:hover{color:var(--orange)}
+.nav-chapter{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;color:var(--ink)}
+.nav-progress{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em}
+.chapter-hero{margin-top:56px;padding:80px 72px 64px;border-bottom:1px solid var(--border2);position:relative;overflow:hidden}
+.chapter-hero::after{content:var(--ch-num);position:absolute;right:-10px;top:-20px;font-family:'Noto Sans SC',sans-serif;font-size:260px;font-weight:700;color:transparent;-webkit-text-stroke:1.5px rgba(77,208,225,0.12);line-height:1;pointer-events:none}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.hero-title{font-family:'Noto Sans SC',sans-serif;font-size:clamp(36px,5.5vw,64px);font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:20px}
+.hero-title .accent{color:var(--accent)}
+.hero-subtitle{font-size:14px;font-weight:300;color:var(--ink2);max-width:560px;line-height:1.9;margin-bottom:36px}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap}
+.htag{font-family:'DM Mono',monospace;font-size:10px;padding:5px 14px;border-radius:20px;border:1.5px solid var(--border2);color:var(--ink2);letter-spacing:0.06em;background:var(--bg)}
+.chapter-nav{position:fixed;left:20px;top:50%;transform:translateY(-50%);z-index:150;display:flex;flex-direction:column;gap:8px}
+.cnav-item{display:flex;align-items:center;gap:8px;text-decoration:none;opacity:0.4;transition:opacity 0.2s}.cnav-item:hover,.cnav-item.active{opacity:1}
+.cnav-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);flex-shrink:0;transition:background 0.2s,transform 0.2s}
+.cnav-item.active .cnav-dot{background:var(--accent);transform:scale(1.4)}
+.cnav-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink2);letter-spacing:0.06em;white-space:nowrap}
+.content-wrap{max-width:900px;margin:0 auto;padding:0 72px}
+.section-block{padding:64px 0;border-bottom:1px solid var(--border)}
+.block-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.block-eyebrow::after{content:'';display:block;height:2px;width:40px;background:var(--accent);border-radius:2px;opacity:0.6}
+.block-title{font-family:'Noto Sans SC',sans-serif;font-size:32px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.25}
+.block-title-en{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;margin-bottom:32px}
+.prose{font-size:15px;color:var(--ink2);line-height:1.9;margin-bottom:24px;max-width:720px}.prose strong{font-weight:600;color:var(--ink)}
+.info-box{background:var(--bg3);border:1.5px solid var(--sky);border-radius:12px;padding:20px 24px;margin:24px 0;display:flex;gap:16px;align-items:flex-start}
+.info-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.info-text{font-size:14px;color:var(--ink2);line-height:1.8}.info-text strong{color:var(--ink);font-weight:600}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin:32px 0}
+.content-card{background:var(--card);border:1.5px solid var(--border2);border-radius:14px;padding:22px 18px;transition:all 0.2s;cursor:default}
+.content-card:hover{border-color:var(--accent);background:var(--bg3);transform:translateY(-3px);box-shadow:0 8px 24px rgba(77,208,225,0.10)}
+.cc-title{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.cc-en{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:10px;letter-spacing:0.06em}
+.cc-desc{font-size:13px;color:var(--ink2);line-height:1.7}
+.cc-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:8px;background:var(--bg3);color:var(--ink2);margin-top:10px;margin-right:4px}
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:24px 0}
+.ref-card{background:var(--card);border:1.5px solid var(--border2);border-radius:12px;padding:16px 18px;text-decoration:none;display:block;transition:all 0.2s}
+.ref-card:hover{border-color:var(--accent);background:var(--bg3);transform:translateY(-2px)}
+.ref-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.ref-title{font-family:'Noto Sans SC',sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.4}
+.ref-desc{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:1.6}
+.data-table{width:100%;border-collapse:collapse;margin:32px 0;font-size:13px}
+.data-table th{background:var(--ink);color:#fff;padding:10px 14px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-align:left;font-weight:500}
+.data-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--ink2)}
+.data-table tr:hover td{background:var(--bg2)}
+@media(max-width:900px){.chapter-nav{display:none}.content-wrap{padding:0 24px}.chapter-hero{padding:56px 24px 48px}#top-nav{padding:0 20px}.nav-progress{display:none}}
+:root { --accent:#FFD700; }
+.chapter-hero { background:linear-gradient(135deg,#FFFDE7 0%,#FFF9C4 40%,#F3E5F5 100%); }
+.chapter-hero::after { content:'06'; }
+</style>
+</head>
+<body>
+<div class="abbr-tooltip" id="abbrTooltip"><span class="tt-abbr" id="ttAbbr"></span><span class="tt-en" id="ttEn"></span><span class="tt-def" id="ttDef"></span></div>
+<nav id="top-nav">
+  <a class="nav-back" href="index.html">← 返回主页</a>
+  <div class="nav-chapter">CH.06 · 复合软包装</div>
+  <div class="nav-progress">Flexible Laminate Packaging</div>
+</nav>
+<nav class="chapter-nav" id="chapterNav">
+  <a class="cnav-item active" href="#sec-overview" data-sec="sec-overview"><div class="cnav-dot"></div><span class="cnav-label">材料总览</span></a>
+  <a class="cnav-item" href="#sec-structure" data-sec="sec-structure"><div class="cnav-dot"></div><span class="cnav-label">复合结构解析</span></a>
+  <a class="cnav-item" href="#sec-lamination" data-sec="sec-lamination"><div class="cnav-dot"></div><span class="cnav-label">复合工艺</span></a>
+  <a class="cnav-item" href="#sec-sealing" data-sec="sec-sealing"><div class="cnav-dot"></div><span class="cnav-label">热封设计</span></a>
+  <a class="cnav-item" href="#sec-refs" data-sec="sec-refs"><div class="cnav-dot"></div><span class="cnav-label">参考资料</span></a>
+</nav>
+<header class="chapter-hero">
+  <div class="hero-eyebrow">Chapter 06 · Packaging Materials Science</div>
+  <h1 class="hero-title"><span class="accent">复合软包装</span></h1>
+  <p class="hero-subtitle">复合软包是现代食品包装的核心形式——将多种功能材料层压复合，在极薄（约 100 μm）的结构中同时实现阻隔、强度、热封和印刷。剥层分析是理解复合结构的核心技能。</p>
+  <div class="hero-tags"><span class="htag">多层共挤</span><span class="htag">干式复合</span><span class="htag">铝箔蒸镀</span><span class="htag">WVTR/OTR</span><span class="htag">热封层</span><span class="htag">剥层图</span></div>
+</header>
+<div class="content-wrap">
+
+  <section class="section-block" id="sec-overview">
+    <div class="block-eyebrow">Section 01</div>
+    <h2 class="block-title">材料总览</h2>
+    <p class="block-title-en">Overview · The Laminate System</p>
+    <p class="prose">复合软包的设计逻辑是<strong>功能分层</strong>：每一层只承担一个或两个功能，各层组合后实现整体性能。典型三层结构为：<strong><span class="abbr-term" data-key="bopp">BOPP</span>/<span class="abbr-term" data-key="bopet">BOPET</span> 外层（基材）——提供印刷表面和机械强度；<strong>中间层（功能层）</strong>——提供阻隔（铝箔/EVOH/镀铝薄膜）；<strong>内层（热封层）</strong>——与机械热封兼容，接触食品。</p>
+<p class="prose">最经典的复合结构之一是 <strong><span class="abbr-term" data-key="bopet">BOPET</span> / Al / LDPE（<span class="abbr-term" data-key="pe">PE</span>）</strong>（PET 印刷基材 / 铝箔阻隔层（<span class="abbr-term" data-key="otr">OTR</span>≈0） / PE 热封层），用于咖啡袋、肉类真空包装和调味品袋。三层厚度典型值分别为 12μm / 7–9μm / 60–80μm，总厚度约 80–100μm，重量不到 1 g 却能保存食品数月至数年。</p>
+<div class="info-box"><div class="info-icon">🔬</div><div class="info-text"><strong>剥层测试（Delamination Test）：</strong>将复合膜浸泡在适当溶剂中，手工或机械逐层分离，识别各层材料。这是包装工程师分析竞品结构、排查层间剥离失效的基本方法。逆向分析复合软包结构是包装技术岗位的核心技能之一。</div></div>
+  </section>
+  <section class="section-block" id="sec-structure">
+    <div class="block-eyebrow">Section 02</div>
+    <h2 class="block-title">复合结构解析</h2>
+    <p class="block-title-en">Structure Analysis · Layer by Layer</p>
+    <p class="prose">理解复合结构需要记忆各层材料的典型厚度和功能定位：</p>
+<table class="data-table">
+<thead><tr><th>层位</th><th>典型材料</th><th>厚度范围</th><th>主要功能</th><th>关键指标</th></tr></thead>
+<tbody>
+<tr><td><strong>外层（印刷基材）</strong></td><td>BOPP / BOPET / BOPA</td><td>12–25 μm</td><td>印刷载体，机械强度</td><td>表面张力 ≥38 dyn/cm</td></tr>
+<tr><td><strong>阻隔层（铝箔）</strong></td><td>Al foil</td><td>6.5–12 μm</td><td>完全阻隔O₂/H₂O/光</td><td>针孔数 &lt;1个/m²</td></tr>
+<tr><td><strong>阻隔层（蒸镀）</strong></td><td>镀铝 BOPET / SiOₓ</td><td>蒸镀层 &lt;0.1μm</td><td>阻隔（不如铝箔），可微波</td><td>OD值（光学密度）&gt;2.5</td></tr>
+<tr><td><strong>功能中间层</strong></td><td>EVOH / PA</td><td>5–20 μm</td><td>高阻氧（EVOH）或耐穿刺（PA）</td><td>OTR / 针孔强度</td></tr>
+<tr><td><strong>黏合层</strong></td><td>胶黏剂（PU）/ 共挤 Tie层</td><td>3–5 μm</td><td>层间结合，防剥离</td><td>剥离强度 &gt;1.5 N/15mm</td></tr>
+<tr><td><strong>内层（热封层）</strong></td><td>LDPE / LLDPE / CPP</td><td>40–100 μm</td><td>热封，食品接触</td><td>封口强度 / 食品接触合规</td></tr>
+</tbody>
+</table>
+  </section>
+  <section class="section-block" id="sec-lamination">
+    <div class="block-eyebrow">Section 03</div>
+    <h2 class="block-title">复合工艺</h2>
+    <p class="block-title-en">Lamination Methods · Dry vs Co-extrusion</p>
+    <div class="card-grid">
+<div class="content-card"><div class="cc-title">干式复合</div><div class="cc-en">Dry Lamination</div><div class="cc-desc">将胶黏剂（双组分聚氨酯 PU）涂布在一层基材上，烘干后与另一层贴合加压。工艺灵活，可复合任意两种基材（包括铝箔）。缺点：有溶剂残留风险，需严格控制干燥温度和残留量（≤5 mg/m²）。</div><span class="cc-tag">铝箔复合首选</span><span class="cc-tag">高阻隔结构</span></div>
+<div class="content-card"><div class="cc-title">挤出复合</div><div class="cc-en">Extrusion Lamination</div><div class="cc-desc">将熔融树脂（PE/PP）直接挤出到基材表面贴合，无溶剂，成本低。常用于在 BOPET 或纸张上附着热封层 PE。层间结合依赖锚涂处理（Anchor Coat），不适合含铝箔结构。</div><span class="cc-tag">无溶剂</span><span class="cc-tag">高速生产</span></div>
+<div class="content-card"><div class="cc-title">共挤薄膜</div><div class="cc-en">Co-extrusion</div><div class="cc-desc">多台挤出机同时将不同树脂挤出，在同一模头复合成多层薄膜。无胶黏剂，层间无迁移风险，是全 <span class="abbr-term" data-key="pe">PE</span>/全 <span class="abbr-term" data-key="pp">PP</span> 单一材质软包的主流工艺，符合"设计为回收"理念。</div><span class="cc-tag">可回收</span><span class="cc-tag">无溶剂</span></div>
+</div>
+  </section>
+  <section class="section-block" id="sec-sealing">
+    <div class="block-eyebrow">Section 04</div>
+    <h2 class="block-title">热封设计</h2>
+    <p class="block-title-en">Heat Sealing · Parameters &amp; Failure Modes</p>
+    <p class="prose">热封是软包装的关键工序——将内层热封材料在特定温度、压力、时间条件下熔合成气密连接。热封窗口（Heat Seal Window）是封口温度范围内同时满足最低封合强度和不烫穿基材的区间，理想热封窗口应大于 20°C。</p>
+<p class="prose">常见热封失效模式：<strong>封口强度不足</strong>（温度偏低，熔合不充分）；<strong>封口"拉丝"</strong>（温度过高，内层过度熔融）；<strong>污染封口</strong>（粉末/油脂落入封口区，是零食袋最常见失效）；<strong>层间剥离</strong>（胶黏剂配比错误或熟化不足）。</p>
+  </section>
+  <section class="section-block" id="sec-refs">
+    <div class="block-eyebrow">Section 05</div>
+    <h2 class="block-title">参考资料</h2>
+    <p class="block-title-en">References</p>
+    <div class="ref-grid">
+<a class="ref-card" href="https://www.flexpackmag.com" target="_blank" rel="noopener"><div class="ref-type">行业媒体</div><div class="ref-title">Flexible Packaging Magazine</div><div class="ref-desc">复合软包行业最新技术动态</div></a>
+<a class="ref-card" href="https://www.tappi.org" target="_blank" rel="noopener"><div class="ref-type">标准</div><div class="ref-title">TAPPI · 软包装测试方法</div><div class="ref-desc">封口强度、剥离强度、阻隔性测试方法</div></a>
+<a class="ref-card" href="#"><div class="ref-type">国标</div><div class="ref-title"><span class="abbr-term" data-key="gbt">GB/T</span> 10004 · 包装用塑料复合膜、袋</div><div class="ref-desc">干式复合/共挤复合食品包装膜国家标准</div></a>
+</div>
+  </section>
+</div>
+<footer style="background:var(--bg2);border-top:2px solid var(--accent);padding:32px 72px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">
+  <span>CH.06 · 复合软包装 · Packaging Materials Science</span>
+  <div style="display:flex;gap:24px"><a href="ch05.html" style="color:var(--muted);text-decoration:none">← CH05</a><a href="index.html" style="color:var(--cyan);text-decoration:none">主页</a><a href="ch07.html" style="color:var(--orange);text-decoration:none">CH07 →</a></div>
+</footer>
+<script>
+window.ABBR_DB={
+  wvtr:{abbr:'WVTR',en:'Water Vapor Transmission Rate',def:'透湿率：单位面积材料每 24 小时通过的水蒸气量，单位 g/(m²·24h)，数值越低阻湿性越好。'},
+  otr:{abbr:'OTR',en:'Oxygen Transmission Rate',def:'透氧率：单位面积材料通过的氧气量，单位 cm³/(m²·day·atm)，数值越低阻氧性越好。食品/药品包装关键指标。'},
+  evoh:{abbr:'EVOH',en:'Ethylene Vinyl Alcohol',def:'乙烯-乙烯醇共聚物：阻氧性极强（OTR 接近铝箔），但吸湿后性能急降，须与 PE/PP 复合形成阻湿保护。'},
+  bopp:{abbr:'BOPP',en:'Biaxially Oriented Polypropylene',def:'双向拉伸聚丙烯：强度和透明度均优于普通 PP，是零食/糖果软包外层基材的主流选择。'},
+  bopet:{abbr:'BOPET',en:'Biaxially Oriented PET',def:'双向拉伸聚酯薄膜（俗称 Mylar）：透明、阻隔好、耐热，是复合软包外层基材或阻隔层的常见选择。'},
+  gsm:{abbr:'GSM',en:'Grams per Square Meter',def:'克重（定量）：1平方米材料的质量，单位 g/m²。纸张常见 80–300 g/m²，面纸 140–200 g/m²，芯纸 100–160 g/m²。'},
+  ect:{abbr:'ECT',en:'Edge Crush Test',def:'边压强度：沿瓦楞纸板截面边缘方向施压测得的强度，是预测纸箱 BCT 最关键的单一材料指标，单位 kN/m。'},
+  tappi:{abbr:'TAPPI',en:'Technical Association of Pulp and Paper Industry',def:'美国纸浆与造纸工业技术协会，发布纸张和包装材料权威测试标准，如 TAPPI T 811 ECT 测试。'},
+  map:{abbr:'MAP',en:'Modified Atmosphere Packaging',def:'气调包装：用 N₂/CO₂ 等替换包装内空气，抑制微生物生长和氧化，延长生鲜食品货架期。'},
+  bct:{abbr:'BCT',en:'Box Compression Test',def:'纸箱抗压强度：对整只成型纸箱垂直施压至压溃时的最大力值，选材的最终验证指标，单位 N 或 kgf。'},
+  pe:{abbr:'PE',en:'Polyethylene',def:'聚乙烯：最常见的包装塑料，密度 &lt;1（浮于水），柔软蜡感，阻水好。LDPE 用于薄膜，HDPE 用于瓶罐。'},
+  pp:{abbr:'PP',en:'Polypropylene',def:'聚丙烯：耐热 105°C（微波可用），半透明，密度约 0.91，有铰链效应，用于食品容器、BOPP 薄膜、编织袋。'},
+  tg:{abbr:'Tg',en:'Glass Transition Temperature',def:'玻璃化转变温度：聚合物从硬脆的玻璃态转变为柔韧橡胶态的温度。PLA≈60°C，PP≈-10°C，影响低温使用性能。'},
+  pla:{abbr:'PLA',en:'Polylactic Acid',def:'聚乳酸：玉米/甘蔗基生物降解塑料，Tg≈60°C，耐热差。需 55°C 以上工业堆肥环境才能降解，家庭环境无法快速分解。'},
+};
+const tt=document.getElementById('abbrTooltip');
+document.querySelectorAll('.abbr-term').forEach(el=>{
+  const d=(window.ABBR_DB||{})[el.dataset.key];if(!d)return;
+  function show(x,y){document.getElementById('ttAbbr').textContent=d.abbr;document.getElementById('ttEn').textContent=d.en;document.getElementById('ttDef').textContent=d.def;let tx=x+14,ty=y-10;if(tx+300>window.innerWidth)tx=x-300;if(ty+120>window.innerHeight)ty=y-120;tt.style.left=tx+'px';tt.style.top=ty+'px';tt.style.display='block';}
+  el.addEventListener('mouseenter',e=>show(e.clientX,e.clientY));
+  el.addEventListener('mousemove',e=>show(e.clientX,e.clientY));
+  el.addEventListener('mouseleave',()=>tt.style.display='none');
+  el.addEventListener('click',e=>{e.stopPropagation();tt.style.display==='block'?tt.style.display='none':show(e.clientX,e.clientY);});
+});
+document.addEventListener('click',()=>tt.style.display='none');
+const nav=document.getElementById('chapterNav');const hero=document.querySelector('.chapter-hero');
+nav.style.cssText='opacity:0;pointer-events:none;transition:opacity 0.3s';
+new IntersectionObserver(entries=>{const v=entries[0].isIntersecting;nav.style.opacity=v?'0':'1';nav.style.pointerEvents=v?'none':'auto';},{threshold:0}).observe(hero);
+document.querySelectorAll('.section-block').forEach(s=>{new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)return;document.querySelectorAll('.cnav-item').forEach(n=>n.classList.remove('active'));const a=document.querySelector(`.cnav-item[data-sec="${entries[0].target.id}"]`);if(a)a.classList.add('active');},{rootMargin:'-20% 0px -60% 0px'}).observe(s);});
+</script>
+</body>
+</html>
