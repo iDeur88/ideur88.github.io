@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>包装材料学 · 自学资料库</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg:      #FFFFFF;
+  --bg2:     #F8FBFF;
+  --bg3:     #F0F9FF;
+  --card:    #FFFFFF;
+  --ink:     #1A1A2E;
+  --ink2:    #2D3561;
+  --muted:   #6B7280;
+  --border:  #E8F4FD;
+  --border2: #B3E5FC;
+  --yellow:  #FFD700;
+  --cyan:    #4DD0E1;
+  --orange:  #FF8A65;
+  --sky:     #81D4FA;
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-weight:400;overflow-x:hidden}
+
+/* ══ 顶部导航 ══ */
+#top-nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 52px;height:58px;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:2px solid var(--yellow);
+}
+.site-logo{
+  font-family:'Noto Sans SC',sans-serif;
+  font-size:16px;font-weight:700;letter-spacing:0.08em;
+  color:var(--ink);text-decoration:none;
+}
+.site-logo span{color:var(--orange)}
+.nav-meta{
+  font-family:'DM Mono',monospace;font-size:11px;
+  color:var(--muted);letter-spacing:0.08em;
+}
+
+/* ══ 全屏轮播 ══ */
+.carousel-section{
+  position:relative;margin-top:58px;
+  height:calc(100vh - 58px);overflow:hidden;background:var(--bg);
+}
+.carousel-track{
+  display:flex;height:100%;will-change:transform;
+  cursor:grab;user-select:none;
+}
+.carousel-track:active{cursor:grabbing}
+.carousel-track.animating{transition:transform 0.60s cubic-bezier(0.25,1,0.5,1)}
+
+/* 单张幻灯片 */
+.slide{
+  flex:0 0 100%;height:100%;position:relative;
+  display:flex;align-items:flex-end;overflow:hidden;
+  -webkit-tap-highlight-color:transparent;
+}
+.slide-bg{position:absolute;inset:0}
+
+/* 右侧几何线 */
+.slide-geo{
+  position:absolute;right:0;top:0;bottom:0;width:42%;
+  display:flex;gap:28px;align-items:stretch;opacity:0.15;pointer-events:none;
+}
+.slide-geo-line{width:1px;background:var(--slide-accent,var(--orange));flex-shrink:0}
+
+/* 大装饰数字 */
+.slide-deco{
+  position:absolute;right:40px;bottom:-30px;
+  font-family:'Noto Sans SC',sans-serif;
+  font-size:clamp(180px,24vw,320px);font-weight:700;
+  color:transparent;-webkit-text-stroke:1.5px var(--slide-accent,var(--orange));
+  opacity:0.07;line-height:1;pointer-events:none;user-select:none;letter-spacing:-0.06em;
+}
+
+/* 顶部色带 */
+.slide-topband{position:absolute;top:0;left:0;right:0;height:4px;background:var(--slide-accent,var(--orange))}
+
+/* 幻灯内容 */
+.slide-content{position:relative;z-index:2;padding:0 72px 60px;width:100%;max-width:820px}
+.slide-num{
+  font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.24em;
+  color:var(--slide-accent,var(--orange));margin-bottom:20px;
+  display:flex;align-items:center;gap:16px;text-transform:uppercase;
+}
+.slide-num::after{content:'';display:block;width:48px;height:1px;background:var(--slide-accent,var(--orange));opacity:0.4}
+.slide-title{
+  font-family:'Noto Sans SC',sans-serif;
+  font-size:clamp(32px,5vw,62px);font-weight:700;line-height:1.2;
+  color:var(--ink);margin-bottom:20px;
+}
+.slide-sub{
+  font-family:'DM Mono',monospace;font-size:clamp(11px,1.3vw,13px);
+  color:var(--muted);line-height:1.9;margin-bottom:32px;
+  max-width:540px;letter-spacing:0.03em;
+}
+.slide-tags{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.stag{
+  font-family:'DM Mono',monospace;font-size:10px;padding:5px 14px;border-radius:20px;
+  border:1.5px solid var(--slide-accent,var(--orange));
+  color:var(--slide-accent,var(--orange));background:transparent;
+  letter-spacing:0.06em;
+}
+.slide-cta{
+  font-family:'DM Mono',monospace;font-size:11px;padding:8px 20px;border-radius:20px;
+  background:var(--slide-accent,var(--orange));color:#fff;
+  letter-spacing:0.08em;text-decoration:none;transition:opacity 0.2s;display:inline-block;
+}
+.slide-cta:hover{opacity:0.82}
+
+/* 进度条 */
+.progress-bar{position:absolute;bottom:0;left:0;height:3px;background:var(--orange);width:0%;z-index:10}
+
+/* 箭头 */
+.slide-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:20;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,0.85);border:1.5px solid var(--border2);
+  color:var(--ink2);font-size:16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;backdrop-filter:blur(8px);
+  -webkit-tap-highlight-color:transparent;
+}
+.slide-arrow:hover{border-color:var(--orange);color:var(--orange);background:rgba(255,255,255,0.95)}
+.slide-arrow:active{transform:translateY(-50%) scale(0.93)}
+.slide-arrow.prev{left:24px}
+.slide-arrow.next{right:24px}
+
+/* 圆点 */
+.slide-dots{
+  position:absolute;bottom:22px;right:52px;z-index:20;
+  display:flex;gap:6px;align-items:center;
+}
+.sdot{
+  width:6px;height:6px;border-radius:50%;background:var(--border2);
+  cursor:pointer;transition:background 0.25s,transform 0.25s;
+  -webkit-tap-highlight-color:transparent;
+}
+.sdot.is-active{background:var(--orange);transform:scale(1.5)}
+
+/* 暂停 */
+.pause-btn{
+  width:26px;height:26px;border-radius:50%;
+  background:transparent;border:1.5px solid var(--border2);
+  color:var(--muted);font-size:9px;font-family:'DM Mono',monospace;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;-webkit-tap-highlight-color:transparent;
+}
+.pause-btn:hover{border-color:var(--orange);color:var(--orange)}
+
+/* 章节计数 */
+.slide-counter{
+  position:absolute;bottom:18px;left:72px;z-index:20;
+  font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.12em;
+}
+
+/* ══ Ticker ══ */
+.ticker-wrap{
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:var(--bg2);overflow:hidden;white-space:nowrap;
+  height:36px;display:flex;align-items:center;
+}
+.ticker-inner{display:inline-flex;animation:ticker-scroll 42s linear infinite}
+.ticker-item{font-family:'DM Mono',monospace;font-size:11px;color:var(--ink2);letter-spacing:0.07em;padding:0 20px}
+.ticker-sep{color:var(--cyan);opacity:0.7;padding:0 4px}
+@keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ══ 通用 Section ══ */
+.section{padding:72px 64px;border-top:1px solid var(--border)}
+.section-eyebrow{
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--cyan);margin-bottom:8px;
+  display:flex;align-items:center;gap:12px;
+}
+.section-eyebrow::after{content:'';display:block;height:2px;width:40px;background:linear-gradient(90deg,var(--cyan),var(--sky));border-radius:2px}
+.section-title{
+  font-family:'Noto Sans SC',sans-serif;font-size:40px;font-weight:700;
+  color:var(--ink);margin-bottom:44px;line-height:1.2;
+}
+
+/* ══ 章节网格 ══ */
+.chapters-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:12px;
+}
+.chapter-card{
+  background:var(--card);border:1.5px solid var(--border2);border-radius:16px;
+  padding:28px 28px 24px;position:relative;cursor:pointer;
+  transition:all 0.2s;-webkit-tap-highlight-color:transparent;
+  text-decoration:none;display:block;overflow:hidden;
+}
+.chapter-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:var(--c, var(--cyan));
+}
+.chapter-card:hover{background:var(--bg3);transform:translateY(-3px);box-shadow:0 8px 28px rgba(77,208,225,0.12);border-color:var(--cyan)}
+.chapter-card:hover .cc-arrow{color:var(--orange);transform:translate(3px,-3px)}
+.cc-num{
+  font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);
+  letter-spacing:0.14em;margin-bottom:10px;text-transform:uppercase;
+}
+.cc-title{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;line-height:1.55;margin-bottom:8px;color:var(--ink)}
+.cc-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:1.8}
+.cc-arrow{
+  position:absolute;right:18px;top:20px;font-size:16px;
+  color:var(--border2);transition:all 0.2s;
+}
+
+/* ══ 对比表 ══ */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.compare-table{width:100%;border-collapse:collapse;min-width:560px}
+.compare-table th{
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--cyan);text-align:left;
+  padding:12px 16px;border-bottom:2px solid var(--border2);
+}
+.compare-table td{
+  font-family:'DM Mono',monospace;font-size:12px;
+  color:var(--muted);padding:13px 16px;border-bottom:1px solid var(--border);
+}
+.compare-table td:first-child{color:var(--ink);font-weight:500}
+.compare-table tbody tr:hover td{background:var(--bg2)}
+.dots5{display:inline-flex;gap:3px}
+.d{width:7px;height:7px;border-radius:50%;background:var(--border)}
+.d.on{background:var(--orange)}
+.d.on2{background:var(--cyan)}
+
+/* ══ 闪卡 ══ */
+.flashcard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.flashcard{
+  min-height:140px;background:var(--card);
+  border:1.5px solid var(--border2);border-radius:14px;
+  padding:22px;cursor:pointer;perspective:700px;position:relative;
+  transition:all 0.2s;-webkit-tap-highlight-color:transparent;
+}
+.flashcard:hover{border-color:var(--cyan);box-shadow:0 4px 16px rgba(77,208,225,0.12)}
+.fc-inner{
+  position:relative;width:100%;min-height:96px;
+  transform-style:preserve-3d;
+  transition:transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.flashcard.flipped .fc-inner{transform:rotateY(180deg)}
+.fc-front,.fc-back{backface-visibility:hidden;position:absolute;inset:0}
+.fc-back{transform:rotateY(180deg)}
+.fc-tag{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px}
+.fc-term{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.fc-hint{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted)}
+.fc-def{font-family:'DM Mono',monospace;font-size:11px;color:var(--orange);line-height:1.7}
+.flip-hint{position:absolute;bottom:10px;right:14px;font-family:'DM Mono',monospace;font-size:9px;color:var(--border2);letter-spacing:0.06em}
+
+/* ══ FAQ ══ */
+.faq-list{max-width:800px}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 0;cursor:pointer;font-size:14px;font-weight:600;
+  color:var(--ink);gap:16px;user-select:none;transition:color 0.2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.faq-q:hover{color:var(--orange)}
+.faq-icon{font-family:'DM Mono',monospace;font-size:20px;color:var(--muted);transition:transform 0.25s,color 0.2s;flex-shrink:0}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--orange)}
+.faq-a{
+  font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);
+  line-height:1.9;max-height:0;overflow:hidden;
+  transition:max-height 0.32s ease,padding-bottom 0.32s;
+}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:20px}
+
+/* ══ Footer ══ */
+footer{
+  border-top:2px solid var(--yellow);padding:44px 64px;
+  display:flex;gap:48px;flex-wrap:wrap;
+  justify-content:space-between;align-items:flex-start;
+  background:var(--bg2);
+}
+.footer-logo{font-family:'Noto Sans SC',sans-serif;font-size:24px;font-weight:700;color:var(--ink)}
+.footer-logo span{color:var(--orange)}
+.footer-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:2.2;margin-top:10px}
+.footer-links{display:flex;flex-direction:column;gap:8px}
+.footer-links-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px}
+.footer-links a{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.05em;transition:color 0.15s}
+.footer-links a:hover{color:var(--orange)}
+
+/* ══ 响应式 ══ */
+@media(max-width:768px){
+  #top-nav{padding:0 20px}
+  .nav-meta{display:none}
+  .slide-content{padding:0 24px 52px}
+  .slide-counter{left:24px}
+  .slide-dots{right:24px;bottom:20px}
+  .slide-arrow.prev{left:8px}
+  .slide-arrow.next{right:8px}
+  .slide-arrow{width:38px;height:38px;font-size:14px}
+  .section{padding:48px 20px}
+  .section-title{font-size:30px}
+  footer{padding:36px 20px}
+}
+@media(max-width:480px){
+  .slide-title{font-size:26px}
+  .slide-sub{font-size:11px}
+  .chapters-grid{grid-template-columns:1fr}
+  .flashcard-grid{grid-template-columns:1fr 1fr}
+  .slide-geo{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav id="top-nav">
+  <a class="site-logo" href="index.html">包装材料学<span> · 自学资料库</span></a>
+  <div class="nav-meta">10 章节 &nbsp;·&nbsp; 200+ 知识节点 &nbsp;·&nbsp; 零成本托管</div>
+</nav>
+
+<!-- ══ 全屏轮播 ══ -->
+<section class="carousel-section" id="home">
+  <div class="carousel-track" id="carouselTrack"></div>
+  <div class="progress-bar" id="progressBar"></div>
+  <button class="slide-arrow prev" id="btnPrev">&#8592;</button>
+  <button class="slide-arrow next" id="btnNext">&#8594;</button>
+  <div class="slide-dots" id="slideDots"></div>
+  <div class="slide-counter" id="slideCounter">01 / 10</div>
+</section>
+
+<!-- Ticker -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="ticker-item">纸质包装：克重 GSM · 耐破强度 BST · 环压强度 ECT · 边压强度 RCT</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">塑料阻隔排序：EVOH &gt; PVDC &gt; PA &gt; PET &gt; PP &gt; LDPE</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">马口铁：低碳钢基板 + 镀锡层 + 钝化层 + 涂油层</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">玻璃：SiO₂为主体，Na₂O降熔点，CaO增稳定性</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">复合软包：WVTR · OTR · 热封强度 · 剥离强度</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">凹版印刷 Gravure：色彩饱满，适合长版精细图案</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">GB/T 6543 · GB/T 4857 · ISO 2233 · ASTM D4169 · TAPPI T811</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">生物基材料：PLA · PBAT · PHB · TPS · PBS</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">EPR 生产者延伸责任 · EU Packaging Regulation 2025</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">选材五维：保护性 · 适用性 · 经济性 · 可持续性 · 法规符合性</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">纸质包装：克重 GSM · 耐破强度 BST · 环压强度 ECT · 边压强度 RCT</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">塑料阻隔排序：EVOH &gt; PVDC &gt; PA &gt; PET &gt; PP &gt; LDPE</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">马口铁：低碳钢基板 + 镀锡层 + 钝化层 + 涂油层</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">玻璃：SiO₂为主体，Na₂O降熔点，CaO增稳定性</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">复合软包：WVTR · OTR · 热封强度 · 剥离强度</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">凹版印刷 Gravure：色彩饱满，适合长版精细图案</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">GB/T 6543 · GB/T 4857 · ISO 2233 · ASTM D4169 · TAPPI T811</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">生物基材料：PLA · PBAT · PHB · TPS · PBS</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">EPR 生产者延伸责任 · EU Packaging Regulation 2025</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">选材五维：保护性 · 适用性 · 经济性 · 可持续性 · 法规符合性</span><span class="ticker-sep">·</span>
+  </div>
+</div>
+
+<!-- ══ 章节总览 ══ -->
+<section class="section" id="chapters">
+  <div class="section-eyebrow">Chapter Overview</div>
+  <div class="section-title">章节总览</div>
+  <div class="chapters-grid">
+    <a class="chapter-card" href="ch01.html" style="--c:var(--yellow)">
+      <span class="cc-arrow">↗</span>
+      <div class="cc-num">CH.01</div>
+      <div class="cc-title">绪论 · 选材五维度决策框架</div>
+      <div class="cc-sub">保护性 · 适用性 · 经济性 · 可持续性 · 法规<br>五维度框架 · 材料分类与发展趋势</div>
+    </a>
+    <a class="chapter-card" href="ch02.html" style="--c:var(--cyan)">
+      <span class="cc-arrow">↗</span>
+      <div class="cc-num">CH.02</div>
+      <div class="cc-title">纸与瓦楞纸板</div>
+      <div class="cc-sub">楞型 A/B/C/E/F · McKee 公式 · ECT/BCT/RCT<br>FEFCO 箱型 · 选材决策向导</div>
+    </a>
+    <a class="chapter-card" href="ch03.html" style="--c:var(--sky)">
+      <span class="cc-arrow">↗</span>
+      <div class="cc-num">CH.03</div>
+      <div class="cc-title">塑料包装材料</div>
+      <div class="cc-sub">PE · PP · PET · EVOH · PA · PLA<br>阻隔性原理 · OTR/WVTR · 共挤复合</div>
+    </a>
+    <a class="chapter-card" href="ch04.html" style="--c:var(--orange)">
+      <span class="cc-arrow">↗</span>
+      <div class="cc-num">CH.04</div>
+      <div class="cc-title">金属包装 · 马口铁与铝</div>
+      <div class="cc-sub">镀锡钢板 · DI 制罐工艺 · 内涂层体系<br>BPA-free 替代 · 无限回收</div>
+    </a>
+    <a class="chapter-card" href="ch05.html" style="--c:var(--sky)">
+      <span class="cc-arrow">↗</span>
+      <div class="cc-num">CH.05</div>
+      <div class="cc-title">玻璃与陶瓷</div>
+      <div class="cc-sub">钠钙玻璃 · 吹-吹法成型 · 热冲击性能<br>水解等级 · 陶瓷釉料安全性</div>
+    </a>
+    <a class="chapter-card" href="ch06.html" style="--c:var(--yellow)">
+      <span class="cc-arrow">↗</span>
+      <div class="cc-num">CH.06</div>
+      <div class="cc-title">复合软包装</div>
+      <div class="cc-sub">功能层分工 · 干法/共挤复合工艺<br>BOPET/Al/PE 典型结构 · 热封设计</div>
+    </a>
+    <a class="chapter-card" href="ch07.html" style="--c:var(--orange)">
+      <span class="cc-arrow">↗</span>
+      <div class="cc-num">CH.07</div>
+      <div class="cc-title">印刷工艺</div>
+      <div class="cc-sub">柔版 · 凹版 · 胶版 · 数码印刷对比<br>食品级油墨 · UV 上光 · 色彩管理</div>
+    </a>
+    <a class="chapter-card" href="ch08.html" style="--c:var(--cyan)">
+      <span class="cc-arrow">↗</span>
+      <div class="cc-num">CH.08</div>
+      <div class="cc-title">性能测试与标准</div>
+      <div class="cc-sub">ECT/BCT/RCT/OTR/WVTR 测试方法<br>TAPPI · ASTM D4169 · GB/T 4857</div>
+    </a>
+    <a class="chapter-card" href="ch09.html" style="--c:var(--sky)">
+      <span class="cc-arrow">↗</span>
+      <div class="cc-num">CH.09</div>
+      <div class="cc-title">绿色包装材料</div>
+      <div class="cc-sub">PLA · PBAT · 纤维素模塑 · 全 PE 软包<br>EPR 法规 · 可回收设计原则</div>
+    </a>
+    <a class="chapter-card" href="ch10.html" style="--c:var(--yellow)">
+      <span class="cc-arrow">↗</span>
+      <div class="cc-num">CH.10</div>
+      <div class="cc-title">综合选材决策</div>
+      <div class="cc-sub">电商重货 · 冷链生鲜案例演练<br>材料规格书撰写 · 课程总结</div>
+    </a>
+  </div>
+</section>
+
+<!-- ══ 材料性能对比表 ══ -->
+<section class="section">
+  <div class="section-eyebrow">Comparison Matrix</div>
+  <div class="section-title">五大材料性能横向对比</div>
+  <div class="table-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>材料类型</th><th>气体阻隔</th><th>水汽阻隔</th>
+          <th>机械强度</th><th>可回收性</th><th>热加工适性</th><th>典型应用</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>纸 / 瓦楞纸板</td>
+          <td><div class="dots5"><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span></div></td>
+          <td><div class="dots5"><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span></div></td>
+          <td><div class="dots5"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div></td>
+          <td><div class="dots5"><span class="d on2"></span><span class="d on2"></span><span class="d on2"></span><span class="d on2"></span><span class="d"></span></div></td>
+          <td>印刷优良</td><td>外包装箱 · 纸盒 · 纸袋</td>
+        </tr>
+        <tr>
+          <td>塑料薄膜（PET）</td>
+          <td><div class="dots5"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></div></td>
+          <td><div class="dots5"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div></td>
+          <td><div class="dots5"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></div></td>
+          <td><div class="dots5"><span class="d on2"></span><span class="d on2"></span><span class="d on2"></span><span class="d on2"></span><span class="d"></span></div></td>
+          <td>130°C 短期耐热</td><td>复合基材 · 饮料瓶</td>
+        </tr>
+        <tr>
+          <td>马口铁（镀锡钢）</td>
+          <td><div class="dots5"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></div></td>
+          <td><div class="dots5"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></div></td>
+          <td><div class="dots5"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></div></td>
+          <td><div class="dots5"><span class="d on2"></span><span class="d on2"></span><span class="d on2"></span><span class="d on2"></span><span class="d on2"></span></div></td>
+          <td>高温杀菌 121°C</td><td>食品罐 · 气雾剂 · 化工桶</td>
+        </tr>
+        <tr>
+          <td>铝箔</td>
+          <td><div class="dots5"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></div></td>
+          <td><div class="dots5"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></div></td>
+          <td><div class="dots5"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div></td>
+          <td><div class="dots5"><span class="d on2"></span><span class="d on2"></span><span class="d on2"></span><span class="d on2"></span><span class="d"></span></div></td>
+          <td>良好，复合使用</td><td>医药泡罩 · 食品软包</td>
+        </tr>
+        <tr>
+          <td>玻璃容器</td>
+          <td><div class="dots5"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></div></td>
+          <td><div class="dots5"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></div></td>
+          <td><div class="dots5"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div></td>
+          <td><div class="dots5"><span class="d on2"></span><span class="d on2"></span><span class="d on2"></span><span class="d on2"></span><span class="d on2"></span></div></td>
+          <td>耐高温 · 可蒸煮</td><td>酒瓶 · 药瓶 · 香水瓶</td>
+        </tr>
+        <tr>
+          <td>复合软包（铝塑）</td>
+          <td><div class="dots5"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></div></td>
+          <td><div class="dots5"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></div></td>
+          <td><div class="dots5"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div></td>
+          <td><div class="dots5"><span class="d on2"></span><span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span></div></td>
+          <td>热封性优良</td><td>食品软包 · 医药 · 日化</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══ 知识闪卡 ══ -->
+<section class="section">
+  <div class="section-eyebrow">Flash Cards</div>
+  <div class="section-title">核心知识闪卡 <span style="font-size:16px;color:var(--muted);font-family:'DM Mono',monospace;font-weight:400">— 点击翻转</span></div>
+  <div class="flashcard-grid">
+
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-tag">CH.02 · 纸质材料</div><div class="fc-term">环压强度 ECT</div><div class="fc-hint">评价瓦楞纸箱抗压能力的关键指标 →</div></div>
+        <div class="fc-back"><div class="fc-tag">CH.02</div><div class="fc-def">Edge Crush Test<br>沿纸板截面边缘方向施压<br>单位：kN/m<br>ECT 越高，箱体抗压越强<br>与楞型、克重直接相关</div></div>
+      </div><div class="flip-hint">tap to flip</div>
+    </div>
+
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-tag">CH.03 · 塑料</div><div class="fc-term">结晶度与阻隔性</div><div class="fc-hint">为什么高结晶度塑料阻隔性好？ →</div></div>
+        <div class="fc-back"><div class="fc-tag">CH.03</div><div class="fc-def">晶区分子链紧密排列<br>气体分子无法穿透<br>→ 结晶度↑，OTR↓<br>PET 结晶度 ≈ 25–40%<br>EVOH 结晶度 ≈ 30–40%</div></div>
+      </div><div class="flip-hint">tap to flip</div>
+    </div>
+
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-tag">CH.04 · 金属</div><div class="fc-term">镀锡量 T/T₁</div><div class="fc-hint">马口铁双面镀锡规格含义 →</div></div>
+        <div class="fc-back"><div class="fc-tag">CH.04</div><div class="fc-def">格式：A面/B面 g/m²<br>E2.8/2.8：双面各 2.8 g/m²<br>差厚镀锡：内面厚、外面薄<br>含硫食品罐采用内面镀厚<br>防止腐蚀变色</div></div>
+      </div><div class="flip-hint">tap to flip</div>
+    </div>
+
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-tag">CH.05 · 玻璃</div><div class="fc-term">退火 vs 钢化</div><div class="fc-hint">两种热处理方式的区别 →</div></div>
+        <div class="fc-back"><div class="fc-tag">CH.05</div><div class="fc-def">退火：缓慢冷却消除内应力<br>→ 可切割，均匀透明<br><br>钢化：快速冷却形成表面压应力<br>→ 强度提高 3–5 倍<br>破碎成小钝块，安全性高</div></div>
+      </div><div class="flip-hint">tap to flip</div>
+    </div>
+
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-tag">CH.06 · 复合材料</div><div class="fc-term">OTR 与 WVTR</div><div class="fc-hint">复合软包最核心的两个阻隔指标 →</div></div>
+        <div class="fc-back"><div class="fc-tag">CH.06</div><div class="fc-def">OTR：透氧率<br>单位：cm³/(m²·day·atm)<br><br>WVTR：透湿率<br>单位：g/(m²·24h)<br><br>两者均越低越好<br>铝箔层可使两者趋近于零</div></div>
+      </div><div class="flip-hint">tap to flip</div>
+    </div>
+
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-tag">CH.09 · 绿色材料</div><div class="fc-term">PLA 的局限性</div><div class="fc-hint">生物基 ≠ 无限制使用，原因是？ →</div></div>
+        <div class="fc-back"><div class="fc-tag">CH.09</div><div class="fc-def">① 需工业堆肥（58°C+）<br>   家庭环境降解极慢<br>② Tg ≈ 60°C<br>   热水/微波易变形<br>③ OTR 较高<br>   不适合高阻隔食品包装</div></div>
+      </div><div class="flip-hint">tap to flip</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="section">
+  <div class="section-eyebrow">Concept Clarifier</div>
+  <div class="section-title">易混淆概念辨析</div>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        纸板克重、定量、厚度三者关系是什么？<span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">定量（克重）是单位面积质量，单位 g/m²，是最基础的纸张规格指标。厚度（mm）和定量相关但不等同——同定量下，疏松的纸厚度更大。紧度 = 定量/厚度（g/cm³），紧度高说明纤维结合紧密，强度高但柔韧性下降。瓦楞纸箱选材时，面纸定量 ≥125 g/m²，瓦楞芯纸 ≥100 g/m² 是常见工程要求。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        PE、PP、PET 的本质区别与快速鉴别方法？<span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">化学结构：PE 为乙烯均聚物（非极性），PP 为丙烯均聚物（非极性），PET 含酯键（极性）。鉴别：① 密度法——PE/PP 密度约 0.91–0.97，浮于水；PET 密度 1.38–1.40，沉于水。② 燃烧——PE 有蜡烛气味；PP 有石蜡气味；PET 燃烧有酸味并冒黑烟。③ 铰链效应：PP 有，PE 无。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        干法复合、湿法复合、共挤复合、挤出复合四者如何区分？<span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">干法复合：涂双组分聚氨酯胶，烘道挥发溶剂后热压贴合，可复合铝箔；湿法复合：水性黏合剂未干即贴合，仅适合纸基材；挤出复合：熔融树脂直接挤出在基材上作为黏合层，速度快；共挤复合：多台挤出机同时挤出多层树脂，无需胶黏剂，最环保，适合全塑多层结构。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        生物基、生物降解、可堆肥三个概念能互换吗？<span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">三者完全不同。生物基指原料来自可再生生物质，不涉及降解性——bio-PE 是生物基但不可降解。生物降解指可被微生物分解，但速度和条件差异极大。可堆肥是最严格的要求，须在标准堆肥条件（工业：58°C，12周内90%降解）下完全分解，并满足重金属残留要求（ISO 17088 / EN 13432）。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        凹版印刷与柔版印刷的适用场景如何判断？<span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">凹版（Gravure）：图文刻入金属滚筒凹陷处，墨层厚，色彩饱满，适合长版精细图案（50万印次以上），制版费高；典型应用：食品软包、香烟包装。柔版（Flexo）：感光树脂版，水性/UV墨，环保，适合宽幅基材（纸板箱、标签），版材寿命约100–200万印次，制版费低；典型应用：瓦楞箱、不干胶标签。</div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-logo">包装材料学<span> · 自学资料库</span></div>
+    <div class="footer-meta">
+      参考：刘喜生《包装材料学》吉林大学<br>
+      尹章伟《包装材料与容器》武汉大学<br>
+      ScienceDirect · ISO / ASTM / GB 标准体系<br>
+      ──────────────────<br>
+      托管：GitHub Pages · ideur88.github.io
+    </div>
+  </div>
+  <div class="footer-links">
+    <div class="footer-links-label">章节目录</div>
+    <a href="ch01.html">CH.01 · 绪论与选材框架</a>
+    <a href="ch02.html">CH.02 · 纸与瓦楞纸板</a>
+    <a href="ch03.html">CH.03 · 塑料包装材料</a>
+    <a href="ch04.html">CH.04 · 金属包装</a>
+    <a href="ch05.html">CH.05 · 玻璃与陶瓷</a>
+    <a href="ch06.html">CH.06 · 复合软包装</a>
+    <a href="ch07.html">CH.07 · 印刷工艺</a>
+    <a href="ch08.html">CH.08 · 性能测试与标准</a>
+    <a href="ch09.html">CH.09 · 绿色包装材料</a>
+    <a href="ch10.html">CH.10 · 综合选材决策</a>
+  </div>
+</footer>
+
+<script>
+const CHAPTERS = [
+  { num:'CH.01', title:'绪论 · 选材\n五维度决策框架',      sub:'保护性 · 适用性 · 经济性 · 可持续性 · 法规符合性\n五维度框架 · 材料分类 · 横向对比速查',        tags:['总纲','选材框架','材料分类'],           href:'ch01.html', bg:'#FFFDE7', accent:'#FFD700' },
+  { num:'CH.02', title:'纸与\n瓦楞纸板',                   sub:'楞型 A/B/C/E/F · McKee 抗压公式\nFEFCO 箱型 · ECT · BCT · 选材向导',           tags:['纸类材料','瓦楞结构','McKee公式'],       href:'ch02.html', bg:'#E0F7FA', accent:'#4DD0E1' },
+  { num:'CH.03', title:'塑料\n包装材料',                   sub:'PE · PP · PET · EVOH · PA · PLA\nOTR / WVTR 阻隔性能 · 共挤薄膜工艺',           tags:['热塑性塑料','阻隔性','薄膜成型'],       href:'ch03.html', bg:'#E1F5FE', accent:'#81D4FA' },
+  { num:'CH.04', title:'金属包装\n马口铁与铝',              sub:'镀锡钢板 · DI 拉伸减薄制罐\nBPA-free 内涂层 · 无限回收优势',                 tags:['马口铁','铝包装','金属成型'],           href:'ch04.html', bg:'#FFF3E0', accent:'#FF8A65' },
+  { num:'CH.05', title:'玻璃\n与陶瓷',                     sub:'硅酸盐玻璃结构 · 吹-吹法成型\n热冲击性能 · 水解等级 · 化学惰性',               tags:['玻璃容器','化学稳定性','成型工艺'],     href:'ch05.html', bg:'#E8F5E9', accent:'#81D4FA' },
+  { num:'CH.06', title:'复合\n软包装',                     sub:'功能层分工 · 干法/共挤复合工艺\nBOPET/Al/PE 典型结构 · 热封窗口',               tags:['软包装','多层复合','功能层'],           href:'ch06.html', bg:'#FFFDE7', accent:'#FFD700' },
+  { num:'CH.07', title:'印刷\n工艺',                       sub:'柔版 · 凹版 · 胶版 · 数码印刷对比\n食品级油墨 · UV 上光 · 色彩管理',             tags:['印刷工艺','表面处理','色彩管理'],       href:'ch07.html', bg:'#FFF3E0', accent:'#FF8A65' },
+  { num:'CH.08', title:'性能测试\n与标准',                  sub:'ECT · BCT · OTR · WVTR 测试方法\nTAPPI · ASTM D4169 · ISTA 运输模拟',           tags:['性能测试','标准体系','运输模拟'],       href:'ch08.html', bg:'#E0F7FA', accent:'#4DD0E1' },
+  { num:'CH.09', title:'绿色\n包装材料',                   sub:'PLA · PBAT · 纤维素模塑 · 全PE软包\nEPR 法规 · 可回收设计 · 碳足迹',              tags:['生物降解','EPR','可持续'],             href:'ch09.html', bg:'#E8F5E9', accent:'#81D4FA' },
+  { num:'CH.10', title:'综合\n选材决策',                   sub:'电商重货 · 冷链生鲜 · 案例演练\n材料规格书撰写 · 五维度框架综合应用',            tags:['选材决策','案例分析','综合应用'],       href:'ch10.html', bg:'#FFFDE7', accent:'#FFD700' },
+];
+
+const N=CHAPTERS.length, AUTO_MS=4500;
+const track=document.getElementById('carouselTrack');
+const dotsWrap=document.getElementById('slideDots');
+const counter=document.getElementById('slideCounter');
+const progressEl=document.getElementById('progressBar');
+
+let trackIdx=N, curVis=0, isAnim=false, isPaused=false;
+
+function buildSlides(){
+  track.innerHTML='';
+  [...CHAPTERS,...CHAPTERS,...CHAPTERS].forEach(d=>{
+    const slide=document.createElement('div');
+    slide.className='slide';
+    slide.style.cssText=`--slide-accent:${d.accent}`;
+    const geoLines=Array(6).fill(0).map(()=>`<div class="slide-geo-line"></div>`).join('');
+    const titleHtml=d.title.replace(/\n/g,'<br>');
+    const subHtml=d.sub.replace(/\n/g,'<br>');
+    slide.innerHTML=`
+      <div class="slide-bg" style="background:${d.bg}"></div>
+      <div class="slide-geo">${geoLines}</div>
+      <div class="slide-topband"></div>
+      <div class="slide-deco">${d.num.replace('CH.','').padStart(2,'0')}</div>
+      <div class="slide-content">
+        <div class="slide-num">${d.num}</div>
+        <div class="slide-title">${titleHtml}</div>
+        <div class="slide-sub">${subHtml}</div>
+        <div class="slide-tags">
+          ${d.tags.map(t=>`<span class="stag">${t}</span>`).join('')}
+          <a class="slide-cta" href="${d.href}">进入章节 →</a>
+        </div>
+      </div>`;
+    slide.querySelector('.slide-cta').addEventListener('click',e=>{if(wasDragging)e.preventDefault();});
+    track.appendChild(slide);
+  });
+}
+
+function buildDots(){
+  dotsWrap.innerHTML='';
+  CHAPTERS.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='sdot'+(i===0?' is-active':'');
+    d.onclick=()=>{pauseAuto();goTo(i);};
+    dotsWrap.appendChild(d);
+  });
+  const pb=document.createElement('button');
+  pb.className='pause-btn';pb.id='pauseBtn';pb.textContent='⏸';
+  pb.onclick=()=>isPaused?resumeAuto():pauseAuto();
+  dotsWrap.appendChild(pb);
+}
+
+function setPos(idx,animated){
+  const vw=window.innerWidth;
+  track.classList.toggle('animating',animated);
+  track.style.transform=`translateX(-${idx*vw}px)`;
+}
+function refreshUI(){
+  dotsWrap.querySelectorAll('.sdot').forEach((d,i)=>d.classList.toggle('is-active',i===curVis));
+  counter.textContent=String(curVis+1).padStart(2,'0')+' / '+N;
+  progressEl.style.background=CHAPTERS[curVis].accent;
+}
+function goTo(visIdx,animate=true){
+  curVis=((visIdx%N)+N)%N;trackIdx=N+curVis;
+  setPos(trackIdx,animate);refreshUI();resetProgress();
+}
+track.addEventListener('transitionend',()=>{
+  isAnim=false;
+  if(trackIdx<N||trackIdx>=2*N){
+    curVis=((trackIdx-N)%N+N)%N;trackIdx=N+curVis;setPos(trackIdx,false);
+  }
+});
+function stepNext(){if(isAnim)return;isAnim=true;trackIdx++;curVis=((trackIdx-N)%N+N)%N;setPos(trackIdx,true);refreshUI();resetProgress();}
+function stepPrev(){if(isAnim)return;isAnim=true;trackIdx--;curVis=((trackIdx-N)%N+N)%N;setPos(trackIdx,true);refreshUI();resetProgress();}
+document.getElementById('btnNext').onclick=()=>{pauseAuto();stepNext();};
+document.getElementById('btnPrev').onclick=()=>{pauseAuto();stepPrev();};
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'){pauseAuto();stepNext();}
+  if(e.key==='ArrowLeft'){pauseAuto();stepPrev();}
+});
+
+let pStart=null,pTime=null,wasDragging=false,liveOffset=0;
+const shell=document.querySelector('.carousel-section');
+function dragStart(x){pStart=x;pTime=Date.now();wasDragging=false;track.classList.remove('animating');liveOffset=trackIdx*window.innerWidth;}
+function dragMove(x){if(pStart===null)return;const dx=x-pStart;if(Math.abs(dx)>6)wasDragging=true;track.style.transform=`translateX(-${liveOffset-dx}px)`;}
+function dragEnd(x){if(pStart===null)return;const dx=x-pStart,dt=Date.now()-pTime,vel=Math.abs(dx)/Math.max(dt,1);pStart=null;pauseAuto();if(vel>0.22||Math.abs(dx)>window.innerWidth*0.2){dx<0?stepNext():stepPrev();}else{setPos(trackIdx,true);}}
+shell.addEventListener('touchstart',e=>dragStart(e.touches[0].clientX),{passive:true});
+shell.addEventListener('touchmove',e=>dragMove(e.touches[0].clientX),{passive:true});
+shell.addEventListener('touchend',e=>dragEnd(e.changedTouches[0].clientX));
+shell.addEventListener('touchcancel',e=>dragEnd(e.changedTouches[0].clientX));
+shell.addEventListener('mousedown',e=>dragStart(e.clientX));
+window.addEventListener('mousemove',e=>{if(pStart!==null)dragMove(e.clientX);});
+window.addEventListener('mouseup',e=>dragEnd(e.clientX));
+
+let rafId=null,arcStart=null;
+function resetProgress(){progressEl.style.width='0%';arcStart=null;if(rafId){cancelAnimationFrame(rafId);rafId=null;}if(!isPaused)startProgress();}
+function startProgress(){
+  function tick(ts){
+    if(!arcStart)arcStart=ts;
+    const ratio=Math.min((ts-arcStart)/AUTO_MS,1);
+    progressEl.style.width=(ratio*100)+'%';
+    if(ratio<1){rafId=requestAnimationFrame(tick);}else{stepNext();}
+  }
+  rafId=requestAnimationFrame(tick);
+}
+function pauseAuto(){isPaused=true;if(rafId){cancelAnimationFrame(rafId);rafId=null;}const pb=document.getElementById('pauseBtn');if(pb)pb.textContent='▶';}
+function resumeAuto(){isPaused=false;const pb=document.getElementById('pauseBtn');if(pb)pb.textContent='⏸';resetProgress();}
+shell.addEventListener('mouseenter',()=>{if(!isPaused&&rafId){cancelAnimationFrame(rafId);rafId=null;}});
+shell.addEventListener('mouseleave',()=>{if(!isPaused)startProgress();});
+
+let rsTimer;
+window.addEventListener('resize',()=>{clearTimeout(rsTimer);rsTimer=setTimeout(()=>setPos(trackIdx,false),100);});
+
+function init(){buildSlides();buildDots();setPos(trackIdx,false);refreshUI();resumeAuto();}
+init();
+document.fonts.ready.then(()=>setPos(trackIdx,false));
+</script>
+</body>
+</html>
