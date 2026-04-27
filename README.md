@@ -1,1 +1,1 @@
-# ideur88.github.io
+<meta http-equiv="refresh" content="0; url=index.html">
