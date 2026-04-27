@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>档案馆 · 包装材料图像库</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg:#FFFFFF; --bg2:#F8FBFF; --bg3:#F0F9FF; --card:#FFFFFF;
+  --ink:#1A1A2E; --ink2:#2D3561; --muted:#6B7280;
+  --border:#E8F4FD; --border2:#B3E5FC;
+  --yellow:#FFD700; --cyan:#4DD0E1; --orange:#FF8A65; --sky:#81D4FA;
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-weight:400;overflow-x:hidden;min-height:100vh}
+
+/* ══ 顶部导航 ══ */
+#top-nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:56px;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:2px solid var(--cyan);
+}
+.nav-logo{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:700;color:var(--ink);text-decoration:none}
+.nav-logo span{color:var(--cyan)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.nav-btn{
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;
+  padding:6px 16px;border-radius:20px;cursor:pointer;transition:all 0.2s;
+  border:1.5px solid var(--border2);background:transparent;color:var(--ink2);
+}
+.nav-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.nav-btn.primary{background:var(--orange);border-color:var(--orange);color:#fff}
+.nav-btn.primary:hover{opacity:0.85}
+.nav-back{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s}
+.nav-back:hover{color:var(--orange)}
+
+/* ══ 页面 Header ══ */
+.page-header{
+  margin-top:56px;padding:48px 48px 32px;
+  background:linear-gradient(135deg,#E0F7FA 0%,#F8FBFF 60%,#FFF9C4 100%);
+  border-bottom:1px solid var(--border2);
+}
+.page-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
+.page-title{font-family:'Noto Sans SC',sans-serif;font-size:36px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.page-sub{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:0.04em;margin-bottom:24px}
+
+/* 搜索 + 筛选 */
+.filter-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.search-input{
+  font-family:'DM Mono',monospace;font-size:12px;
+  padding:8px 16px;border-radius:20px;
+  border:1.5px solid var(--border2);background:var(--card);
+  color:var(--ink);outline:none;width:260px;
+  transition:border-color 0.2s;
+}
+.search-input:focus{border-color:var(--cyan)}
+.search-input::placeholder{color:var(--muted)}
+.filter-tag{
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.06em;
+  padding:6px 14px;border-radius:20px;cursor:pointer;transition:all 0.2s;
+  border:1.5px solid var(--border2);background:transparent;color:var(--ink2);
+}
+.filter-tag:hover,.filter-tag.active{background:var(--cyan);border-color:var(--cyan);color:#fff}
+.filter-tag.all.active{background:var(--orange);border-color:var(--orange)}
+.item-count{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-left:auto}
+
+/* ══ 瀑布流主体 ══ */
+#masonry-wrap{padding:32px 48px 64px}
+
+.masonry{
+  columns:4;column-gap:16px;
+}
+@media(max-width:1200px){.masonry{columns:3}}
+@media(max-width:900px){.masonry{columns:2}}
+@media(max-width:480px){.masonry{columns:1}}
+
+/* 单张卡片 */
+.arch-card{
+  break-inside:avoid;margin-bottom:16px;
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:16px;overflow:hidden;
+  transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;
+  cursor:pointer;display:block;
+}
+.arch-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 32px rgba(77,208,225,0.15);
+  border-color:var(--border2);
+}
+.arch-card img{
+  width:100%;display:block;
+  background:var(--bg2);
+  /* 图片懒加载占位 */
+  min-height:120px;
+}
+.arch-card-body{padding:14px 16px 16px}
+.arch-card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.arch-ctag{
+  font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.06em;
+  padding:2px 8px;border-radius:8px;background:var(--bg3);color:var(--cyan);
+}
+.arch-card-note{
+  font-family:'Noto Sans SC',sans-serif;font-size:13px;font-weight:500;
+  color:var(--ink);line-height:1.5;margin-bottom:6px;
+}
+.arch-card-source{
+  font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);
+  letter-spacing:0.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.arch-card-meta{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:10px;padding-top:10px;border-top:1px solid var(--border);
+}
+.arch-card-date{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted)}
+.arch-card-del{
+  font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);
+  cursor:pointer;padding:2px 6px;border-radius:6px;transition:all 0.2s;
+  border:1px solid transparent;background:transparent;
+}
+.arch-card-del:hover{color:#ef4444;border-color:#fecaca;background:#fff5f5}
+
+/* 空状态 */
+.empty-state{
+  grid-column:1/-1;text-align:center;padding:80px 20px;
+  font-family:'DM Mono',monospace;color:var(--muted);
+}
+.empty-icon{font-size:48px;margin-bottom:16px;opacity:0.4}
+.empty-title{font-size:14px;letter-spacing:0.06em;margin-bottom:8px;color:var(--ink2)}
+.empty-sub{font-size:11px;line-height:1.8}
+
+/* 加载状态 */
+.loading-state{
+  text-align:center;padding:80px 20px;
+  font-family:'DM Mono',monospace;color:var(--muted);font-size:12px;
+  letter-spacing:0.08em;
+}
+.spinner{
+  width:32px;height:32px;border:2px solid var(--border);
+  border-top-color:var(--cyan);border-radius:50%;
+  animation:spin 0.8s linear infinite;margin:0 auto 16px;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ══ 灯箱 ══ */
+#lightbox{
+  display:none;position:fixed;inset:0;z-index:1000;
+  background:rgba(10,10,20,0.92);
+  align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);
+}
+#lightbox.open{display:flex}
+.lb-inner{
+  position:relative;max-width:92vw;max-height:92vh;
+  display:flex;flex-direction:column;align-items:center;gap:0;
+}
+#lb-img{
+  max-width:88vw;max-height:75vh;
+  border-radius:12px;object-fit:contain;
+  box-shadow:0 24px 64px rgba(0,0,0,0.5);
+}
+.lb-info{
+  background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);
+  border-radius:0 0 12px 12px;padding:16px 24px;
+  width:100%;max-width:88vw;
+}
+.lb-note{font-family:'Noto Sans SC',sans-serif;font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.lb-source{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)}
+.lb-source a{color:var(--cyan);text-decoration:none}
+.lb-source a:hover{text-decoration:underline}
+.lb-close{
+  position:absolute;top:-44px;right:0;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);
+  color:#fff;font-size:16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background 0.2s;
+}
+.lb-close:hover{background:rgba(255,255,255,0.25)}
+
+/* ══ Token 设置面板 ══ */
+#token-panel{
+  display:none;position:fixed;inset:0;z-index:500;
+  background:rgba(10,10,20,0.6);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;
+}
+#token-panel.open{display:flex}
+.token-box{
+  background:var(--card);border:1.5px solid var(--border2);
+  border-radius:20px;padding:32px;width:100%;max-width:480px;
+  box-shadow:0 24px 64px rgba(77,208,225,0.15);
+}
+.token-title{font-family:'Noto Sans SC',sans-serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.token-sub{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);line-height:1.8;margin-bottom:24px}
+.token-input{
+  width:100%;font-family:'DM Mono',monospace;font-size:12px;
+  padding:10px 16px;border-radius:10px;
+  border:1.5px solid var(--border2);background:var(--bg2);
+  color:var(--ink);outline:none;margin-bottom:16px;
+  transition:border-color 0.2s;
+}
+.token-input:focus{border-color:var(--cyan)}
+.token-actions{display:flex;gap:10px;justify-content:flex-end}
+.token-cancel{
+  font-family:'DM Mono',monospace;font-size:11px;padding:8px 20px;
+  border-radius:10px;border:1.5px solid var(--border2);
+  background:transparent;color:var(--muted);cursor:pointer;transition:all 0.2s;
+}
+.token-cancel:hover{border-color:var(--muted);color:var(--ink)}
+.token-save{
+  font-family:'DM Mono',monospace;font-size:11px;padding:8px 20px;
+  border-radius:10px;border:none;
+  background:var(--cyan);color:#fff;cursor:pointer;transition:opacity 0.2s;
+}
+.token-save:hover{opacity:0.85}
+.token-status{
+  font-family:'DM Mono',monospace;font-size:11px;
+  padding:8px 12px;border-radius:8px;margin-bottom:12px;
+  display:none;
+}
+.token-status.ok{display:block;background:#d1fae5;color:#065f46}
+.token-status.err{display:block;background:#fee2e2;color:#991b1b}
+
+/* ══ Toast 提示 ══ */
+#toast{
+  position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:#fff;
+  font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.06em;
+  padding:10px 24px;border-radius:20px;
+  opacity:0;transition:all 0.3s;z-index:2000;pointer-events:none;white-space:nowrap;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#toast.ok{background:var(--cyan);color:var(--ink)}
+#toast.err{background:#ef4444}
+
+/* ══ Footer ══ */
+footer{
+  border-top:1px solid var(--border);padding:24px 48px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+  font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);
+  background:var(--bg2);
+}
+footer a{color:var(--cyan);text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+@media(max-width:768px){
+  #top-nav{padding:0 16px}
+  .page-header{padding:32px 16px 24px}
+  #masonry-wrap{padding:20px 16px 48px}
+  .filter-bar{gap:6px}
+  .search-input{width:100%}
+  footer{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<nav id="top-nav">
+  <a class="nav-back" href="index.html">← 返回主页</a>
+  <a class="nav-logo" href="archive.html">档案馆<span> · Archive</span></a>
+  <div class="nav-actions">
+    <button class="nav-btn" onclick="openTokenPanel()">⚙ 设置 Token</button>
+    <button class="nav-btn primary" onclick="triggerManualAdd()">+ 手动添加</button>
+  </div>
+</nav>
+
+<!-- 页面 Header -->
+<div class="page-header">
+  <div class="page-eyebrow">Packaging Archive · 图像档案馆</div>
+  <h1 class="page-title">包装材料图像库</h1>
+  <p class="page-sub">通过 Chrome 插件右键采集，或手动添加 · 数据同步至 GitHub</p>
+  <div class="filter-bar">
+    <input class="search-input" type="text" id="searchInput" placeholder="搜索关键词、标签、备注…" oninput="filterCards()">
+    <button class="filter-tag all active" data-tag="all" onclick="setTagFilter('all',this)">全部</button>
+    <button class="filter-tag" data-tag="纸质" onclick="setTagFilter('纸质',this)">纸质</button>
+    <button class="filter-tag" data-tag="塑料" onclick="setTagFilter('塑料',this)">塑料</button>
+    <button class="filter-tag" data-tag="金属" onclick="setTagFilter('金属',this)">金属</button>
+    <button class="filter-tag" data-tag="玻璃" onclick="setTagFilter('玻璃',this)">玻璃</button>
+    <button class="filter-tag" data-tag="复合" onclick="setTagFilter('复合',this)">复合</button>
+    <button class="filter-tag" data-tag="印刷" onclick="setTagFilter('印刷',this)">印刷</button>
+    <button class="filter-tag" data-tag="绿色" onclick="setTagFilter('绿色',this)">绿色</button>
+    <span class="item-count" id="itemCount">— 条记录</span>
+  </div>
+</div>
+
+<!-- 瀑布流 -->
+<div id="masonry-wrap">
+  <div class="loading-state" id="loadingState">
+    <div class="spinner"></div>
+    正在从 GitHub 加载档案…
+  </div>
+  <div class="masonry" id="masonryGrid" style="display:none"></div>
+</div>
+
+<!-- 灯箱 -->
+<div id="lightbox" onclick="closeLightbox(event)">
+  <div class="lb-inner">
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <img id="lb-img" src="" alt="">
+    <div class="lb-info">
+      <div class="lb-note" id="lb-note"></div>
+      <div class="lb-source" id="lb-source"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Token 设置面板 -->
+<div id="token-panel" onclick="closeTokenPanel(event)">
+  <div class="token-box" onclick="event.stopPropagation()">
+    <div class="token-title">GitHub Token 设置</div>
+    <div class="token-sub">
+      Token 仅保存在本地浏览器（localStorage），不会上传至任何服务器。<br>
+      需要 <strong>repo</strong> 权限的 Personal Access Token（classic）。<br>
+      生成路径：GitHub → Settings → Developer settings → Tokens (classic)
+    </div>
+    <div class="token-status" id="tokenStatus"></div>
+    <input class="token-input" type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+    <div class="token-actions">
+      <button class="token-cancel" onclick="closeTokenPanel()">取消</button>
+      <button class="token-save" onclick="saveToken()">保存并验证</button>
+    </div>
+  </div>
+</div>
+
+<!-- 手动添加面板 -->
+<div id="add-panel" onclick="closeAddPanel(event)" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(10,10,20,0.6);backdrop-filter:blur(8px);align-items:center;justify-content:center;">
+  <div class="token-box" style="max-width:520px" onclick="event.stopPropagation()">
+    <div class="token-title" style="margin-bottom:20px">手动添加图片</div>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px">
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px;letter-spacing:0.06em">图片 URL *</div>
+        <input class="token-input" type="url" id="add-url" placeholder="https://..." style="margin-bottom:0">
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px;letter-spacing:0.06em">来源页面 URL</div>
+        <input class="token-input" type="url" id="add-source" placeholder="https://..." style="margin-bottom:0">
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px;letter-spacing:0.06em">备注说明</div>
+        <input class="token-input" type="text" id="add-note" placeholder="简短描述这张图片…" style="margin-bottom:0">
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px;letter-spacing:0.06em">标签（逗号分隔）</div>
+        <input class="token-input" type="text" id="add-tags" placeholder="纸质, 瓦楞纸板, ECT…" style="margin-bottom:0">
+      </div>
+    </div>
+    <div class="token-actions">
+      <button class="token-cancel" onclick="closeAddPanel()">取消</button>
+      <button class="token-save" onclick="submitManualAdd()">添加到档案馆</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<footer>
+  <span>档案馆 · 数据存储于 <a href="https://github.com/ideur88/ideur88.github.io/blob/main/archive.json" target="_blank">ideur88.github.io / archive.json</a></span>
+  <span id="footer-count">0 条记录</span>
+</footer>
+
+<script>
+/* ══════════════════════════
+   配置
+══════════════════════════ */
+const REPO_OWNER = 'ideur88';
+const REPO_NAME  = 'ideur88.github.io';
+const FILE_PATH  = 'archive.json';
+const API_BASE   = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+
+/* ══ 状态 ══ */
+let allItems   = [];
+let fileSHA    = '';
+let activeTag  = 'all';
+let searchKw   = '';
+
+/* ══ Token 管理 ══ */
+function getToken(){ return localStorage.getItem('gh_archive_token') || ''; }
+function setToken(t){ localStorage.setItem('gh_archive_token', t); }
+
+/* ══ Toast ══ */
+let toastTimer;
+function showToast(msg, type=''){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'show' + (type ? ' '+type : '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>{ el.className=''; }, 2800);
+}
+
+/* ══ 从 GitHub 读取 archive.json ══ */
+async function loadArchive(){
+  const loading = document.getElementById('loadingState');
+  const grid    = document.getElementById('masonryGrid');
+  loading.style.display = 'block';
+  grid.style.display    = 'none';
+
+  try {
+    const res  = await fetch(API_BASE + '?t=' + Date.now());
+    if(!res.ok) throw new Error('fetch failed: ' + res.status);
+    const data = await res.json();
+    fileSHA    = data.sha;
+    const json = JSON.parse(atob(data.content.replace(/\n/g,'')));
+    allItems   = Array.isArray(json) ? json : [];
+  } catch(e) {
+    console.error(e);
+    allItems = [];
+    showToast('加载失败，显示本地缓存', 'err');
+    // 尝试本地缓存
+    const cached = localStorage.getItem('archive_cache');
+    if(cached){ try{ allItems = JSON.parse(cached); }catch{} }
+  }
+
+  // 缓存到本地
+  localStorage.setItem('archive_cache', JSON.stringify(allItems));
+
+  loading.style.display = 'none';
+  grid.style.display    = 'block';
+  renderCards();
+}
+
+/* ══ 写入 GitHub ══ */
+async function saveArchive(items){
+  const token = getToken();
+  if(!token){
+    openTokenPanel();
+    showToast('请先设置 GitHub Token', 'err');
+    return false;
+  }
+
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(items, null, 2))));
+  const body = { message:'archive: update via web', content, sha: fileSHA };
+
+  const res = await fetch(API_BASE, {
+    method: 'PUT',
+    headers: {
+      'Authorization': 'token ' + token,
+      'Content-Type':  'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+
+  if(res.ok){
+    const data = await res.json();
+    fileSHA = data.content.sha;
+    localStorage.setItem('archive_cache', JSON.stringify(items));
+    return true;
+  } else {
+    const err = await res.json();
+    console.error(err);
+    showToast('保存失败：' + (err.message || res.status), 'err');
+    return false;
+  }
+}
+
+/* ══ 渲染瀑布流 ══ */
+function renderCards(){
+  const grid = document.getElementById('masonryGrid');
+  grid.innerHTML = '';
+
+  const filtered = allItems.filter(item => {
+    const matchTag = activeTag === 'all' || (item.tags||[]).includes(activeTag);
+    const kw = searchKw.toLowerCase();
+    const matchKw = !kw ||
+      (item.note||'').toLowerCase().includes(kw) ||
+      (item.url||'').toLowerCase().includes(kw)  ||
+      (item.tags||[]).some(t=>t.toLowerCase().includes(kw));
+    return matchTag && matchKw;
+  });
+
+  // 更新计数
+  document.getElementById('itemCount').textContent = filtered.length + ' 条记录';
+  document.getElementById('footer-count').textContent = allItems.length + ' 条记录';
+
+  if(filtered.length === 0){
+    const empty = document.createElement('div');
+    empty.className = 'empty-state';
+    empty.innerHTML = `
+      <div class="empty-icon">📦</div>
+      <div class="empty-title">${allItems.length === 0 ? '档案馆还是空的' : '没有符合条件的图片'}</div>
+      <div class="empty-sub">${allItems.length === 0
+        ? '安装 Chrome 插件后，在任意网页右键图片即可一键采集<br>或点击右上角「手动添加」'
+        : '换个关键词或标签试试'}</div>`;
+    grid.appendChild(empty);
+    return;
+  }
+
+  // 按时间倒序
+  const sorted = [...filtered].sort((a,b) => new Date(b.date||0) - new Date(a.date||0));
+
+  sorted.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'arch-card';
+    card.onclick = () => openLightbox(item);
+
+    const tagsHtml = (item.tags||[]).map(t=>`<span class="arch-ctag">${t}</span>`).join('');
+    const dateStr  = item.date ? new Date(item.date).toLocaleDateString('zh-CN') : '';
+    const sourceShort = item.source ? (()=>{
+      try{ return new URL(item.source).hostname; }catch{ return item.source.slice(0,30); }
+    })() : '';
+
+    card.innerHTML = `
+      <img src="${escHtml(item.url)}" alt="${escHtml(item.note||'')}"
+           loading="lazy" onerror="this.style.minHeight='80px';this.style.background='var(--bg3)'">
+      <div class="arch-card-body">
+        ${tagsHtml ? `<div class="arch-card-tags">${tagsHtml}</div>` : ''}
+        ${item.note ? `<div class="arch-card-note">${escHtml(item.note)}</div>` : ''}
+        ${sourceShort ? `<div class="arch-card-source">${escHtml(sourceShort)}</div>` : ''}
+        <div class="arch-card-meta">
+          <span class="arch-card-date">${dateStr}</span>
+          <button class="arch-card-del" onclick="event.stopPropagation();deleteItem('${escHtml(item.id||'')}')">删除</button>
+        </div>
+      </div>`;
+
+    grid.appendChild(card);
+  });
+}
+
+function escHtml(s){
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ══ 筛选 ══ */
+function setTagFilter(tag, btn){
+  activeTag = tag;
+  document.querySelectorAll('.filter-tag').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCards();
+}
+function filterCards(){
+  searchKw = document.getElementById('searchInput').value;
+  renderCards();
+}
+
+/* ══ 灯箱 ══ */
+function openLightbox(item){
+  document.getElementById('lb-img').src   = item.url || '';
+  document.getElementById('lb-note').textContent = item.note || '';
+  const srcEl = document.getElementById('lb-source');
+  if(item.source){
+    srcEl.innerHTML = `来源：<a href="${escHtml(item.source)}" target="_blank" rel="noopener">${escHtml(item.source)}</a>`;
+  } else {
+    srcEl.textContent = '';
+  }
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e){
+  if(e && e.target !== document.getElementById('lightbox') && e.target.id !== 'lightbox') return;
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if(e.key==='Escape'){
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow='';
+    closeTokenPanel();
+    closeAddPanel();
+  }
+});
+
+/* ══ 删除 ══ */
+async function deleteItem(id){
+  if(!id){ showToast('无效的记录', 'err'); return; }
+  if(!confirm('确定要删除这条记录吗？')) return;
+  const newItems = allItems.filter(i => i.id !== id);
+  const ok = await saveArchive(newItems);
+  if(ok){
+    allItems = newItems;
+    renderCards();
+    showToast('已删除', 'ok');
+  }
+}
+
+/* ══ Token 面板 ══ */
+function openTokenPanel(){
+  const panel = document.getElementById('token-panel');
+  document.getElementById('tokenInput').value = getToken();
+  document.getElementById('tokenStatus').className = 'token-status';
+  panel.style.display = 'flex'; panel.classList.add('open');
+}
+function closeTokenPanel(e){
+  if(e && e.target !== document.getElementById('token-panel')) return;
+  const panel = document.getElementById('token-panel');
+  panel.classList.remove('open'); panel.style.display = 'none';
+}
+async function saveToken(){
+  const t = document.getElementById('tokenInput').value.trim();
+  if(!t){ showToast('请输入 Token', 'err'); return; }
+
+  // 验证 token
+  const statusEl = document.getElementById('tokenStatus');
+  statusEl.className = 'token-status';
+  statusEl.textContent = '验证中…';
+  statusEl.style.display = 'block';
+
+  try {
+    const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`, {
+      headers:{ 'Authorization': 'token ' + t }
+    });
+    if(res.ok){
+      setToken(t);
+      statusEl.className = 'token-status ok';
+      statusEl.textContent = '✓ Token 验证成功，已保存';
+      showToast('Token 已保存', 'ok');
+      setTimeout(()=>closeTokenPanel(), 1200);
+    } else {
+      statusEl.className = 'token-status err';
+      statusEl.textContent = '✗ Token 无效或权限不足（需要 repo 权限）';
+    }
+  } catch(e) {
+    statusEl.className = 'token-status err';
+    statusEl.textContent = '✗ 网络错误，请检查连接';
+  }
+}
+
+/* ══ 手动添加 ══ */
+function triggerManualAdd(){
+  if(!getToken()){ openTokenPanel(); showToast('请先设置 GitHub Token', 'err'); return; }
+  const panel = document.getElementById('add-panel');
+  ['add-url','add-source','add-note','add-tags'].forEach(id=>document.getElementById(id).value='');
+  panel.style.display = 'flex';
+}
+function closeAddPanel(e){
+  const panel = document.getElementById('add-panel');
+  if(e && e.target !== panel) return;
+  panel.style.display = 'none';
+}
+async function submitManualAdd(){
+  const url    = document.getElementById('add-url').value.trim();
+  const source = document.getElementById('add-source').value.trim();
+  const note   = document.getElementById('add-note').value.trim();
+  const tags   = document.getElementById('add-tags').value.split(',').map(t=>t.trim()).filter(Boolean);
+
+  if(!url){ showToast('图片 URL 不能为空', 'err'); return; }
+
+  const item = {
+    id:     Date.now().toString(36) + Math.random().toString(36).slice(2,6),
+    url, source, note, tags,
+    date:   new Date().toISOString(),
+  };
+
+  const newItems = [item, ...allItems];
+  const ok = await saveArchive(newItems);
+  if(ok){
+    allItems = newItems;
+    renderCards();
+    closeAddPanel();
+    document.getElementById('add-panel').style.display = 'none';
+    showToast('已添加到档案馆', 'ok');
+  }
+}
+
+/* ══ 初始化 ══ */
+loadArchive();
+</script>
+</body>
+</html>
