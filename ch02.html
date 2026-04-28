@@ -9,28 +9,20 @@
    Google Fonts 托管版，Variable Font，支持 wght 100–900 */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
-:root {
+:root{
   --bg:      #FFFFFF;
-  --bg2:     #F8FBFF;
-  --bg3:     #F0F9FF;
+  --bg2:     #F7F7F5;
+  --bg3:     #EFEFED;
   --card:    #FFFFFF;
-  --ink:     #1A1A2E;
-  --ink2:    #2D3561;
-  --muted:   #6B7280;
-  --border:  #E8F4FD;
-  --border2: #B3E5FC;
-  --yellow:  #FFD700;
-  --cyan:    #4DD0E1;
-  --orange:  #FF8A65;
-  --sky:     #81D4FA;
-  
-
-  /* 字重分级（思源黑体） */
-  --fw-light:   300;
-  --fw-regular: 400;
-  --fw-medium:  500;
-  --fw-semibold:600;
-  --fw-bold:    700;
+  --ink:     #111111;
+  --ink2:    #333333;
+  --muted:   #888888;
+  --border:  #E0E0E0;
+  --border2: #CCCCCC;
+  --teal:    #72979f;
+  --gold:    #d1a96b;
+  --teal-l:  #8fb3bb;
+  --gold-l:  #e0c08a;
 }
 
 *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
@@ -46,18 +38,19 @@ body {
 
 /* ══ 缩写浮窗系统 ══ */
 .abbr-term {
-  border-bottom:1.5px dashed var(--orange);
+  border-bottom:1.5px dashed var(--gold);
   cursor:help;
-  color:var(--orange);
+  color:var(--gold);
   font-weight:var(--fw-medium);
   position:relative;
   display:inline;
 }
+/* Desktop tooltip */
 .abbr-tooltip {
   display:none;
   position:fixed;
   z-index:9999;
-  background:rgba(255,255,255,0.85);
+  background:rgba(255,255,255,0.88);
   backdrop-filter:blur(20px) saturate(180%);
   -webkit-backdrop-filter:blur(20px) saturate(180%);
   border:1px solid rgba(77,208,225,0.30);
@@ -72,8 +65,45 @@ body {
   pointer-events:none;
   box-shadow:0 8px 32px rgba(77,208,225,0.18),0 2px 8px rgba(0,0,0,0.06);
 }
+/* Mobile: bottom sheet instead of floating tooltip */
+@media(max-width:768px){
+  .abbr-tooltip{ display:none !important; } /* hide desktop tooltip on mobile */
+}
+/* Mobile bottom sheet */
+.abbr-sheet-overlay{
+  display:none;position:fixed;inset:0;z-index:9998;
+  background:rgba(0,0,0,0.3);backdrop-filter:blur(4px);
+}
+.abbr-sheet-overlay.open{ display:block; }
+.abbr-sheet{
+  position:fixed;bottom:0;left:0;right:0;z-index:9999;
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border-top:2px solid var(--teal);
+  border-radius:20px 20px 0 0;
+  padding:20px 24px 36px;
+  transform:translateY(100%);
+  transition:transform 0.28s cubic-bezier(0.32,0.72,0,1);
+  font-family:'DM Mono',monospace;
+}
+.abbr-sheet.open{ transform:translateY(0); }
+.abbr-sheet-handle{
+  width:36px;height:4px;border-radius:2px;
+  background:var(--border2);margin:0 auto 16px;
+}
+.abbr-sheet-abbr{
+  font-size:18px;font-weight:600;color:var(--gold);
+  margin-bottom:4px;display:block;
+}
+.abbr-sheet-en{
+  font-size:11px;color:var(--muted);display:block;margin-bottom:10px;
+}
+.abbr-sheet-def{
+  font-size:13px;color:var(--ink2);line-height:1.7;
+}
 .abbr-tooltip .tt-abbr {
-  color:var(--yellow);
+  color:var(--gold);
   font-size:13px;
   font-weight:var(--fw-medium);
   display:block;
@@ -93,7 +123,7 @@ body {
   position:fixed; top:0; left:0; right:0; z-index:200;
   background:rgba(255,255,255,0.92);
   backdrop-filter:blur(16px);
-  border-bottom:2px solid var(--yellow);
+  border-bottom:2px solid var(--gold);
   display:flex; align-items:center;
   justify-content:space-between;
   padding:0 52px; height:56px;
@@ -105,7 +135,7 @@ body {
   display:flex; align-items:center; gap:8px;
   transition:color 0.2s;
 }
-.nav-back:hover { color:var(--orange); }
+.nav-back:hover { color:var(--gold); }
 .nav-chapter {
   font-family:'Noto Sans SC', sans-serif;
   font-size:15px; font-weight:var(--fw-semibold);
@@ -121,23 +151,31 @@ body {
 .chapter-hero {
   margin-top:56px;
   padding:80px 72px 64px;
-  background:linear-gradient(135deg,#FFFDE7 0%,#E0F7FA 50%,#F8FBFF 100%);
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
   border-bottom:1px solid var(--border);
   position:relative; overflow:hidden;
 }
+.chapter-hero::before {
+  content:''; position:absolute; inset:0;
+  background:rgba(248,248,246,0.82);
+  z-index:0; pointer-events:none;
+}
+.chapter-hero > * { position:relative; z-index:1; }
 .chapter-hero::after {
   content:'02';
   position:absolute; right:-20px; top:-30px;
   font-family:'Noto Sans SC', sans-serif;
   font-size:280px; font-weight:var(--fw-bold);
   color:transparent;
-  -webkit-text-stroke:1.5px rgba(155,58,26,0.08);
+  -webkit-text-stroke:1.5px rgba(209,169,107,0.10);
   line-height:1; pointer-events:none;
 }
 .hero-eyebrow {
   font-family:'DM Mono',monospace;
   font-size:11px; letter-spacing:0.22em;
-  text-transform:uppercase; color:var(--orange);
+  text-transform:uppercase; color:var(--gold);
   margin-bottom:14px;
 }
 .hero-title {
@@ -166,15 +204,15 @@ body {
 /* ══ 章节内导航（浮动左侧）══ */
 .chapter-nav {
   position:fixed;
-  left:24px; top:50%;
+  left:16px; top:50%;
   transform:translateY(-50%);
   z-index:150;
-  display:flex; flex-direction:column; gap:8px;
+  display:flex; flex-direction:column; gap:10px;
 }
 .cnav-item {
-  display:flex; align-items:center; gap:8px;
+  display:flex; align-items:center; gap:0;
   text-decoration:none; cursor:pointer;
-  opacity:0.45; transition:opacity 0.2s;
+  opacity:0.35; transition:opacity 0.2s;
 }
 .cnav-item:hover, .cnav-item.active { opacity:1; }
 .cnav-dot {
@@ -182,16 +220,27 @@ body {
   background:var(--border2); flex-shrink:0;
   transition:background 0.2s, transform 0.2s;
 }
-.cnav-item.active .cnav-dot { background:var(--orange); transform:scale(1.4); }
+.cnav-item.active .cnav-dot { background:var(--gold); transform:scale(1.4); }
+/* 标签默认隐藏，hover时显示 */
 .cnav-label {
   font-family:'DM Mono',monospace;
   font-size:10px; color:var(--ink2);
-  letter-spacing:0.08em; white-space:nowrap;
+  letter-spacing:0.06em; white-space:nowrap;
+  max-width:0; overflow:hidden; opacity:0;
+  margin-left:0;
+  transition:max-width 0.25s ease, opacity 0.2s, margin-left 0.2s;
+}
+.cnav-item:hover .cnav-label, .cnav-item.active .cnav-label {
+  max-width:120px; opacity:1; margin-left:8px;
 }
 
 /* ══ 内容区通用 ══ */
 .content-wrap {
   max-width:900px; margin:0 auto; padding:0 72px;
+}
+/* 在宽屏给左侧导航留出空间 */
+@media(min-width:1180px) {
+  .content-wrap { margin-left:max(72px, calc(50% - 450px + 40px)); }
 }
 .section-block {
   padding:64px 0; border-bottom:1px solid var(--border);
@@ -199,13 +248,13 @@ body {
 .block-eyebrow {
   font-family:'DM Mono',monospace;
   font-size:10px; letter-spacing:0.22em;
-  text-transform:uppercase; color:var(--orange);
+  text-transform:uppercase; color:var(--gold);
   margin-bottom:8px; display:flex;
   align-items:center; gap:12px;
 }
 .block-eyebrow::after {
   content:''; display:block; height:1px;
-  width:40px; background:var(--orange); opacity:0.3;
+  width:40px; background:var(--gold); opacity:0.3;
 }
 .block-title {
   font-family:'Noto Sans SC', sans-serif;
@@ -221,7 +270,7 @@ body {
 .prose {
   font-size:15px; font-weight:var(--fw-regular);
   color:var(--ink2); line-height:1.9;
-  margin-bottom:24px; max-width:720px;
+  margin-bottom:24px; max-width:100%;
 }
 .prose strong {
   font-weight:var(--fw-semibold); color:var(--ink);
@@ -316,7 +365,7 @@ body {
 .video-play-btn {
   position:relative; z-index:2;
   width:64px; height:64px; border-radius:50%;
-  background:var(--orange);
+  background:var(--gold);
   display:flex; align-items:center; justify-content:center;
   margin-bottom:16px;
   box-shadow:0 4px 24px rgba(155,58,26,0.4);
@@ -365,9 +414,9 @@ body {
 }
 .video-fallback a {
   font-family:'DM Mono',monospace;
-  font-size:11px; color:var(--orange);
+  font-size:11px; color:var(--gold);
   text-decoration:none; letter-spacing:0.06em;
-  border-bottom:1px solid var(--orange); padding-bottom:1px;
+  border-bottom:1px solid var(--gold); padding-bottom:1px;
   transition:opacity 0.2s;
 }
 .video-fallback a:hover { opacity:0.7; }
@@ -400,12 +449,12 @@ body {
 .flute-type {
   font-family:'Noto Sans SC', sans-serif;
   font-size:20px; font-weight:var(--fw-bold);
-  color:var(--orange); min-width:60px;
+  color:var(--gold); min-width:60px;
 }
 .flute-bar-wrap { display:flex; align-items:center; gap:8px; flex:1; }
 .flute-bar {
   height:8px; border-radius:2px;
-  background:var(--orange); opacity:0.7; transition:opacity 0.2s;
+  background:var(--gold); opacity:0.7; transition:opacity 0.2s;
 }
 .flute-row:hover .flute-bar { opacity:1; }
 .flute-height { color:var(--ink2); font-weight:var(--fw-medium); }
@@ -414,9 +463,9 @@ body {
   font-size:9px; padding:3px 8px; border-radius:2px;
   letter-spacing:0.06em; text-transform:uppercase;
 }
-.tag-common { background:rgba(155,58,26,0.1); color:var(--orange); }
-.tag-print  { background:rgba(26,107,107,0.1); color:var(--cyan); }
-.tag-micro  { background:rgba(140,106,26,0.1); color:var(--yellow); }
+.tag-common { background:rgba(155,58,26,0.1); color:var(--gold); }
+.tag-print  { background:rgba(26,107,107,0.1); color:var(--teal); }
+.tag-micro  { background:rgba(140,106,26,0.1); color:var(--gold); }
 .tag-heavy  { background:rgba(61,54,41,0.12);  color:var(--ink2); }
 
 /* ══ 性能指标 ══ */
@@ -435,7 +484,7 @@ body {
 .metric-abbr {
   font-family:'DM Mono',monospace;
   font-size:22px; font-weight:var(--fw-medium);
-  color:var(--orange); letter-spacing:0.04em; margin-bottom:4px;
+  color:var(--gold); letter-spacing:0.04em; margin-bottom:4px;
 }
 .metric-cn {
   font-family:'Noto Sans SC', sans-serif;
@@ -453,7 +502,7 @@ body {
 }
 .metric-unit {
   font-family:'DM Mono',monospace;
-  font-size:10px; color:var(--yellow); margin-top:8px; letter-spacing:0.06em;
+  font-size:10px; color:var(--gold); margin-top:8px; letter-spacing:0.06em;
 }
 .metric-diagram { width:100%; height:60px; margin:10px 0; }
 
@@ -481,8 +530,8 @@ body {
   background:transparent; color:var(--ink2); letter-spacing:0.06em;
   transition:all 0.2s; text-align:left;
 }
-.dt-btn:hover { border-color:var(--orange); color:var(--orange); background:rgba(155,58,26,0.04); }
-.dt-btn.selected { border-color:var(--orange); color:var(--orange); background:rgba(155,58,26,0.08); }
+.dt-btn:hover { border-color:var(--gold); color:var(--gold); background:rgba(209,169,107,0.06); }
+.dt-btn.selected { border-color:var(--gold); color:var(--gold); background:rgba(209,169,107,0.10); }
 .dt-result {
   display:none; background:var(--bg2);
   border:1px solid var(--border); border-radius:6px;
@@ -490,7 +539,7 @@ body {
 }
 .dt-result.show { display:block; }
 .dt-result-title {
-  font-family:'DM Mono',monospace; font-size:10px; color:var(--orange);
+  font-family:'DM Mono',monospace; font-size:10px; color:var(--gold);
   letter-spacing:0.14em; text-transform:uppercase; margin-bottom:10px;
 }
 .dt-result-rec {
@@ -512,7 +561,7 @@ body {
   width:20px; height:3px; border-radius:2px;
   background:var(--border2); transition:background 0.2s;
 }
-.dt-step-dot.done { background:var(--orange); }
+.dt-step-dot.done { background:var(--gold); }
 
 /* ══ 展开图 ══ */
 .box-diagram { margin:32px 0; position:relative; }
@@ -529,7 +578,7 @@ body {
 .part-info.show { display:block; }
 .part-info strong {
   display:block; font-size:13px;
-  color:var(--orange); margin-bottom:6px; letter-spacing:0.06em;
+  color:var(--gold); margin-bottom:6px; letter-spacing:0.06em;
 }
 
 /* ══ McKee 公式 ══ */
@@ -544,7 +593,7 @@ body {
 .formula-display {
   font-family:'Noto Sans SC', sans-serif;
   font-size:clamp(18px,3vw,26px); font-weight:var(--fw-medium);
-  color:var(--yellow); margin-bottom:24px; line-height:1.5;
+  color:var(--gold); margin-bottom:24px; line-height:1.5;
 }
 .formula-vars {
   display:grid;
@@ -558,7 +607,7 @@ body {
 }
 .fvar-sym {
   font-family:'DM Mono',monospace; font-size:16px;
-  color:var(--yellow); margin-bottom:4px;
+  color:var(--gold); margin-bottom:4px;
 }
 .fvar-name {
   font-family:'DM Mono',monospace; font-size:10px;
@@ -588,9 +637,9 @@ body {
   font-family:'DM Mono',monospace; font-size:13px; outline:none;
   transition:border-color 0.2s;
 }
-.calc-input:focus { border-color:var(--yellow); }
+.calc-input:focus { border-color:var(--gold); }
 .calc-btn {
-  background:var(--orange); border:none; border-radius:4px;
+  background:var(--gold); border:none; border-radius:4px;
   padding:10px 20px; color:#FDFAF5; font-family:'DM Mono',monospace;
   font-size:11px; letter-spacing:0.08em; cursor:pointer;
   transition:opacity 0.2s; text-transform:uppercase;
@@ -606,7 +655,7 @@ body {
 .calc-result-val {
   font-family:'Noto Sans SC', sans-serif;
   font-size:32px; font-weight:var(--fw-bold);
-  color:var(--yellow); margin-bottom:4px;
+  color:var(--gold); margin-bottom:4px;
 }
 .calc-result-unit {
   font-family:'DM Mono',monospace; font-size:10px;
@@ -627,11 +676,11 @@ body {
   border-radius:6px; padding:16px 18px; text-decoration:none;
   display:block; transition:border-color 0.2s, background 0.2s;
 }
-.ref-card:hover { border-color:var(--orange); background:var(--bg2); }
+.ref-card:hover { border-color:var(--gold); background:var(--bg2); }
 .ref-type {
   font-family:'DM Mono',monospace; font-size:9px;
   letter-spacing:0.14em; text-transform:uppercase;
-  color:var(--orange); margin-bottom:6px;
+  color:var(--gold); margin-bottom:6px;
 }
 .ref-title {
   font-family:'Noto Sans SC', sans-serif;
@@ -644,19 +693,30 @@ body {
 }
 
 /* ══ 响应式 ══ */
+@media(max-width:1180px) {
+  /* 中等屏幕：导航只显示圆点，不显示文字标签 */
+  .cnav-label { display:none !important; }
+}
 @media(max-width:900px) {
   .chapter-nav { display:none; }
-  .content-wrap { padding:0 24px; }
-  .chapter-hero { padding:56px 24px 48px; }
-  #top-nav { padding:0 20px; }
+  .content-wrap { padding:0 20px; margin-left:0 !important; }
+  .chapter-hero { padding:56px 20px 40px; }
+  #top-nav { padding:0 16px; }
   .nav-progress { display:none; }
-  .flute-row { grid-template-columns:50px 1fr 70px; }
+  .flute-row { grid-template-columns:44px 1fr 64px; }
   .flute-cell:nth-child(4),.flute-cell:nth-child(5) { display:none; }
   .calc-grid { grid-template-columns:1fr; }
+  .formula-display { font-size:16px; }
+  .block-title { font-size:26px; }
+  .hero-title { font-size:clamp(28px,7vw,48px); }
 }
 @media(max-width:480px) {
   .img-gallery { grid-template-columns:1fr 1fr; }
   .metric-grid { grid-template-columns:1fr; }
+  .content-wrap { padding:0 14px; }
+  .chapter-hero { padding:48px 14px 32px; }
+  .section-block { padding:44px 0; }
+  .video-cover-title { font-size:11px; padding:0 12px; }
 }
 </style>
 </head>
@@ -667,6 +727,15 @@ body {
   <span class="tt-abbr" id="ttAbbr"></span>
   <span class="tt-en"   id="ttEn"></span>
   <span class="tt-def"  id="ttDef"></span>
+</div>
+
+<!-- ══ 移动端缩写底部卡片 ══ -->
+<div class="abbr-sheet-overlay" id="abbrOverlay" onclick="closeAbbrSheet()"></div>
+<div class="abbr-sheet" id="abbrSheet">
+  <div class="abbr-sheet-handle"></div>
+  <span class="abbr-sheet-abbr" id="sheetAbbr"></span>
+  <span class="abbr-sheet-en"   id="sheetEn"></span>
+  <span class="abbr-sheet-def"  id="sheetDef"></span>
 </div>
 
 <!-- ══ SVG 灯箱
@@ -712,7 +781,7 @@ body {
 </nav>
 
 <!-- ══ Hero ══ -->
-<header class="chapter-hero">
+<header class="chapter-hero" style="background-image:url('https://ideur88.github.io/CH02.png')">
   <div class="hero-eyebrow">Chapter 02 · Packaging Materials Science</div>
   <h1 class="hero-title">纸与瓦楞纸板<br>Paper &amp; Corrugated Board</h1>
   <p class="hero-subtitle">
@@ -760,8 +829,8 @@ body {
         <svg class="svg-thumb" viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
           <rect x="10" y="14" width="260" height="16" rx="2" fill="#C4BBAD" opacity="0.6"/>
           <text x="140" y="24" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">面纸 Liner</text>
-          <path d="M10,52 Q27,32 44,52 Q61,72 78,52 Q95,32 112,52 Q129,72 146,52 Q163,32 180,52 Q197,72 214,52 Q231,32 248,52 Q265,72 270,52" fill="none" stroke="#FF8A65" stroke-width="3" stroke-linecap="round"/>
-          <text x="140" y="78" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#FF8A65">瓦楞芯 Fluted Medium</text>
+          <path d="M10,52 Q27,32 44,52 Q61,72 78,52 Q95,32 112,52 Q129,72 146,52 Q163,32 180,52 Q197,72 214,52 Q231,32 248,52 Q265,72 270,52" fill="none" stroke="#d1a96b" stroke-width="3" stroke-linecap="round"/>
+          <text x="140" y="78" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#d1a96b">瓦楞芯 Fluted Medium</text>
           <rect x="10" y="90" width="260" height="16" rx="2" fill="#C4BBAD" opacity="0.6"/>
           <text x="140" y="100" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">里纸 Liner</text>
           <line x1="272" y1="14" x2="272" y2="106" stroke="#D6CFC3" stroke-width="1"/>
@@ -782,21 +851,21 @@ body {
           <line x1="20" y1="40"  x2="180" y2="55"  stroke="#FFD700" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
           <line x1="30" y1="70"  x2="200" y2="80"  stroke="#FFD700" stroke-width="2"   stroke-linecap="round" opacity="0.6"/>
           <line x1="10" y1="100" x2="190" y2="110" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
-          <line x1="60" y1="20"  x2="50"  y2="130" stroke="#FF8A65" stroke-width="2"   stroke-linecap="round" opacity="0.5"/>
-          <line x1="110" y1="15" x2="100" y2="125" stroke="#FF8A65" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
-          <line x1="155" y1="25" x2="145" y2="120" stroke="#FF8A65" stroke-width="2"   stroke-linecap="round" opacity="0.5"/>
-          <circle cx="67"  cy="53"  r="3" fill="#4DD0E1" opacity="0.8"/>
-          <circle cx="112" cy="67"  r="3" fill="#4DD0E1" opacity="0.8"/>
-          <circle cx="103" cy="80"  r="3" fill="#4DD0E1" opacity="0.8"/>
-          <circle cx="148" cy="58"  r="3" fill="#4DD0E1" opacity="0.8"/>
-          <circle cx="57"  cy="100" r="3" fill="#4DD0E1" opacity="0.8"/>
-          <circle cx="150" cy="110" r="3" fill="#4DD0E1" opacity="0.8"/>
+          <line x1="60" y1="20"  x2="50"  y2="130" stroke="#d1a96b" stroke-width="2"   stroke-linecap="round" opacity="0.5"/>
+          <line x1="110" y1="15" x2="100" y2="125" stroke="#d1a96b" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+          <line x1="155" y1="25" x2="145" y2="120" stroke="#d1a96b" stroke-width="2"   stroke-linecap="round" opacity="0.5"/>
+          <circle cx="67"  cy="53"  r="3" fill="#72979f" opacity="0.8"/>
+          <circle cx="112" cy="67"  r="3" fill="#72979f" opacity="0.8"/>
+          <circle cx="103" cy="80"  r="3" fill="#72979f" opacity="0.8"/>
+          <circle cx="148" cy="58"  r="3" fill="#72979f" opacity="0.8"/>
+          <circle cx="57"  cy="100" r="3" fill="#72979f" opacity="0.8"/>
+          <circle cx="150" cy="110" r="3" fill="#72979f" opacity="0.8"/>
           <rect x="195" y="35" width="80" height="70" rx="4" fill="rgba(237,232,223,0.9)" stroke="#D6CFC3" stroke-width="0.5"/>
           <line x1="203" y1="50" x2="225" y2="50" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round"/>
           <text x="230" y="54" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">纤维素纤维</text>
-          <line x1="203" y1="68" x2="225" y2="68" stroke="#FF8A65" stroke-width="2" stroke-linecap="round"/>
+          <line x1="203" y1="68" x2="225" y2="68" stroke="#d1a96b" stroke-width="2" stroke-linecap="round"/>
           <text x="230" y="72" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">交叉纤维</text>
-          <circle cx="214" cy="87" r="3" fill="#4DD0E1" opacity="0.8"/>
+          <circle cx="214" cy="87" r="3" fill="#72979f" opacity="0.8"/>
           <text x="230" y="91" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">氢键结合点</text>
           <text x="140" y="140" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#8A8070">纤维素网络结构 · 氢键赋予纸张强度</text>
           <text x="140" y="154" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#C4BBAD">遇水氢键断裂 → 强度下降</text>
@@ -844,25 +913,25 @@ body {
         <svg class="svg-thumb" viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
           <g transform="translate(10,20)">
             <rect x="0" y="0"  width="70" height="6" rx="1" fill="#C4BBAD"/>
-            <path d="M0,18 Q9,6 18,18 Q27,30 36,18 Q45,6 54,18 Q63,30 70,18" fill="none" stroke="#FF8A65" stroke-width="2"/>
+            <path d="M0,18 Q9,6 18,18 Q27,30 36,18 Q45,6 54,18 Q63,30 70,18" fill="none" stroke="#d1a96b" stroke-width="2"/>
             <rect x="0" y="30" width="70" height="6" rx="1" fill="#C4BBAD"/>
             <text x="35" y="50" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">单瓦楞</text>
             <text x="35" y="62" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#8A8070">3层 ~3.6mm</text>
-            <text x="35" y="74" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#FF8A65">C楞 / B楞</text>
+            <text x="35" y="74" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#d1a96b">C楞 / B楞</text>
           </g>
           <g transform="translate(100,10)">
             <rect x="0" y="0"  width="70" height="5" rx="1" fill="#C4BBAD"/>
-            <path d="M0,15 Q9,5 18,15 Q27,25 36,15 Q45,5 54,15 Q63,25 70,15" fill="none" stroke="#FF8A65" stroke-width="2"/>
+            <path d="M0,15 Q9,5 18,15 Q27,25 36,15 Q45,5 54,15 Q63,25 70,15" fill="none" stroke="#d1a96b" stroke-width="2"/>
             <rect x="0" y="25" width="70" height="5" rx="1" fill="#C4BBAD"/>
             <path d="M0,40 Q9,30 18,40 Q27,50 36,40 Q45,30 54,40 Q63,50 70,40" fill="none" stroke="#FFD700" stroke-width="2"/>
             <rect x="0" y="50" width="70" height="5" rx="1" fill="#C4BBAD"/>
             <text x="35" y="68" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">双瓦楞</text>
             <text x="35" y="80" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#8A8070">5层 ~6mm</text>
-            <text x="35" y="92" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#FF8A65">BC楞</text>
+            <text x="35" y="92" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#d1a96b">BC楞</text>
           </g>
           <g transform="translate(190,5)">
             <rect x="0" y="0"  width="70" height="4" rx="1" fill="#C4BBAD"/>
-            <path d="M0,12 Q8,4 16,12 Q24,20 32,12 Q40,4 48,12 Q56,20 64,12 Q70,4 70,12" fill="none" stroke="#FF8A65" stroke-width="1.5"/>
+            <path d="M0,12 Q8,4 16,12 Q24,20 32,12 Q40,4 48,12 Q56,20 64,12 Q70,4 70,12" fill="none" stroke="#d1a96b" stroke-width="1.5"/>
             <rect x="0" y="20" width="70" height="4" rx="1" fill="#C4BBAD"/>
             <path d="M0,32 Q8,24 16,32 Q24,40 32,32 Q40,24 48,32 Q56,40 64,32 Q70,24 70,32" fill="none" stroke="#FFD700" stroke-width="1.5"/>
             <rect x="0" y="40" width="70" height="4" rx="1" fill="#C4BBAD"/>
@@ -870,7 +939,7 @@ body {
             <rect x="0" y="60" width="70" height="4" rx="1" fill="#C4BBAD"/>
             <text x="35" y="80" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#3D3629">三瓦楞</text>
             <text x="35" y="92" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#8A8070">7层 ~9mm</text>
-            <text x="35" y="104" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#FF8A65">重型出口</text>
+            <text x="35" y="104" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#d1a96b">重型出口</text>
           </g>
           <text x="140" y="148" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#C4BBAD">层数越多 → 强度越高 · 成本越高</text>
         </svg>
@@ -904,46 +973,53 @@ body {
       <span class="abbr-term" data-key="cd">CD</span>方向的抗压性能。
     </p>
 
-    <!-- 视频 1：懒加载方案 ══
-         点击封面图才注入 iframe，避免 file:// 环境的 X-Frame-Options 错误
-         部署到 GitHub Pages (https://) 后 iframe 也能正常播放 -->
+        <!-- 视频区：封面点击跳转B站 + 可选内嵌 -->
     <div class="video-block" id="vblock1">
-      <div class="video-label">▶ 瓦楞纸板生产线全流程 · Corrugated Board Manufacturing</div>
-      <div class="video-cover" onclick="loadVideo('vblock1','s7RS1oLJcHM','瓦楞纸板生产线全流程')">
+      <div class="video-label">▶ 瓦楞纸板是怎样制造的 · 纸箱生产全流程</div>
+      <div class="video-cover" id="vcover1">
         <div class="video-cover-bg"></div>
-        <!-- 播放按钮 -->
         <div class="video-play-btn">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
             <polygon points="7,4 19,11 7,18" fill="#FDFAF5"/>
           </svg>
         </div>
-        <div class="video-cover-title">瓦楞纸板生产线全流程<br>Corrugated Board Manufacturing Process</div>
-        <div class="video-cover-hint">点击播放 · 需要网络连接</div>
+        <div class="video-cover-title">瓦楞纸板是怎样制造的<br>纸箱生产全流程</div>
+        <div class="video-cover-hint">点击封面 · 前往哔哩哔哩观看</div>
+      </div>
+      <div id="vembed1" style="display:none">
+        <iframe class="video-embed" id="viframe1"
+          src="" title="瓦楞纸板是怎样制造的"
+          allow="autoplay; fullscreen" allowfullscreen></iframe>
       </div>
       <div class="video-fallback">
-        <span class="video-fallback-label">视频无法播放？直接跳转观看 →</span>
-        <a href="https://www.youtube.com/watch?v=s7RS1oLJcHM" target="_blank" rel="noopener">
-          YouTube · Corrugated Board Manufacturing ↗
+        <span class="video-fallback-label">直接在B站观看 →</span>
+        <a href="https://www.bilibili.com/video/BV1xUYczLEHQ/" target="_blank" rel="noopener">
+          哔哩哔哩 · 瓦楞纸板是怎样制造的 ↗
         </a>
       </div>
     </div>
 
     <div class="video-block" id="vblock2">
-      <div class="video-label">▶ 瓦楞纸箱的制造与裁切过程 · Box Converting</div>
-      <div class="video-cover" onclick="loadVideo('vblock2','HiVuBmJNONw','瓦楞纸箱的制造与裁切过程')">
+      <div class="video-label">▶ 瓦楞纸板生产线全工艺流程 · 从原纸到成箱</div>
+      <div class="video-cover" id="vcover2">
         <div class="video-cover-bg"></div>
         <div class="video-play-btn">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
             <polygon points="7,4 19,11 7,18" fill="#FDFAF5"/>
           </svg>
         </div>
-        <div class="video-cover-title">瓦楞纸箱的制造与裁切过程<br>Box Converting Process</div>
-        <div class="video-cover-hint">点击播放 · 需要网络连接</div>
+        <div class="video-cover-title">瓦楞纸板生产线全工艺流程<br>从原纸到成箱</div>
+        <div class="video-cover-hint">点击封面 · 前往哔哩哔哩观看</div>
+      </div>
+      <div id="vembed2" style="display:none">
+        <iframe class="video-embed" id="viframe2"
+          src="" title="瓦楞纸板生产线全工艺流程"
+          allow="autoplay; fullscreen" allowfullscreen></iframe>
       </div>
       <div class="video-fallback">
-        <span class="video-fallback-label">视频无法播放？直接跳转观看 →</span>
-        <a href="https://www.youtube.com/watch?v=HiVuBmJNONw" target="_blank" rel="noopener">
-          YouTube · Box Converting Process ↗
+        <span class="video-fallback-label">直接在B站观看 →</span>
+        <a href="https://www.bilibili.com/video/BV1xbmSBYEcT/" target="_blank" rel="noopener">
+          哔哩哔哩 · 瓦楞纸板生产线全工艺流程 ↗
         </a>
       </div>
     </div>
@@ -1007,9 +1083,9 @@ body {
       </div>
       <div class="flute-row" onclick="showFluteDetail('BC')">
         <div class="flute-cell"><span class="flute-type" style="font-size:16px">BC</span></div>
-        <div class="flute-cell"><div class="flute-bar-wrap"><div class="flute-bar" style="width:100%;background:var(--cyan)"></div></div></div>
+        <div class="flute-cell"><div class="flute-bar-wrap"><div class="flute-bar" style="width:100%;background:var(--teal)"></div></div></div>
         <div class="flute-cell"><span class="flute-height">6.1 mm</span></div>
-        <div class="flute-cell"><span class="flute-tag" style="background:rgba(26,107,107,0.1);color:var(--cyan)">双瓦</span></div>
+        <div class="flute-cell"><span class="flute-tag" style="background:rgba(26,107,107,0.1);color:var(--teal)">双瓦</span></div>
         <div class="flute-cell" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">重型货物 · 出口箱 · 家具电器</div>
       </div>
     </div>
@@ -1043,8 +1119,8 @@ body {
         <div class="metric-en">Grams per Square Meter</div>
         <svg class="metric-diagram" viewBox="0 0 180 50">
           <rect x="10" y="15" width="160" height="20" rx="2" fill="rgba(155,58,26,0.15)" stroke="rgba(155,58,26,0.3)" stroke-width="0.5"/>
-          <text x="90" y="29" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#FF8A65">1 m × 1 m 面积的质量</text>
-          <line x1="10" y1="10" x2="170" y2="10" stroke="#FF8A65" stroke-width="0.5" stroke-dasharray="2,2"/>
+          <text x="90" y="29" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#d1a96b">1 m × 1 m 面积的质量</text>
+          <line x1="10" y1="10" x2="170" y2="10" stroke="#d1a96b" stroke-width="0.5" stroke-dasharray="2,2"/>
           <text x="10" y="8" font-family="DM Mono,monospace" font-size="8" fill="#8A8070">1 m</text>
         </svg>
         <div class="metric-desc">面纸/里纸/芯纸均以 GSM 标注。<br>面纸常见：140–200 g/m²<br>芯纸常见：100–160 g/m²</div>
@@ -1103,8 +1179,8 @@ body {
         <div class="metric-en">Box Compression Test</div>
         <svg class="metric-diagram" viewBox="0 0 180 50">
           <rect x="55" y="8" width="70" height="34" rx="2" fill="rgba(155,58,26,0.1)" stroke="rgba(155,58,26,0.4)" stroke-width="1"/>
-          <line x1="90" y1="0" x2="90" y2="8" stroke="#FF8A65" stroke-width="2"/>
-          <line x1="90" y1="50" x2="90" y2="42" stroke="#FF8A65" stroke-width="2"/>
+          <line x1="90" y1="0" x2="90" y2="8" stroke="#d1a96b" stroke-width="2"/>
+          <line x1="90" y1="50" x2="90" y2="42" stroke="#d1a96b" stroke-width="2"/>
           <text x="135" y="28" font-family="DM Mono,monospace" font-size="9" fill="#8A8070">整箱垂直压</text>
         </svg>
         <div class="metric-desc">对整只成型纸箱施加垂直<br>压力至压溃时的最大力值，<br>是选材的最终验证指标。</div>
@@ -1175,23 +1251,23 @@ body {
       <div class="box-svg-wrap">
         <svg viewBox="0 0 640 300" style="width:100%;max-width:640px">
           <g class="box-part" onclick="showPartInfo('top-flap')" style="cursor:pointer">
-            <rect x="220" y="10" width="200" height="70" rx="3" fill="rgba(155,58,26,0.08)" stroke="#FF8A65" stroke-width="1"/>
-            <text x="320" y="48" text-anchor="middle" font-family="DM Mono,monospace" font-size="11" fill="#FF8A65">顶盖摇翼</text>
+            <rect x="220" y="10" width="200" height="70" rx="3" fill="rgba(209,169,107,0.10)" stroke="#d1a96b" stroke-width="1"/>
+            <text x="320" y="48" text-anchor="middle" font-family="DM Mono,monospace" font-size="11" fill="#d1a96b">顶盖摇翼</text>
             <text x="320" y="63" text-anchor="middle" font-family="DM Mono,monospace" font-size="9"  fill="#8A8070">Top Flap</text>
           </g>
           <g onclick="showPartInfo('side-flap')" style="cursor:pointer">
-            <rect x="130" y="10" width="90" height="70" rx="3" fill="rgba(26,107,107,0.06)" stroke="#4DD0E1" stroke-width="1" stroke-dasharray="4,2"/>
-            <text x="175" y="48" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#4DD0E1">侧摇翼</text>
+            <rect x="130" y="10" width="90" height="70" rx="3" fill="rgba(114,151,159,0.08)" stroke="#72979f" stroke-width="1" stroke-dasharray="4,2"/>
+            <text x="175" y="48" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#72979f">侧摇翼</text>
             <text x="175" y="63" text-anchor="middle" font-family="DM Mono,monospace" font-size="9"  fill="#8A8070">Side Flap</text>
           </g>
           <g onclick="showPartInfo('side-flap')" style="cursor:pointer">
-            <rect x="420" y="10" width="90" height="70" rx="3" fill="rgba(26,107,107,0.06)" stroke="#4DD0E1" stroke-width="1" stroke-dasharray="4,2"/>
-            <text x="465" y="48" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#4DD0E1">侧摇翼</text>
+            <rect x="420" y="10" width="90" height="70" rx="3" fill="rgba(114,151,159,0.08)" stroke="#72979f" stroke-width="1" stroke-dasharray="4,2"/>
+            <text x="465" y="48" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#72979f">侧摇翼</text>
             <text x="465" y="63" text-anchor="middle" font-family="DM Mono,monospace" font-size="9"  fill="#8A8070">Side Flap</text>
           </g>
           <g onclick="showPartInfo('front-panel')" style="cursor:pointer">
-            <rect x="220" y="80" width="200" height="130" rx="3" fill="rgba(155,58,26,0.06)" stroke="#FF8A65" stroke-width="1.5"/>
-            <text x="320" y="142" text-anchor="middle" font-family="DM Mono,monospace" font-size="12" fill="#FF8A65">前面板</text>
+            <rect x="220" y="80" width="200" height="130" rx="3" fill="rgba(209,169,107,0.08)" stroke="#d1a96b" stroke-width="1.5"/>
+            <text x="320" y="142" text-anchor="middle" font-family="DM Mono,monospace" font-size="12" fill="#d1a96b">前面板</text>
             <text x="320" y="158" text-anchor="middle" font-family="DM Mono,monospace" font-size="9"  fill="#8A8070">Front Panel (L × H)</text>
           </g>
           <g onclick="showPartInfo('side-panel')" style="cursor:pointer">
@@ -1205,8 +1281,8 @@ body {
             <text x="470" y="157" text-anchor="middle" font-family="DM Mono,monospace" font-size="9"  fill="#8A8070">W × H</text>
           </g>
           <g onclick="showPartInfo('back-panel')" style="cursor:pointer">
-            <rect x="520" y="80" width="100" height="130" rx="3" fill="rgba(155,58,26,0.04)" stroke="#FF8A65" stroke-width="1" stroke-dasharray="4,2"/>
-            <text x="570" y="142" text-anchor="middle" font-family="DM Mono,monospace" font-size="11" fill="#FF8A65">后面板</text>
+            <rect x="520" y="80" width="100" height="130" rx="3" fill="rgba(209,169,107,0.06)" stroke="#d1a96b" stroke-width="1" stroke-dasharray="4,2"/>
+            <text x="570" y="142" text-anchor="middle" font-family="DM Mono,monospace" font-size="11" fill="#d1a96b">后面板</text>
             <text x="570" y="157" text-anchor="middle" font-family="DM Mono,monospace" font-size="9"  fill="#8A8070">Back + Tab</text>
           </g>
           <g onclick="showPartInfo('glue-tab')" style="cursor:pointer">
@@ -1215,17 +1291,17 @@ body {
             <text x="70" y="157" text-anchor="middle" font-family="DM Mono,monospace" font-size="9"  fill="#8A8070">Glue Flap</text>
           </g>
           <g onclick="showPartInfo('bottom-flap')" style="cursor:pointer">
-            <rect x="220" y="210" width="200" height="70" rx="3" fill="rgba(155,58,26,0.08)" stroke="#FF8A65" stroke-width="1"/>
-            <text x="320" y="247" text-anchor="middle" font-family="DM Mono,monospace" font-size="11" fill="#FF8A65">底盖摇翼</text>
+            <rect x="220" y="210" width="200" height="70" rx="3" fill="rgba(209,169,107,0.10)" stroke="#d1a96b" stroke-width="1"/>
+            <text x="320" y="247" text-anchor="middle" font-family="DM Mono,monospace" font-size="11" fill="#d1a96b">底盖摇翼</text>
             <text x="320" y="262" text-anchor="middle" font-family="DM Mono,monospace" font-size="9"  fill="#8A8070">Bottom Flap</text>
           </g>
           <g onclick="showPartInfo('side-flap')" style="cursor:pointer">
-            <rect x="130" y="210" width="90" height="70" rx="3" fill="rgba(26,107,107,0.06)" stroke="#4DD0E1" stroke-width="1" stroke-dasharray="4,2"/>
-            <text x="175" y="247" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#4DD0E1">侧摇翼</text>
+            <rect x="130" y="210" width="90" height="70" rx="3" fill="rgba(114,151,159,0.08)" stroke="#72979f" stroke-width="1" stroke-dasharray="4,2"/>
+            <text x="175" y="247" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#72979f">侧摇翼</text>
           </g>
           <g onclick="showPartInfo('side-flap')" style="cursor:pointer">
-            <rect x="420" y="210" width="90" height="70" rx="3" fill="rgba(26,107,107,0.06)" stroke="#4DD0E1" stroke-width="1" stroke-dasharray="4,2"/>
-            <text x="465" y="247" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#4DD0E1">侧摇翼</text>
+            <rect x="420" y="210" width="90" height="70" rx="3" fill="rgba(114,151,159,0.08)" stroke="#72979f" stroke-width="1" stroke-dasharray="4,2"/>
+            <text x="465" y="247" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#72979f">侧摇翼</text>
           </g>
           <line x1="220" y1="10"  x2="220" y2="280" stroke="#C4BBAD" stroke-width="1" stroke-dasharray="3,3"/>
           <line x1="420" y1="10"  x2="420" y2="280" stroke="#C4BBAD" stroke-width="1" stroke-dasharray="3,3"/>
@@ -1319,9 +1395,9 @@ body {
         <div class="ref-title">FEFCO / ECMA 箱型代码手册</div>
         <div class="ref-desc">所有标准箱型的图示与尺寸规范，官方在线查询</div>
       </a>
-      <a class="ref-card" href="https://www.youtube.com/watch?v=s7RS1oLJcHM" target="_blank" rel="noopener">
+      <a class="ref-card" href="https://www.bilibili.com/video/BV1xUYczLEHQ/" target="_blank" rel="noopener">
         <div class="ref-type">视频 · Video</div>
-        <div class="ref-title">瓦楞纸板生产线全流程</div>
+        <div class="ref-title">瓦楞纸板是怎样制造的（B站）</div>
         <div class="ref-desc">工厂实拍，清晰展示从原纸到成板的完整工艺</div>
       </a>
       <a class="ref-card" href="https://www.paperonweb.com/corrugated.htm" target="_blank" rel="noopener">
@@ -1344,11 +1420,11 @@ body {
 
 </div><!-- /content-wrap -->
 
-<footer style="background:var(--bg2);border-top:2px solid var(--yellow);padding:32px 72px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">
+<footer style="background:var(--bg2);border-top:2px solid var(--gold);padding:32px 72px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">
   <span>CH.02 · 纸与瓦楞纸板 · Packaging Materials Science</span>
   <div style="display:flex;gap:24px">
     <a href="#sec-overview" style="color:var(--muted);text-decoration:none">↑ 返回顶部</a>
-    <a href="index.html"    style="color:var(--orange);text-decoration:none">主页 →</a>
+    <a href="index.html"    style="color:var(--gold);text-decoration:none">主页 →</a>
   </div>
 </footer>
 
@@ -1379,12 +1455,39 @@ window.ABBR_DB={
   map:{abbr:'MAP',en:'Modified Atmosphere Packaging',def:'气调包装：用 N₂/CO₂ 等替换包装内空气，抑制微生物生长和氧化，延长生鲜食品货架期。'},
 };
 
-/* 浮窗逻辑 */
+/* ══ 缩写浮窗 · 桌面hover + 移动端底部卡片 ══ */
 const tooltip = document.getElementById('abbrTooltip');
+const isMobile = () => window.matchMedia('(max-width:768px)').matches || ('ontouchstart' in window && window.innerWidth <= 900);
+
+/* 移动端底部卡片 */
+function openAbbrSheet(data) {
+  document.getElementById('sheetAbbr').textContent = data.abbr;
+  document.getElementById('sheetEn').textContent   = data.en;
+  document.getElementById('sheetDef').textContent  = data.def;
+  document.getElementById('abbrOverlay').classList.add('open');
+  document.getElementById('abbrSheet').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeAbbrSheet() {
+  document.getElementById('abbrOverlay').classList.remove('open');
+  document.getElementById('abbrSheet').classList.remove('open');
+  document.body.style.overflow = '';
+}
+/* 向上滑动关闭 */
+let sheetStartY = 0;
+document.getElementById('abbrSheet').addEventListener('touchstart', e => {
+  sheetStartY = e.touches[0].clientY;
+}, {passive:true});
+document.getElementById('abbrSheet').addEventListener('touchend', e => {
+  if (e.changedTouches[0].clientY - sheetStartY > 60) closeAbbrSheet();
+}, {passive:true});
+
 document.querySelectorAll('.abbr-term').forEach(el => {
   const data = ABBR_DB[el.dataset.key];
   if (!data) return;
-  function show(x, y) {
+
+  /* 桌面端 hover */
+  function showTip(x, y) {
     document.getElementById('ttAbbr').textContent = data.abbr;
     document.getElementById('ttEn').textContent   = data.en;
     document.getElementById('ttDef').textContent  = data.def;
@@ -1395,17 +1498,30 @@ document.querySelectorAll('.abbr-term').forEach(el => {
     tooltip.style.top  = ty + 'px';
     tooltip.style.display = 'block';
   }
-  el.addEventListener('mouseenter', e => show(e.clientX, e.clientY));
-  el.addEventListener('mousemove',  e => show(e.clientX, e.clientY));
-  el.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
-  el.addEventListener('click', e => {
-    e.stopPropagation();
-    tooltip.style.display === 'block'
-      ? tooltip.style.display = 'none'
-      : show(e.clientX, e.clientY);
+  function hideTip() { tooltip.style.display = 'none'; }
+
+  if (!isMobile()) {
+    el.addEventListener('mouseenter', e => showTip(e.clientX, e.clientY));
+    el.addEventListener('mousemove',  e => showTip(e.clientX, e.clientY));
+    el.addEventListener('mouseleave', hideTip);
+  }
+
+  /* 点击：桌面切换浮窗 / 移动端打开底部卡片
+     用 pointerup 代替 click，避免与 iOS 长按菜单冲突 */
+  el.addEventListener('pointerup', e => {
+    if (e.pointerType === 'touch') {
+      /* 移动端：阻止默认行为（防止触发长按菜单），打开 bottom sheet */
+      e.preventDefault();
+      openAbbrSheet(data);
+    } else {
+      /* 桌面端：切换浮窗 */
+      e.stopPropagation();
+      tooltip.style.display === 'block' ? hideTip() : showTip(e.clientX, e.clientY);
+    }
   });
 });
-document.addEventListener('click', () => { tooltip.style.display = 'none'; });
+document.addEventListener('click', hideTip);
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeAbbrSheet(); });
 
 /* ══ SVG 灯箱
    点击 .img-card 时，克隆卡片内的 SVG 放入灯箱，同时显示标题 ══ */
@@ -1438,25 +1554,19 @@ document.getElementById('lightbox').addEventListener('click', function(e) {
   if (e.target === this) closeLightbox();
 });
 
-/* ══ 视频懒加载
-   点击封面图后，移除封面，注入 YouTube iframe
-   autoplay=1 参数让点击后立即开始播放
-   在 GitHub Pages (https://) 上 iframe 可正常嵌入
-   在本地 file:// 下仍会因 X-Frame-Options 受限，但备用链接始终可用 ══ */
-function loadVideo(blockId, youtubeId, title) {
-  const block  = document.getElementById(blockId);
-  const cover  = block.querySelector('.video-cover');
-  const label  = block.querySelector('.video-label');
-  // 创建 iframe
-  const iframe = document.createElement('iframe');
-  iframe.className   = 'video-embed';
-  iframe.src         = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
-  iframe.title       = title;
-  iframe.allow       = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-  iframe.allowFullscreen = true;
-  // 替换封面
-  cover.replaceWith(iframe);
-}
+/* ══ 视频：点击封面跳转哔哩哔哩 ══ */
+const videoBiliUrls = {
+  vcover1: 'https://www.bilibili.com/video/BV1xUYczLEHQ/',
+  vcover2: 'https://www.bilibili.com/video/BV1xbmSBYEcT/',
+};
+['vcover1','vcover2'].forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.cursor = 'pointer';
+  el.addEventListener('click', () => {
+    window.open(videoBiliUrls[id], '_blank', 'noopener');
+  });
+});
 
 /* ══ 楞型详情 ══ */
 const FLUTE_DETAIL = {

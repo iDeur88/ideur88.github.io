@@ -6,35 +6,56 @@
 <title>CH.04 · 金属包装 | 包装材料学</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
-:root{--bg:#FFFFFF;--bg2:#F8FBFF;--bg3:#F0F9FF;--card:#FFFFFF;--ink:#1A1A2E;--ink2:#2D3561;--muted:#6B7280;--border:#E8F4FD;--border2:#B3E5FC;--yellow:#FFD700;--cyan:#4DD0E1;--orange:#FF8A65;--sky:#81D4FA;}
+:root{
+  --bg:      #FFFFFF;
+  --bg2:     #F7F7F5;
+  --bg3:     #EFEFED;
+  --card:    #FFFFFF;
+  --ink:     #111111;
+  --ink2:    #333333;
+  --muted:   #888888;
+  --border:  #E0E0E0;
+  --border2: #CCCCCC;
+  --teal:    #72979f;
+  --gold:    #d1a96b;
+  --teal-l:  #8fb3bb;
+  --gold-l:  #e0c08a;
+}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-weight:400;overflow-x:hidden;line-height:1.7}
-.abbr-term{border-bottom:1.5px dashed var(--orange);cursor:help;color:var(--orange);font-weight:500;display:inline}
+.abbr-term{border-bottom:1.5px dashed var(--gold);cursor:help;color:var(--gold);font-weight:500;display:inline}
 .abbr-tooltip{display:none;position:fixed;z-index:9999;background:rgba(255,255,255,0.85);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,138,101,0.30);border-radius:12px;padding:12px 16px;max-width:290px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.65;pointer-events:none;box-shadow:0 8px 32px rgba(255,138,101,0.15),0 2px 8px rgba(0,0,0,0.06);color:var(--ink)}
-.abbr-tooltip .tt-abbr{color:var(--orange);font-size:13px;font-weight:600;display:block;margin-bottom:3px}
+.abbr-tooltip .tt-abbr{color:var(--gold);font-size:13px;font-weight:600;display:block;margin-bottom:3px}
 .abbr-tooltip .tt-en{color:var(--muted);font-size:10px;display:block;margin-bottom:6px}
 .abbr-tooltip .tt-def{color:var(--ink2);font-size:11px}
-#top-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:2px solid var(--orange);display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:56px}
-.nav-back{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.08em;display:flex;align-items:center;gap:8px;transition:color 0.2s}.nav-back:hover{color:var(--orange)}
+#top-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:2px solid var(--gold);display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:56px}
+.nav-back{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.08em;display:flex;align-items:center;gap:8px;transition:color 0.2s}.nav-back:hover{color:var(--gold)}
 .nav-chapter{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;color:var(--ink)}
 .nav-progress{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em}
-.chapter-hero{margin-top:56px;padding:80px 72px 64px;background:linear-gradient(135deg,#FFF3E0 0%,#FFE0B2 40%,#FFF9C4 100%);border-bottom:1px solid var(--border2);position:relative;overflow:hidden}
+.chapter-hero{margin-top:56px;padding:80px 72px 64px;background-size:cover;background-position:center center;background-repeat:no-repeat;border-bottom:1px solid var(--border2);position:relative;overflow:hidden;}
+
+.chapter-hero::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(248,248,246,0.88) 0%,rgba(245,245,243,0.75) 100%);
+  z-index:0;pointer-events:none;
+}
+.chapter-hero>*{position:relative;z-index:1;}
 .chapter-hero::after{content:'04';position:absolute;right:-10px;top:-20px;font-family:'Noto Sans SC',sans-serif;font-size:260px;font-weight:700;color:transparent;-webkit-text-stroke:1.5px rgba(255,138,101,0.15);line-height:1;pointer-events:none}
-.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
 .hero-title{font-family:'Noto Sans SC',sans-serif;font-size:clamp(36px,5.5vw,64px);font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:20px}
-.hero-title span{color:var(--orange)}
+.hero-title span{color:var(--gold)}
 .hero-subtitle{font-size:14px;font-weight:300;color:var(--ink2);max-width:560px;line-height:1.9;margin-bottom:36px}
 .hero-tags{display:flex;gap:8px;flex-wrap:wrap}
 .htag{font-family:'DM Mono',monospace;font-size:10px;padding:5px 14px;border-radius:20px;border:1.5px solid #FFB74D;color:var(--ink2);letter-spacing:0.06em;background:var(--bg)}
 .chapter-nav{position:fixed;left:20px;top:50%;transform:translateY(-50%);z-index:150;display:flex;flex-direction:column;gap:8px}
 .cnav-item{display:flex;align-items:center;gap:8px;text-decoration:none;opacity:0.4;transition:opacity 0.2s}.cnav-item:hover,.cnav-item.active{opacity:1}
 .cnav-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);flex-shrink:0;transition:background 0.2s,transform 0.2s}
-.cnav-item.active .cnav-dot{background:var(--orange);transform:scale(1.4)}
+.cnav-item.active .cnav-dot{background:var(--gold);transform:scale(1.4)}
 .cnav-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink2);letter-spacing:0.06em;white-space:nowrap}
 .content-wrap{max-width:900px;margin:0 auto;padding:0 72px}
 .section-block{padding:64px 0;border-bottom:1px solid var(--border)}
-.block-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--orange);margin-bottom:8px;display:flex;align-items:center;gap:12px}
-.block-eyebrow::after{content:'';display:block;height:2px;width:40px;background:linear-gradient(90deg,var(--orange),var(--yellow));border-radius:2px}
+.block-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.block-eyebrow::after{content:'';display:block;height:2px;width:40px;background:linear-gradient(90deg,var(--gold),var(--gold));border-radius:2px}
 .block-title{font-family:'Noto Sans SC',sans-serif;font-size:32px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.25}
 .block-title-en{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;margin-bottom:32px}
 .prose{font-size:15px;color:var(--ink2);line-height:1.9;margin-bottom:24px;max-width:720px}.prose strong{font-weight:600;color:var(--ink)}
@@ -42,24 +63,24 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
 .metal-card{background:var(--card);border:1.5px solid var(--border2);border-radius:16px;padding:28px 24px;position:relative;overflow:hidden}
 .metal-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
 .metal-card.tinplate::before{background:linear-gradient(90deg,#B0BEC5,#78909C)}
-.metal-card.aluminium::before{background:linear-gradient(90deg,var(--sky),var(--cyan))}
+.metal-card.aluminium::before{background:linear-gradient(90deg,var(--teal),var(--teal))}
 .metal-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
 .metal-title{font-family:'Noto Sans SC',sans-serif;font-size:22px;font-weight:700;color:var(--ink);margin-bottom:16px}
 .metal-props{list-style:none;display:flex;flex-direction:column;gap:8px}
 .metal-props li{font-size:13px;color:var(--ink2);display:flex;gap:8px;align-items:flex-start}
-.metal-props li::before{content:'▸';color:var(--orange);flex-shrink:0;margin-top:2px}
+.metal-props li::before{content:'▸';color:var(--gold);flex-shrink:0;margin-top:2px}
 .process-steps{display:flex;flex-direction:column;gap:12px;margin:32px 0}
 .ps-item{display:flex;gap:16px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:16px 20px;align-items:flex-start}
-.ps-num{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:var(--orange);flex-shrink:0;width:32px}
+.ps-num{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:var(--gold);flex-shrink:0;width:32px}
 .ps-title{font-family:'Noto Sans SC',sans-serif;font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px}
 .ps-desc{font-size:13px;color:var(--ink2);line-height:1.7}
-.info-box{background:var(--bg3);border:1.5px solid var(--sky);border-radius:12px;padding:20px 24px;margin:24px 0;display:flex;gap:16px;align-items:flex-start}
+.info-box{background:var(--bg3);border:1.5px solid var(--teal);border-radius:12px;padding:20px 24px;margin:24px 0;display:flex;gap:16px;align-items:flex-start}
 .info-icon{font-size:20px;flex-shrink:0;margin-top:2px}
 .info-text{font-size:14px;color:var(--ink2);line-height:1.8}.info-text strong{color:var(--ink);font-weight:600}
 .ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:24px 0}
 .ref-card{background:var(--card);border:1.5px solid var(--border2);border-radius:12px;padding:16px 18px;text-decoration:none;display:block;transition:all 0.2s}
-.ref-card:hover{border-color:var(--orange);background:var(--bg3);transform:translateY(-2px)}
-.ref-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+.ref-card:hover{border-color:var(--gold);background:var(--bg3);transform:translateY(-2px)}
+.ref-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
 .ref-title{font-family:'Noto Sans SC',sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.4}
 .ref-desc{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:1.6}
 @media(max-width:900px){.chapter-nav{display:none}.content-wrap{padding:0 24px}.chapter-hero{padding:56px 24px 48px}#top-nav{padding:0 20px}.nav-progress{display:none}.compare-2col{grid-template-columns:1fr}}
@@ -79,7 +100,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
   <a class="cnav-item" href="#sec-coating"  data-sec="sec-coating"><div class="cnav-dot"></div><span class="cnav-label">内涂层</span></a>
   <a class="cnav-item" href="#sec-refs"     data-sec="sec-refs"><div class="cnav-dot"></div><span class="cnav-label">参考资料</span></a>
 </nav>
-<header class="chapter-hero">
+<header class="chapter-hero" style="background-image:url('https://ideur88.github.io/CH04.png')">
   <div class="hero-eyebrow">Chapter 04 · Packaging Materials Science</div>
   <h1 class="hero-title"><span>金属包装</span><br>马口铁与铝</h1>
   <p class="hero-subtitle">金属包装是 <span class="abbr-term" data-key="otr">OTR</span> 和 <span class="abbr-term" data-key="wvtr">WVTR</span> 最强的包装形式——完全阻绝氧气、水分、光线，可在常温下保存食品数年。理解制罐工艺与内涂层体系是关键。</p>
@@ -156,9 +177,9 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
     </div>
   </section>
 </div>
-<footer style="background:var(--bg2);border-top:2px solid var(--orange);padding:32px 72px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">
+<footer style="background:var(--bg2);border-top:2px solid var(--gold);padding:32px 72px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">
   <span>CH.04 · 金属包装 · Packaging Materials Science</span>
-  <div style="display:flex;gap:24px"><a href="ch03.html" style="color:var(--muted);text-decoration:none">← CH.03</a><a href="ch05.html" style="color:var(--orange);text-decoration:none">CH.05 →</a><a href="index.html" style="color:var(--cyan);text-decoration:none">主页</a></div>
+  <div style="display:flex;gap:24px"><a href="ch03.html" style="color:var(--muted);text-decoration:none">← CH.03</a><a href="ch05.html" style="color:var(--gold);text-decoration:none">CH.05 →</a><a href="index.html" style="color:var(--teal);text-decoration:none">主页</a></div>
 </footer>
 <script>
 const ABBR_DB={di:{abbr:'DI',en:'Draw and Iron',def:'拉伸减薄工艺：两片罐主流制造工艺，将金属杯形坯通过多道减薄模具，罐壁厚度从0.30mm减至约0.10mm，实现轻量化。生产速度可达2000罐/分钟。'},drd:{abbr:'DRD',en:'Draw and Redraw',def:'多次拉伸工艺：壁厚基本不变的深拉伸成型，适合食品罐头等厚壁容器，如金枪鱼罐、宠物食品罐。'},};

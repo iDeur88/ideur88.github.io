@@ -7,30 +7,45 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 :root{
-  --bg:#FFFFFF;--bg2:#F8FBFF;--bg3:#F0F9FF;--card:#FFFFFF;
-  --ink:#1A1A2E;--ink2:#2D3561;--muted:#6B7280;
-  --border:#E8F4FD;--border2:#B3E5FC;
-  --yellow:#FFD700;--cyan:#4DD0E1;--orange:#FF8A65;--sky:#81D4FA;
-  --fw-light:300;--fw-regular:400;--fw-medium:500;--fw-semibold:600;--fw-bold:700;
+  --bg:      #FFFFFF;
+  --bg2:     #F7F7F5;
+  --bg3:     #EFEFED;
+  --card:    #FFFFFF;
+  --ink:     #111111;
+  --ink2:    #333333;
+  --muted:   #888888;
+  --border:  #E0E0E0;
+  --border2: #CCCCCC;
+  --teal:    #72979f;
+  --gold:    #d1a96b;
+  --teal-l:  #8fb3bb;
+  --gold-l:  #e0c08a;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-weight:400;overflow-x:hidden;line-height:1.7}
-.abbr-term{border-bottom:1.5px dashed var(--cyan);cursor:help;color:var(--cyan);font-weight:500;display:inline}
+.abbr-term{border-bottom:1.5px dashed var(--teal);cursor:help;color:var(--teal);font-weight:500;display:inline}
 .abbr-tooltip{display:none;position:fixed;z-index:9999;background:rgba(255,255,255,0.85);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(77,208,225,0.30);border-radius:12px;padding:12px 16px;max-width:290px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.65;pointer-events:none;box-shadow:0 8px 32px rgba(77,208,225,0.18),0 2px 8px rgba(0,0,0,0.06);color:var(--ink)}
-.abbr-tooltip .tt-abbr{color:var(--orange);font-size:13px;font-weight:600;display:block;margin-bottom:3px}
+.abbr-tooltip .tt-abbr{color:var(--gold);font-size:13px;font-weight:600;display:block;margin-bottom:3px}
 .abbr-tooltip .tt-en{color:var(--muted);font-size:10px;display:block;margin-bottom:6px}
 .abbr-tooltip .tt-def{color:var(--ink2);font-size:11px}
-#top-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:2px solid var(--cyan);display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:56px}
+#top-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:2px solid var(--teal);display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:56px}
 .nav-back{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.08em;display:flex;align-items:center;gap:8px;transition:color 0.2s}
-.nav-back:hover{color:var(--orange)}
+.nav-back:hover{color:var(--gold)}
 .nav-chapter{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;color:var(--ink)}
 .nav-progress{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em}
-.chapter-hero{margin-top:56px;padding:80px 72px 64px;background:linear-gradient(135deg,#E0F7FA 0%,#E1F5FE 50%,#F8FBFF 100%);border-bottom:1px solid var(--border2);position:relative;overflow:hidden}
+.chapter-hero{margin-top:56px;padding:80px 72px 64px;background-size:cover;background-position:center center;background-repeat:no-repeat;border-bottom:1px solid var(--border2);position:relative;overflow:hidden;}
+
+.chapter-hero::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(248,248,246,0.88) 0%,rgba(245,245,243,0.75) 100%);
+  z-index:0;pointer-events:none;
+}
+.chapter-hero>*{position:relative;z-index:1;}
 .chapter-hero::after{content:'03';position:absolute;right:-10px;top:-20px;font-family:'Noto Sans SC',sans-serif;font-size:260px;font-weight:700;color:transparent;-webkit-text-stroke:1.5px rgba(77,208,225,0.15);line-height:1;pointer-events:none}
-.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
 .hero-title{font-family:'Noto Sans SC',sans-serif;font-size:clamp(36px,5.5vw,64px);font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:20px}
-.hero-title span{color:var(--cyan)}
+.hero-title span{color:var(--teal)}
 .hero-subtitle{font-size:14px;font-weight:300;color:var(--ink2);max-width:560px;line-height:1.9;margin-bottom:36px}
 .hero-tags{display:flex;gap:8px;flex-wrap:wrap}
 .htag{font-family:'DM Mono',monospace;font-size:10px;padding:5px 14px;border-radius:20px;border:1.5px solid var(--border2);color:var(--ink2);letter-spacing:0.06em;background:var(--bg)}
@@ -38,12 +53,12 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
 .cnav-item{display:flex;align-items:center;gap:8px;text-decoration:none;opacity:0.4;transition:opacity 0.2s}
 .cnav-item:hover,.cnav-item.active{opacity:1}
 .cnav-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);flex-shrink:0;transition:background 0.2s,transform 0.2s}
-.cnav-item.active .cnav-dot{background:var(--cyan);transform:scale(1.4)}
+.cnav-item.active .cnav-dot{background:var(--teal);transform:scale(1.4)}
 .cnav-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink2);letter-spacing:0.06em;white-space:nowrap}
 .content-wrap{max-width:900px;margin:0 auto;padding:0 72px}
 .section-block{padding:64px 0;border-bottom:1px solid var(--border)}
-.block-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;display:flex;align-items:center;gap:12px}
-.block-eyebrow::after{content:'';display:block;height:2px;width:40px;background:linear-gradient(90deg,var(--cyan),var(--sky));border-radius:2px}
+.block-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.block-eyebrow::after{content:'';display:block;height:2px;width:40px;background:linear-gradient(90deg,var(--teal),var(--teal));border-radius:2px}
 .block-title{font-family:'Noto Sans SC',sans-serif;font-size:32px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.25}
 .block-title-en{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;margin-bottom:32px}
 .prose{font-size:15px;color:var(--ink2);line-height:1.9;margin-bottom:24px;max-width:720px}
@@ -51,13 +66,13 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
 /* 塑料家族卡片 */
 .plastic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:32px 0}
 .plastic-card{background:var(--card);border:1.5px solid var(--border2);border-radius:12px;padding:20px 16px;transition:all 0.2s;cursor:default}
-.plastic-card:hover{border-color:var(--cyan);background:var(--bg3);transform:translateY(-3px);box-shadow:0 8px 24px rgba(77,208,225,0.12)}
-.pc-symbol{font-family:'DM Mono',monospace;font-size:26px;font-weight:500;color:var(--cyan);margin-bottom:4px}
+.plastic-card:hover{border-color:var(--teal);background:var(--bg3);transform:translateY(-3px);box-shadow:0 8px 24px rgba(77,208,225,0.12)}
+.pc-symbol{font-family:'DM Mono',monospace;font-size:26px;font-weight:500;color:var(--teal);margin-bottom:4px}
 .pc-recycle{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;padding:2px 8px;border-radius:8px;background:#E0F7FA;color:#00838F;margin-bottom:8px}
 .pc-name{font-family:'Noto Sans SC',sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px}
 .pc-en{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:10px}
 .pc-props{font-size:12px;color:var(--ink2);line-height:1.6}
-.pc-uses{font-family:'DM Mono',monospace;font-size:10px;color:var(--orange);margin-top:8px}
+.pc-uses{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);margin-top:8px}
 /* 性能雷达文字版 */
 .barrier-table{width:100%;border-collapse:collapse;margin:32px 0;font-size:13px}
 .barrier-table th{background:var(--ink);color:#fff;padding:10px 14px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-align:left;font-weight:500}
@@ -67,15 +82,15 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
 .bar-track{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
 .bar-fill{height:100%;border-radius:3px}
 /* 信息框 */
-.info-box{background:var(--bg3);border:1.5px solid var(--sky);border-radius:12px;padding:20px 24px;margin:24px 0;display:flex;gap:16px;align-items:flex-start}
+.info-box{background:var(--bg3);border:1.5px solid var(--teal);border-radius:12px;padding:20px 24px;margin:24px 0;display:flex;gap:16px;align-items:flex-start}
 .info-icon{font-size:20px;flex-shrink:0;margin-top:2px}
 .info-text{font-size:14px;color:var(--ink2);line-height:1.8}
 .info-text strong{color:var(--ink);font-weight:600}
 /* 参考资料 */
 .ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:24px 0}
 .ref-card{background:var(--card);border:1.5px solid var(--border2);border-radius:12px;padding:16px 18px;text-decoration:none;display:block;transition:all 0.2s}
-.ref-card:hover{border-color:var(--cyan);background:var(--bg3);transform:translateY(-2px)}
-.ref-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:6px}
+.ref-card:hover{border-color:var(--teal);background:var(--bg3);transform:translateY(-2px)}
+.ref-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
 .ref-title{font-family:'Noto Sans SC',sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.4}
 .ref-desc{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:1.6}
 @media(max-width:900px){.chapter-nav{display:none}.content-wrap{padding:0 24px}.chapter-hero{padding:56px 24px 48px}#top-nav{padding:0 20px}.nav-progress{display:none}}
@@ -96,7 +111,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
   <a class="cnav-item" href="#sec-env"      data-sec="sec-env"><div class="cnav-dot"></div><span class="cnav-label">环境问题</span></a>
   <a class="cnav-item" href="#sec-refs"     data-sec="sec-refs"><div class="cnav-dot"></div><span class="cnav-label">参考资料</span></a>
 </nav>
-<header class="chapter-hero">
+<header class="chapter-hero" style="background-image:url('https://ideur88.github.io/CH03.png')">
   <div class="hero-eyebrow">Chapter 03 · Packaging Materials Science</div>
   <h1 class="hero-title"><span>塑料</span>包装材料</h1>
   <p class="hero-subtitle">聚乙烯、聚丙烯、PET、EVOH……塑料家族种类繁多，性能各异。理解聚合物结构与性能的关系，是选择正确塑料牌号的基础。</p>
@@ -186,38 +201,38 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
       <tbody>
         <tr>
           <td><strong>EVOH</strong></td>
-          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:98%;background:var(--cyan)"></div></div><span style="font-size:11px;color:var(--cyan)">极强</span></div></td>
-          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:20%;background:var(--orange)"></div></div><span style="font-size:11px;color:var(--muted)">差（吸湿）</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:98%;background:var(--teal)"></div></div><span style="font-size:11px;color:var(--teal)">极强</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:20%;background:var(--gold)"></div></div><span style="font-size:11px;color:var(--muted)">差（吸湿）</span></div></td>
           <td>透明</td><td>~70°C</td>
         </tr>
         <tr>
           <td><strong>PET</strong></td>
-          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:55%;background:var(--cyan)"></div></div><span style="font-size:11px;color:var(--ink2)">中等</span></div></td>
-          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%;background:var(--sky)"></div></div><span style="font-size:11px;color:var(--ink2)">中等</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:55%;background:var(--teal)"></div></div><span style="font-size:11px;color:var(--ink2)">中等</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:60%;background:var(--teal)"></div></div><span style="font-size:11px;color:var(--ink2)">中等</span></div></td>
           <td>高透明</td><td>~70°C</td>
         </tr>
         <tr>
           <td><strong>PA (Nylon)</strong></td>
-          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:65%;background:var(--cyan)"></div></div><span style="font-size:11px;color:var(--ink2)">良好</span></div></td>
-          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:35%;background:var(--sky)"></div></div><span style="font-size:11px;color:var(--muted)">较差</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:65%;background:var(--teal)"></div></div><span style="font-size:11px;color:var(--ink2)">良好</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:35%;background:var(--teal)"></div></div><span style="font-size:11px;color:var(--muted)">较差</span></div></td>
           <td>半透明</td><td>~180°C</td>
         </tr>
         <tr>
           <td><strong>PP</strong></td>
-          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:30%;background:var(--cyan)"></div></div><span style="font-size:11px;color:var(--muted)">较差</span></div></td>
-          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:88%;background:var(--sky)"></div></div><span style="font-size:11px;color:var(--cyan)">优秀</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:30%;background:var(--teal)"></div></div><span style="font-size:11px;color:var(--muted)">较差</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:88%;background:var(--teal)"></div></div><span style="font-size:11px;color:var(--teal)">优秀</span></div></td>
           <td>半透明</td><td>105°C</td>
         </tr>
         <tr>
           <td><strong>LDPE</strong></td>
-          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:15%;background:var(--orange)"></div></div><span style="font-size:11px;color:var(--muted)">很差</span></div></td>
-          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:92%;background:var(--sky)"></div></div><span style="font-size:11px;color:var(--cyan)">极强</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:15%;background:var(--gold)"></div></div><span style="font-size:11px;color:var(--muted)">很差</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:92%;background:var(--teal)"></div></div><span style="font-size:11px;color:var(--teal)">极强</span></div></td>
           <td>半透明</td><td>~80°C</td>
         </tr>
         <tr>
           <td><strong>铝箔（对比）</strong></td>
-          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--yellow)"></div></div><span style="font-size:11px;color:#8B6914">完全隔绝</span></div></td>
-          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--yellow)"></div></div><span style="font-size:11px;color:#8B6914">完全隔绝</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--gold)"></div></div><span style="font-size:11px;color:#8B6914">完全隔绝</span></div></td>
+          <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--gold)"></div></div><span style="font-size:11px;color:#8B6914">完全隔绝</span></div></td>
           <td>不透明</td><td>高温</td>
         </tr>
       </tbody>
@@ -272,12 +287,12 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
     </div>
   </section>
 </div>
-<footer style="background:var(--bg2);border-top:2px solid var(--cyan);padding:32px 72px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">
+<footer style="background:var(--bg2);border-top:2px solid var(--teal);padding:32px 72px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">
   <span>CH.03 · 塑料包装材料 · Packaging Materials Science</span>
   <div style="display:flex;gap:24px">
     <a href="ch02.html" style="color:var(--muted);text-decoration:none">← CH.02</a>
-    <a href="ch04.html" style="color:var(--orange);text-decoration:none">CH.04 →</a>
-    <a href="index.html" style="color:var(--cyan);text-decoration:none">主页</a>
+    <a href="ch04.html" style="color:var(--gold);text-decoration:none">CH.04 →</a>
+    <a href="index.html" style="color:var(--teal);text-decoration:none">主页</a>
   </div>
 </footer>
 <script>

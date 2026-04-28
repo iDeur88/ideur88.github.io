@@ -7,20 +7,20 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
-:root {
+:root{
   --bg:      #FFFFFF;
-  --bg2:     #F8FBFF;
-  --bg3:     #F0F9FF;
+  --bg2:     #F7F7F5;
+  --bg3:     #EFEFED;
   --card:    #FFFFFF;
-  --ink:     #1A1A2E;
-  --ink2:    #2D3561;
-  --muted:   #6B7280;
-  --border:  #E8F4FD;
-  --border2: #B3E5FC;
-  --yellow:  #FFD700;
-  --cyan:    #4DD0E1;
-  --orange:  #FF8A65;
-  --sky:     #81D4FA;
+  --ink:     #111111;
+  --ink2:    #333333;
+  --muted:   #888888;
+  --border:  #E0E0E0;
+  --border2: #CCCCCC;
+  --teal:    #72979f;
+  --gold:    #d1a96b;
+  --teal-l:  #8fb3bb;
+  --gold-l:  #e0c08a;
 }
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -31,17 +31,17 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
 #top-nav{
   position:fixed;top:0;left:0;right:0;z-index:300;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 52px;height:58px;
+  padding:0 clamp(20px,5vw,80px);height:60px;
   background:rgba(255,255,255,0.92);
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:2px solid var(--yellow);
+  border-bottom:2px solid var(--gold);
 }
 .site-logo{
   font-family:'Noto Sans SC',sans-serif;
   font-size:16px;font-weight:700;letter-spacing:0.08em;
   color:var(--ink);text-decoration:none;
 }
-.site-logo span{color:var(--orange)}
+.site-logo span{color:var(--gold)}
 .nav-meta{
   font-family:'DM Mono',monospace;font-size:11px;
   color:var(--muted);letter-spacing:0.08em;
@@ -49,8 +49,8 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
 
 /* ══ 全屏轮播 ══ */
 .carousel-section{
-  position:relative;margin-top:58px;
-  height:calc(100vh - 58px);overflow:hidden;background:var(--bg);
+  position:relative;margin-top:60px;
+  height:calc(100vh - 60px);width:100%;overflow:hidden;background:var(--bg);
 }
 .carousel-track{
   display:flex;height:100%;will-change:transform;
@@ -61,43 +61,47 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
 
 /* 单张幻灯片 */
 .slide{
-  flex:0 0 100%;height:100%;position:relative;
+  flex:0 0 100vw;width:100vw;height:100%;position:relative;
   display:flex;align-items:flex-end;overflow:hidden;
   -webkit-tap-highlight-color:transparent;
 }
-.slide-bg{position:absolute;inset:0}
+.slide-bg{position:absolute;inset:0;z-index:0}
 
 /* 右侧几何线 */
 .slide-geo{
   position:absolute;right:0;top:0;bottom:0;width:42%;
   display:flex;gap:28px;align-items:stretch;opacity:0.15;pointer-events:none;
 }
-.slide-geo-line{width:1px;background:var(--slide-accent,var(--orange));flex-shrink:0}
+.slide-geo-line{width:1px;background:var(--slide-accent,var(--gold));flex-shrink:0}
 
 /* 大装饰数字 */
 .slide-deco{
   position:absolute;right:40px;bottom:-30px;
   font-family:'Noto Sans SC',sans-serif;
   font-size:clamp(180px,24vw,320px);font-weight:700;
-  color:transparent;-webkit-text-stroke:1.5px var(--slide-accent,var(--orange));
+  color:transparent;-webkit-text-stroke:1.5px var(--slide-accent,var(--gold));
   opacity:0.07;line-height:1;pointer-events:none;user-select:none;letter-spacing:-0.06em;
 }
 
 /* 顶部色带 */
-.slide-topband{position:absolute;top:0;left:0;right:0;height:4px;background:var(--slide-accent,var(--orange))}
+.slide-topband{position:absolute;top:0;left:0;right:0;height:3px;background:var(--slide-accent,var(--gold));z-index:3}
 
 /* 幻灯内容 */
-.slide-content{position:relative;z-index:2;padding:0 72px 60px;width:100%;max-width:820px}
+.slide-content{position:relative;z-index:10;padding:0 clamp(32px,6vw,96px) 80px clamp(32px,6vw,96px);width:100%;max-width:860px}
+/* 幻灯片图片遮罩 */
+.slide-bg-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(250,249,247,0.55) 0%,rgba(248,248,246,0.30) 100%)}
 .slide-num{
-  font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.24em;
-  color:var(--slide-accent,var(--orange));margin-bottom:20px;
-  display:flex;align-items:center;gap:16px;text-transform:uppercase;
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.28em;
+  color:var(--slide-accent,var(--gold));margin-bottom:24px;
+  display:flex;align-items:center;gap:14px;text-transform:uppercase;
+  opacity:0.8;
 }
-.slide-num::after{content:'';display:block;width:48px;height:1px;background:var(--slide-accent,var(--orange));opacity:0.4}
+.slide-num::after{content:'';display:block;width:48px;height:1px;background:var(--slide-accent,var(--gold));opacity:0.4}
 .slide-title{
   font-family:'Noto Sans SC',sans-serif;
-  font-size:clamp(32px,5vw,62px);font-weight:700;line-height:1.2;
-  color:var(--ink);margin-bottom:20px;
+  font-size:clamp(28px,4.5vw,52px);font-weight:600;line-height:1.25;
+  color:#111111;margin-bottom:16px;letter-spacing:-0.01em;
+  text-shadow:0 1px 3px rgba(255,255,255,0.8);
 }
 .slide-sub{
   font-family:'DM Mono',monospace;font-size:clamp(11px,1.3vw,13px);
@@ -107,19 +111,19 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
 .slide-tags{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .stag{
   font-family:'DM Mono',monospace;font-size:10px;padding:5px 14px;border-radius:20px;
-  border:1.5px solid var(--slide-accent,var(--orange));
-  color:var(--slide-accent,var(--orange));background:transparent;
+  border:1.5px solid var(--slide-accent,var(--gold));
+  color:var(--slide-accent,var(--gold));background:transparent;
   letter-spacing:0.06em;
 }
 .slide-cta{
   font-family:'DM Mono',monospace;font-size:11px;padding:8px 20px;border-radius:20px;
-  background:var(--slide-accent,var(--orange));color:#fff;
+  background:var(--slide-accent,var(--gold));color:#fff;
   letter-spacing:0.08em;text-decoration:none;transition:opacity 0.2s;display:inline-block;
 }
 .slide-cta:hover{opacity:0.82}
 
 /* 进度条 */
-.progress-bar{position:absolute;bottom:0;left:0;height:3px;background:var(--orange);width:0%;z-index:10}
+.progress-bar{position:absolute;bottom:0;left:0;height:3px;background:var(--gold);width:0%;z-index:10}
 
 /* 箭头 */
 .slide-arrow{
@@ -131,7 +135,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
   transition:all 0.2s;backdrop-filter:blur(8px);
   -webkit-tap-highlight-color:transparent;
 }
-.slide-arrow:hover{border-color:var(--orange);color:var(--orange);background:rgba(255,255,255,0.95)}
+.slide-arrow:hover{border-color:var(--gold);color:var(--gold);background:rgba(255,255,255,0.95)}
 .slide-arrow:active{transform:translateY(-50%) scale(0.93)}
 .slide-arrow.prev{left:24px}
 .slide-arrow.next{right:24px}
@@ -146,7 +150,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
   cursor:pointer;transition:background 0.25s,transform 0.25s;
   -webkit-tap-highlight-color:transparent;
 }
-.sdot.is-active{background:var(--orange);transform:scale(1.5)}
+.sdot.is-active{background:var(--gold);transform:scale(1.5)}
 
 /* 暂停 */
 .pause-btn{
@@ -156,61 +160,64 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
   cursor:pointer;display:flex;align-items:center;justify-content:center;
   transition:all 0.2s;-webkit-tap-highlight-color:transparent;
 }
-.pause-btn:hover{border-color:var(--orange);color:var(--orange)}
+.pause-btn:hover{border-color:var(--gold);color:var(--gold)}
 
 /* 章节计数 */
 .slide-counter{
-  position:absolute;bottom:18px;left:72px;z-index:20;
+  position:absolute;bottom:20px;left:clamp(32px,6vw,96px);z-index:20;
   font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.12em;
 }
 
-/* ══ Ticker ══ */
-.ticker-wrap{
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  background:var(--bg2);overflow:hidden;white-space:nowrap;
-  height:36px;display:flex;align-items:center;
-}
-.ticker-inner{display:inline-flex;animation:ticker-scroll 42s linear infinite}
-.ticker-item{font-family:'DM Mono',monospace;font-size:11px;color:var(--ink2);letter-spacing:0.07em;padding:0 20px}
-.ticker-sep{color:var(--cyan);opacity:0.7;padding:0 4px}
-@keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ticker removed */to{transform:translateX(-50%)}}
 
 /* ══ 通用 Section ══ */
-.section{padding:72px 64px;border-top:1px solid var(--border)}
+.section{
+  border-top:1px solid var(--border);
+  overflow:hidden;
+}
+.section-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:120px clamp(24px,6vw,96px);
+}
 .section-eyebrow{
-  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.22em;
-  text-transform:uppercase;color:var(--cyan);margin-bottom:8px;
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.28em;
+  text-transform:uppercase;color:var(--teal);margin-bottom:12px;
   display:flex;align-items:center;gap:12px;
 }
-.section-eyebrow::after{content:'';display:block;height:2px;width:40px;background:linear-gradient(90deg,var(--cyan),var(--sky));border-radius:2px}
+.section-eyebrow::after{content:'';display:block;height:1.5px;width:32px;background:var(--teal);border-radius:2px;opacity:0.5}
 .section-title{
-  font-family:'Noto Sans SC',sans-serif;font-size:40px;font-weight:700;
-  color:var(--ink);margin-bottom:44px;line-height:1.2;
+  font-family:'Noto Sans SC',sans-serif;
+  font-size:clamp(11px,1.75vw,18px);font-weight:500;
+  color:var(--ink);margin-bottom:40px;line-height:1.3;
+  letter-spacing:-0.01em;
 }
 
 /* ══ 章节网格 ══ */
 .chapters-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-  gap:12px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:16px;
 }
 .chapter-card{
-  background:var(--card);border:1.5px solid var(--border2);border-radius:16px;
-  padding:28px 28px 24px;position:relative;cursor:pointer;
-  transition:all 0.2s;-webkit-tap-highlight-color:transparent;
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:28px 24px 24px;position:relative;cursor:pointer;
+  transition:all 0.25s;-webkit-tap-highlight-color:transparent;
   text-decoration:none;display:block;overflow:hidden;
 }
 .chapter-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:4px;
-  background:var(--c, var(--cyan));
+  background:var(--c, var(--teal));
 }
-.chapter-card:hover{background:var(--bg3);transform:translateY(-3px);box-shadow:0 8px 28px rgba(77,208,225,0.12);border-color:var(--cyan)}
-.chapter-card:hover .cc-arrow{color:var(--orange);transform:translate(3px,-3px)}
+.chapter-card:hover{background:var(--bg3);transform:translateY(-3px);box-shadow:0 8px 28px rgba(77,208,225,0.12);border-color:var(--teal)}
+.chapter-card:hover .cc-arrow{color:var(--gold);transform:translate(3px,-3px)}
 .cc-num{
-  font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);
-  letter-spacing:0.14em;margin-bottom:10px;text-transform:uppercase;
+  font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);
+  letter-spacing:0.18em;margin-bottom:12px;text-transform:uppercase;
+  opacity:0.7;
 }
-.cc-title{font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;line-height:1.55;margin-bottom:8px;color:var(--ink)}
-.cc-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:1.8}
+.cc-title{font-family:'Noto Sans SC',sans-serif;font-size:14px;font-weight:500;line-height:1.6;margin-bottom:10px;color:var(--ink)}
+.cc-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:1.9;opacity:0.85}
 .cc-arrow{
   position:absolute;right:18px;top:20px;font-size:16px;
   color:var(--border2);transition:all 0.2s;
@@ -221,7 +228,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
 .compare-table{width:100%;border-collapse:collapse;min-width:560px}
 .compare-table th{
   font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;
-  text-transform:uppercase;color:var(--cyan);text-align:left;
+  text-transform:uppercase;color:var(--teal);text-align:left;
   padding:12px 16px;border-bottom:2px solid var(--border2);
 }
 .compare-table td{
@@ -232,18 +239,18 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
 .compare-table tbody tr:hover td{background:var(--bg2)}
 .dots5{display:inline-flex;gap:3px}
 .d{width:7px;height:7px;border-radius:50%;background:var(--border)}
-.d.on{background:var(--orange)}
-.d.on2{background:var(--cyan)}
+.d.on{background:var(--gold)}
+.d.on2{background:var(--teal)}
 
 /* ══ 闪卡 ══ */
-.flashcard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.flashcard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
 .flashcard{
   min-height:140px;background:var(--card);
   border:1.5px solid var(--border2);border-radius:14px;
   padding:22px;cursor:pointer;perspective:700px;position:relative;
   transition:all 0.2s;-webkit-tap-highlight-color:transparent;
 }
-.flashcard:hover{border-color:var(--cyan);box-shadow:0 4px 16px rgba(77,208,225,0.12)}
+.flashcard:hover{border-color:var(--teal);box-shadow:0 4px 16px rgba(77,208,225,0.12)}
 .fc-inner{
   position:relative;width:100%;min-height:96px;
   transform-style:preserve-3d;
@@ -255,7 +262,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
 .fc-tag{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px}
 .fc-term{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px}
 .fc-hint{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted)}
-.fc-def{font-family:'DM Mono',monospace;font-size:11px;color:var(--orange);line-height:1.7}
+.fc-def{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);line-height:1.7}
 .flip-hint{position:absolute;bottom:10px;right:14px;font-family:'DM Mono',monospace;font-size:9px;color:var(--border2);letter-spacing:0.06em}
 
 /* ══ FAQ ══ */
@@ -267,9 +274,9 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
   color:var(--ink);gap:16px;user-select:none;transition:color 0.2s;
   -webkit-tap-highlight-color:transparent;
 }
-.faq-q:hover{color:var(--orange)}
+.faq-q:hover{color:var(--gold)}
 .faq-icon{font-family:'DM Mono',monospace;font-size:20px;color:var(--muted);transition:transform 0.25s,color 0.2s;flex-shrink:0}
-.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--orange)}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--gold)}
 .faq-a{
   font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);
   line-height:1.9;max-height:0;overflow:hidden;
@@ -279,39 +286,133 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif
 
 /* ══ Footer ══ */
 footer{
-  border-top:2px solid var(--yellow);padding:44px 64px;
+  border-top:2px solid var(--gold);padding:64px clamp(24px,6vw,96px);
   display:flex;gap:48px;flex-wrap:wrap;
   justify-content:space-between;align-items:flex-start;
   background:var(--bg2);
 }
 .footer-logo{font-family:'Noto Sans SC',sans-serif;font-size:24px;font-weight:700;color:var(--ink)}
-.footer-logo span{color:var(--orange)}
+.footer-logo span{color:var(--gold)}
 .footer-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:2.2;margin-top:10px}
 .footer-links{display:flex;flex-direction:column;gap:8px}
-.footer-links-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px}
+.footer-links-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px}
 .footer-links a{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.05em;transition:color 0.15s}
-.footer-links a:hover{color:var(--orange)}
+.footer-links a:hover{color:var(--gold)}
 
 /* ══ 响应式 ══ */
+@media(max-width:1024px){
+  .chapters-grid{grid-template-columns:repeat(2,1fr)}
+  .archive-gallery{grid-template-columns:repeat(3,1fr)}
+}
 @media(max-width:768px){
-  #top-nav{padding:0 20px}
   .nav-meta{display:none}
-  .slide-content{padding:0 24px 52px}
+  .slide-content{padding:0 24px 56px}
   .slide-counter{left:24px}
-  .slide-dots{right:24px;bottom:20px}
-  .slide-arrow.prev{left:8px}
-  .slide-arrow.next{right:8px}
-  .slide-arrow{width:38px;height:38px;font-size:14px}
-  .section{padding:48px 20px}
-  .section-title{font-size:30px}
-  footer{padding:36px 20px}
+  .slide-dots{right:20px;bottom:20px}
+  .slide-arrow.prev{left:10px}
+  .slide-arrow.next{right:10px}
+  .slide-arrow{width:40px;height:40px;font-size:15px}
+  .section-inner{padding:80px 24px}
+  .section-title{font-size:clamp(11px,2.5vw,16px)}
+  .archive-gallery{grid-template-columns:repeat(2,1fr);gap:10px}
+  footer{padding:48px 24px}
+  .compare-table th,.compare-table td{padding:10px 10px;font-size:11px}
 }
 @media(max-width:480px){
-  .slide-title{font-size:26px}
-  .slide-sub{font-size:11px}
-  .chapters-grid{grid-template-columns:1fr}
-  .flashcard-grid{grid-template-columns:1fr 1fr}
+  .slide-title{font-size:clamp(22px,6vw,32px)}
+  .slide-sub{font-size:11px;line-height:1.7}
+  .slide-tags{gap:6px}
+  .stag{font-size:9px;padding:4px 10px}
+  .slide-cta{font-size:10px;padding:7px 16px}
+  .chapters-grid{grid-template-columns:1fr;gap:10px}
+  .flashcard-grid{grid-template-columns:1fr 1fr;gap:10px}
   .slide-geo{display:none}
+  .archive-gallery{grid-template-columns:repeat(2,1fr);gap:8px}
+  .ag-card{aspect-ratio:1/1}
+  .chapter-card{padding:20px 18px}
+  .cc-title{font-size:13px}
+}
+
+/* ══ 档案馆入口 ══ */
+.archive-header {
+  display:flex; align-items:flex-end; justify-content:space-between;
+  margin-bottom:40px; flex-wrap:wrap; gap:20px;
+}
+.archive-cta {
+  font-family:'DM Mono',monospace; font-size:12px;
+  padding:10px 24px; border-radius:20px;
+  background:var(--ink); color:#fff;
+  text-decoration:none; letter-spacing:0.06em;
+  transition:background 0.2s; white-space:nowrap; flex-shrink:0;
+}
+.archive-cta:hover { background:var(--teal); }
+.archive-gallery {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  min-height:240px;
+}
+@media(max-width:900px){ .archive-gallery{ grid-template-columns:repeat(2,1fr); } }
+@media(max-width:480px){ .archive-gallery{ grid-template-columns:repeat(2,1fr); gap:8px; } }
+.ag-card {
+  border-radius:12px; overflow:hidden;
+  border:1.5px solid var(--border2);
+  background:var(--card); cursor:pointer;
+  transition:transform 0.2s, box-shadow 0.2s;
+  aspect-ratio:3/4; position:relative;
+}
+.ag-card:hover {
+  transform:translateY(-4px);
+  box-shadow:0 12px 32px rgba(77,208,225,0.15);
+  border-color:var(--teal);
+}
+.ag-card img {
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+.ag-card-overlay {
+  position:absolute; bottom:0; left:0; right:0;
+  background:linear-gradient(transparent,rgba(26,26,46,0.85));
+  padding:20px 12px 12px;
+  opacity:0; transition:opacity 0.2s;
+}
+.ag-card:hover .ag-card-overlay { opacity:1; }
+.ag-card-note {
+  font-family:'Noto Sans SC',sans-serif; font-size:11px;
+  font-weight:500; color:#fff; line-height:1.4; margin-bottom:4px;
+}
+.ag-card-tags {
+  display:flex; gap:4px; flex-wrap:wrap;
+}
+.ag-card-tag {
+  font-family:'DM Mono',monospace; font-size:9px;
+  padding:1px 6px; border-radius:6px;
+  background:rgba(77,208,225,0.3); color:#E0F7FA;
+}
+/* 空状态 */
+.ag-placeholder {
+  grid-column:1/-1;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  min-height:200px; border:1.5px dashed var(--border2);
+  border-radius:16px; background:var(--bg2);
+}
+.ag-placeholder-icon { font-size:40px; margin-bottom:12px; opacity:0.5; }
+.ag-placeholder-text {
+  font-family:'DM Mono',monospace; font-size:11px;
+  color:var(--muted); text-align:center; line-height:1.8; letter-spacing:0.04em;
+}
+/* 查看更多卡片 */
+.ag-more {
+  border-radius:12px; border:1.5px dashed var(--border2);
+  background:var(--bg2); cursor:pointer; aspect-ratio:3/4;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:8px; text-decoration:none; transition:all 0.2s;
+}
+.ag-more:hover { border-color:var(--teal); background:var(--bg3); }
+.ag-more-num {
+  font-family:'Noto Sans SC',sans-serif; font-size:24px; font-weight:700; color:var(--teal);
+}
+.ag-more-label {
+  font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); letter-spacing:0.08em;
 }
 </style>
 </head>
@@ -319,7 +420,7 @@ footer{
 
 <nav id="top-nav">
   <a class="site-logo" href="index.html">包装材料学<span> · 自学资料库</span></a>
-  <div class="nav-meta">10 章节 &nbsp;·&nbsp; 200+ 知识节点 &nbsp;·&nbsp; 零成本托管</div>
+  <div class="nav-meta">10 章节 &nbsp;·&nbsp; 200+ 知识节点</div>
 </nav>
 
 <!-- ══ 全屏轮播 ══ -->
@@ -332,102 +433,103 @@ footer{
   <div class="slide-counter" id="slideCounter">01 / 10</div>
 </section>
 
-<!-- Ticker -->
-<div class="ticker-wrap">
-  <div class="ticker-inner">
-    <span class="ticker-item">纸质包装：克重 GSM · 耐破强度 BST · 环压强度 ECT · 边压强度 RCT</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">塑料阻隔排序：EVOH &gt; PVDC &gt; PA &gt; PET &gt; PP &gt; LDPE</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">马口铁：低碳钢基板 + 镀锡层 + 钝化层 + 涂油层</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">玻璃：SiO₂为主体，Na₂O降熔点，CaO增稳定性</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">复合软包：WVTR · OTR · 热封强度 · 剥离强度</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">凹版印刷 Gravure：色彩饱满，适合长版精细图案</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">GB/T 6543 · GB/T 4857 · ISO 2233 · ASTM D4169 · TAPPI T811</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">生物基材料：PLA · PBAT · PHB · TPS · PBS</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">EPR 生产者延伸责任 · EU Packaging Regulation 2025</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">选材五维：保护性 · 适用性 · 经济性 · 可持续性 · 法规符合性</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">纸质包装：克重 GSM · 耐破强度 BST · 环压强度 ECT · 边压强度 RCT</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">塑料阻隔排序：EVOH &gt; PVDC &gt; PA &gt; PET &gt; PP &gt; LDPE</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">马口铁：低碳钢基板 + 镀锡层 + 钝化层 + 涂油层</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">玻璃：SiO₂为主体，Na₂O降熔点，CaO增稳定性</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">复合软包：WVTR · OTR · 热封强度 · 剥离强度</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">凹版印刷 Gravure：色彩饱满，适合长版精细图案</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">GB/T 6543 · GB/T 4857 · ISO 2233 · ASTM D4169 · TAPPI T811</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">生物基材料：PLA · PBAT · PHB · TPS · PBS</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">EPR 生产者延伸责任 · EU Packaging Regulation 2025</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">选材五维：保护性 · 适用性 · 经济性 · 可持续性 · 法规符合性</span><span class="ticker-sep">·</span>
+</div>
+
+<!-- ══ 档案馆入口 ══ -->
+<section class="section" id="archive-entry">
+<div class="section-inner">
+  <div class="archive-header">
+    <div>
+      <div class="section-eyebrow">Packaging Archive</div>
+      <div class="section-title" style="margin-bottom:10px;font-weight:400">图像档案馆</div>
+
+    </div>
+    <a class="archive-cta" href="archive.html">进入档案馆 →</a>
+  </div>
+
+  <!-- 动态加载最新图片 -->
+  <div class="archive-gallery" id="archiveGallery">
+    <div class="ag-placeholder">
+      <div class="ag-placeholder-icon">📦</div>
+      <div class="ag-placeholder-text">档案馆还没有图片<br>安装 Chrome 插件后右键采集</div>
+    </div>
   </div>
 </div>
+</section>
 
 <!-- ══ 章节总览 ══ -->
 <section class="section" id="chapters">
+<div class="section-inner">
   <div class="section-eyebrow">Chapter Overview</div>
   <div class="section-title">章节总览</div>
   <div class="chapters-grid">
-    <a class="chapter-card" href="ch01.html" style="--c:var(--yellow)">
+    <a class="chapter-card" href="ch01.html" style="--c:var(--gold)">
       <span class="cc-arrow">↗</span>
       <div class="cc-num">CH.01</div>
       <div class="cc-title">绪论 · 选材五维度决策框架</div>
       <div class="cc-sub">保护性 · 适用性 · 经济性 · 可持续性 · 法规<br>五维度框架 · 材料分类与发展趋势</div>
     </a>
-    <a class="chapter-card" href="ch02.html" style="--c:var(--cyan)">
+    <a class="chapter-card" href="ch02.html" style="--c:var(--teal)">
       <span class="cc-arrow">↗</span>
       <div class="cc-num">CH.02</div>
       <div class="cc-title">纸与瓦楞纸板</div>
       <div class="cc-sub">楞型 A/B/C/E/F · McKee 公式 · ECT/BCT/RCT<br>FEFCO 箱型 · 选材决策向导</div>
     </a>
-    <a class="chapter-card" href="ch03.html" style="--c:var(--sky)">
+    <a class="chapter-card" href="ch03.html" style="--c:var(--teal)">
       <span class="cc-arrow">↗</span>
       <div class="cc-num">CH.03</div>
       <div class="cc-title">塑料包装材料</div>
       <div class="cc-sub">PE · PP · PET · EVOH · PA · PLA<br>阻隔性原理 · OTR/WVTR · 共挤复合</div>
     </a>
-    <a class="chapter-card" href="ch04.html" style="--c:var(--orange)">
+    <a class="chapter-card" href="ch04.html" style="--c:var(--gold)">
       <span class="cc-arrow">↗</span>
       <div class="cc-num">CH.04</div>
       <div class="cc-title">金属包装 · 马口铁与铝</div>
       <div class="cc-sub">镀锡钢板 · DI 制罐工艺 · 内涂层体系<br>BPA-free 替代 · 无限回收</div>
     </a>
-    <a class="chapter-card" href="ch05.html" style="--c:var(--sky)">
+    <a class="chapter-card" href="ch05.html" style="--c:var(--teal)">
       <span class="cc-arrow">↗</span>
       <div class="cc-num">CH.05</div>
       <div class="cc-title">玻璃与陶瓷</div>
       <div class="cc-sub">钠钙玻璃 · 吹-吹法成型 · 热冲击性能<br>水解等级 · 陶瓷釉料安全性</div>
     </a>
-    <a class="chapter-card" href="ch06.html" style="--c:var(--yellow)">
+    <a class="chapter-card" href="ch06.html" style="--c:var(--gold)">
       <span class="cc-arrow">↗</span>
       <div class="cc-num">CH.06</div>
       <div class="cc-title">复合软包装</div>
       <div class="cc-sub">功能层分工 · 干法/共挤复合工艺<br>BOPET/Al/PE 典型结构 · 热封设计</div>
     </a>
-    <a class="chapter-card" href="ch07.html" style="--c:var(--orange)">
+    <a class="chapter-card" href="ch07.html" style="--c:var(--gold)">
       <span class="cc-arrow">↗</span>
       <div class="cc-num">CH.07</div>
       <div class="cc-title">印刷工艺</div>
       <div class="cc-sub">柔版 · 凹版 · 胶版 · 数码印刷对比<br>食品级油墨 · UV 上光 · 色彩管理</div>
     </a>
-    <a class="chapter-card" href="ch08.html" style="--c:var(--cyan)">
+    <a class="chapter-card" href="ch08.html" style="--c:var(--teal)">
       <span class="cc-arrow">↗</span>
       <div class="cc-num">CH.08</div>
       <div class="cc-title">性能测试与标准</div>
       <div class="cc-sub">ECT/BCT/RCT/OTR/WVTR 测试方法<br>TAPPI · ASTM D4169 · GB/T 4857</div>
     </a>
-    <a class="chapter-card" href="ch09.html" style="--c:var(--sky)">
+    <a class="chapter-card" href="ch09.html" style="--c:var(--teal)">
       <span class="cc-arrow">↗</span>
       <div class="cc-num">CH.09</div>
       <div class="cc-title">绿色包装材料</div>
       <div class="cc-sub">PLA · PBAT · 纤维素模塑 · 全 PE 软包<br>EPR 法规 · 可回收设计原则</div>
     </a>
-    <a class="chapter-card" href="ch10.html" style="--c:var(--yellow)">
+    <a class="chapter-card" href="ch10.html" style="--c:var(--gold)">
       <span class="cc-arrow">↗</span>
       <div class="cc-num">CH.10</div>
       <div class="cc-title">综合选材决策</div>
       <div class="cc-sub">电商重货 · 冷链生鲜案例演练<br>材料规格书撰写 · 课程总结</div>
     </a>
   </div>
+</div>
 </section>
 
 <!-- ══ 材料性能对比表 ══ -->
 <section class="section">
+<div class="section-inner">
   <div class="section-eyebrow">Comparison Matrix</div>
   <div class="section-title">五大材料性能横向对比</div>
   <div class="table-wrap">
@@ -494,6 +596,7 @@ footer{
 
 <!-- ══ 知识闪卡 ══ -->
 <section class="section">
+<div class="section-inner">
   <div class="section-eyebrow">Flash Cards</div>
   <div class="section-title">核心知识闪卡 <span style="font-size:16px;color:var(--muted);font-family:'DM Mono',monospace;font-weight:400">— 点击翻转</span></div>
   <div class="flashcard-grid">
@@ -545,6 +648,7 @@ footer{
 
 <!-- ══ FAQ ══ -->
 <section class="section">
+<div class="section-inner">
   <div class="section-eyebrow">Concept Clarifier</div>
   <div class="section-title">易混淆概念辨析</div>
   <div class="faq-list">
@@ -585,6 +689,7 @@ footer{
     </div>
 
   </div>
+</div>
 </section>
 
 <footer>
@@ -615,16 +720,16 @@ footer{
 
 <script>
 const CHAPTERS = [
-  { num:'CH.01', title:'绪论 · 选材\n五维度决策框架',      sub:'保护性 · 适用性 · 经济性 · 可持续性 · 法规符合性\n五维度框架 · 材料分类 · 横向对比速查',        tags:['总纲','选材框架','材料分类'],           href:'ch01.html', bg:'#FFFDE7', accent:'#FFD700' },
-  { num:'CH.02', title:'纸与\n瓦楞纸板',                   sub:'楞型 A/B/C/E/F · McKee 抗压公式\nFEFCO 箱型 · ECT · BCT · 选材向导',           tags:['纸类材料','瓦楞结构','McKee公式'],       href:'ch02.html', bg:'#E0F7FA', accent:'#4DD0E1' },
-  { num:'CH.03', title:'塑料\n包装材料',                   sub:'PE · PP · PET · EVOH · PA · PLA\nOTR / WVTR 阻隔性能 · 共挤薄膜工艺',           tags:['热塑性塑料','阻隔性','薄膜成型'],       href:'ch03.html', bg:'#E1F5FE', accent:'#81D4FA' },
-  { num:'CH.04', title:'金属包装\n马口铁与铝',              sub:'镀锡钢板 · DI 拉伸减薄制罐\nBPA-free 内涂层 · 无限回收优势',                 tags:['马口铁','铝包装','金属成型'],           href:'ch04.html', bg:'#FFF3E0', accent:'#FF8A65' },
-  { num:'CH.05', title:'玻璃\n与陶瓷',                     sub:'硅酸盐玻璃结构 · 吹-吹法成型\n热冲击性能 · 水解等级 · 化学惰性',               tags:['玻璃容器','化学稳定性','成型工艺'],     href:'ch05.html', bg:'#E8F5E9', accent:'#81D4FA' },
-  { num:'CH.06', title:'复合\n软包装',                     sub:'功能层分工 · 干法/共挤复合工艺\nBOPET/Al/PE 典型结构 · 热封窗口',               tags:['软包装','多层复合','功能层'],           href:'ch06.html', bg:'#FFFDE7', accent:'#FFD700' },
-  { num:'CH.07', title:'印刷\n工艺',                       sub:'柔版 · 凹版 · 胶版 · 数码印刷对比\n食品级油墨 · UV 上光 · 色彩管理',             tags:['印刷工艺','表面处理','色彩管理'],       href:'ch07.html', bg:'#FFF3E0', accent:'#FF8A65' },
-  { num:'CH.08', title:'性能测试\n与标准',                  sub:'ECT · BCT · OTR · WVTR 测试方法\nTAPPI · ASTM D4169 · ISTA 运输模拟',           tags:['性能测试','标准体系','运输模拟'],       href:'ch08.html', bg:'#E0F7FA', accent:'#4DD0E1' },
-  { num:'CH.09', title:'绿色\n包装材料',                   sub:'PLA · PBAT · 纤维素模塑 · 全PE软包\nEPR 法规 · 可回收设计 · 碳足迹',              tags:['生物降解','EPR','可持续'],             href:'ch09.html', bg:'#E8F5E9', accent:'#81D4FA' },
-  { num:'CH.10', title:'综合\n选材决策',                   sub:'电商重货 · 冷链生鲜 · 案例演练\n材料规格书撰写 · 五维度框架综合应用',            tags:['选材决策','案例分析','综合应用'],       href:'ch10.html', bg:'#FFFDE7', accent:'#FFD700' },
+  { num:'CH.01', img:'https://ideur88.github.io/CH01.png', title:'绪论 · 选材\n五维度决策框架',      sub:'保护性 · 适用性 · 经济性 · 可持续性 · 法规符合性\n五维度框架 · 材料分类 · 横向对比速查',        tags:['总纲','选材框架','材料分类'],           href:'ch01.html', bg: 'https://ideur88.github.io/CH01.png', accent:'#d1a96b' },
+  { num:'CH.02', img:'https://ideur88.github.io/CH02.png', title:'纸与\n瓦楞纸板',                   sub:'楞型 A/B/C/E/F · McKee 抗压公式\nFEFCO 箱型 · ECT · BCT · 选材向导',           tags:['纸类材料','瓦楞结构','McKee公式'],       href:'ch02.html', bg: 'https://ideur88.github.io/CH02.png', accent:'#72979f' },
+  { num:'CH.03', img:'https://ideur88.github.io/CH03.png', title:'塑料\n包装材料',                   sub:'PE · PP · PET · EVOH · PA · PLA\nOTR / WVTR 阻隔性能 · 共挤薄膜工艺',           tags:['热塑性塑料','阻隔性','薄膜成型'],       href:'ch03.html', bg: 'https://ideur88.github.io/CH03.png', accent:'#72979f' },
+  { num:'CH.04', img:'https://ideur88.github.io/CH04.png', title:'金属包装\n马口铁与铝',              sub:'镀锡钢板 · DI 拉伸减薄制罐\nBPA-free 内涂层 · 无限回收优势',                 tags:['马口铁','铝包装','金属成型'],           href:'ch04.html', bg: 'https://ideur88.github.io/CH04.png', accent:'#d1a96b' },
+  { num:'CH.05', img:'https://ideur88.github.io/CH05.png', title:'玻璃\n与陶瓷',                     sub:'硅酸盐玻璃结构 · 吹-吹法成型\n热冲击性能 · 水解等级 · 化学惰性',               tags:['玻璃容器','化学稳定性','成型工艺'],     href:'ch05.html', bg: 'https://ideur88.github.io/CH05.png', accent:'#72979f' },
+  { num:'CH.06', img:'https://ideur88.github.io/CH06.png', title:'复合\n软包装',                     sub:'功能层分工 · 干法/共挤复合工艺\nBOPET/Al/PE 典型结构 · 热封窗口',               tags:['软包装','多层复合','功能层'],           href:'ch06.html', bg: 'https://ideur88.github.io/CH06.png', accent:'#d1a96b' },
+  { num:'CH.07', img:'https://ideur88.github.io/CH07.png', title:'印刷\n工艺',                       sub:'柔版 · 凹版 · 胶版 · 数码印刷对比\n食品级油墨 · UV 上光 · 色彩管理',             tags:['印刷工艺','表面处理','色彩管理'],       href:'ch07.html', bg: 'https://ideur88.github.io/CH07.png', accent:'#d1a96b' },
+  { num:'CH.08', img:'https://ideur88.github.io/CH08.png', title:'性能测试\n与标准',                  sub:'ECT · BCT · OTR · WVTR 测试方法\nTAPPI · ASTM D4169 · ISTA 运输模拟',           tags:['性能测试','标准体系','运输模拟'],       href:'ch08.html', bg: 'https://ideur88.github.io/CH08.png', accent:'#72979f' },
+  { num:'CH.09', img:'https://ideur88.github.io/CH09.png', title:'绿色\n包装材料',                   sub:'PLA · PBAT · 纤维素模塑 · 全PE软包\nEPR 法规 · 可回收设计 · 碳足迹',              tags:['生物降解','EPR','可持续'],             href:'ch09.html', bg: 'https://ideur88.github.io/CH09.png', accent:'#72979f' },
+  { num:'CH.10', img:'https://ideur88.github.io/CH10.png', title:'综合\n选材决策',                   sub:'电商重货 · 冷链生鲜 · 案例演练\n材料规格书撰写 · 五维度框架综合应用',            tags:['选材决策','案例分析','综合应用'],       href:'ch10.html', bg: 'https://ideur88.github.io/CH10.png', accent:'#d1a96b' },
 ];
 
 const N=CHAPTERS.length, AUTO_MS=4500;
@@ -645,7 +750,8 @@ function buildSlides(){
     const titleHtml=d.title.replace(/\n/g,'<br>');
     const subHtml=d.sub.replace(/\n/g,'<br>');
     slide.innerHTML=`
-      <div class="slide-bg" style="background:${d.bg}"></div>
+      <div class="slide-bg" style="${d.bg.startsWith('http')?'background-image:url('+d.bg+');background-size:cover;background-position:center':'background:'+d.bg}"></div>
+      ${d.bg.startsWith('http')?'<div class="slide-bg-overlay"></div>':''}
       <div class="slide-geo">${geoLines}</div>
       <div class="slide-topband"></div>
       <div class="slide-deco">${d.num.replace('CH.','').padStart(2,'0')}</div>
@@ -741,6 +847,64 @@ window.addEventListener('resize',()=>{clearTimeout(rsTimer);rsTimer=setTimeout((
 function init(){buildSlides();buildDots();setPos(trackIdx,false);refreshUI();resumeAuto();}
 init();
 document.fonts.ready.then(()=>setPos(trackIdx,false));
+
+/* ══ 档案馆首页预览：从 GitHub 读取最新图片，通过 Worker 代理显示 ══ */
+const IMG_PROXY = 'https://img-proxy.ideallutteur.workers.dev';
+
+(async function loadArchivePreview() {
+  const API = 'https://api.github.com/repos/ideur88/ideur88.github.io/contents/archive.json';
+  const gallery = document.getElementById('archiveGallery');
+  if (!gallery) return;
+
+  try {
+    const res  = await fetch(API + '?t=' + Date.now());
+    if (!res.ok) return;
+    const data = await res.json();
+    const raw = JSON.parse(atob(data.content.replace(/\n/g, '')));
+
+    // 兼容新格式 {albums,items} 和旧格式 []
+    const items = Array.isArray(raw) ? raw : (raw.items || []);
+    if (items.length === 0) return;
+
+    // 最新7张，按时间倒序
+    const sorted  = [...items].sort((a,b) => new Date(b.date||0) - new Date(a.date||0));
+    const preview = sorted.slice(0, 7);
+
+    gallery.innerHTML = '';
+
+    preview.forEach(item => {
+      const card = document.createElement('a');
+      card.className = 'ag-card';
+      card.href = 'archive.html';
+      const proxyUrl = IMG_PROXY + '?url=' + encodeURIComponent(item.url||'');
+      const tagsHtml = (item.tags||[]).slice(0,2).map(t =>
+        `<span class="ag-card-tag">${t}</span>`
+      ).join('');
+      card.innerHTML = `
+        <img src="${proxyUrl}"
+             alt="${(item.note||'').replace(/"/g,'&quot;')}"
+             loading="lazy"
+             onerror="this.src='${(item.url||'').replace(/"/g,'&quot;')}';this.onerror=function(){this.parentElement.style.background='var(--bg3)';this.style.display='none'}">
+        <div class="ag-card-overlay">
+          ${item.note ? `<div class="ag-card-note">${item.note.slice(0,30)}</div>` : ''}
+          ${tagsHtml ? `<div class="ag-card-tags">${tagsHtml}</div>` : ''}
+        </div>`;
+      gallery.appendChild(card);
+    });
+
+    // "查看更多"卡片
+    const more = document.createElement('a');
+    more.className = 'ag-more';
+    more.href = 'archive.html';
+    more.innerHTML = `
+      <div class="ag-more-num">${items.length}</div>
+      <div class="ag-more-label">查看全部 →</div>`;
+    gallery.appendChild(more);
+
+  } catch(e) {
+    console.log('Archive preview:', e.message);
+  }
+})();
 </script>
 </body>
 </html>
