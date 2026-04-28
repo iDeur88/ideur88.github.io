@@ -1,26 +1,43 @@
-[
-  {
-    "id": "mohzwky242c7",
-    "url": "https://i.pinimg.com/1200x/e6/f8/06/e6f806da80201cb206b9f1e8b7b16d00.jpg",
-    "source": "https://www.pinterest.com/pin/498351515033385092/",
-    "note": "收藏到 Packaging",
-    "tags": [],
-    "date": "2026-04-28T02:16:57.866Z"
-  },
-  {
-    "id": "mohy0gxcet95",
-    "url": "https://i.pinimg.com/1200x/08/a8/58/08a858215314f027d8c8a2f108682f09.jpg",
-    "source": "https://www.pinterest.com/pin/714876140871565879/",
-    "note": "æ¶èå° Health Pack",
-    "tags": [],
-    "date": "2026-04-28T01:24:00.048Z"
-  },
-  {
-    "id": "mohxubjsim3n",
-    "url": "https://i.pinimg.com/1200x/3b/1b/fa/3b1bfa9ec5f2b6b27b1876113153f330.jpg",
-    "source": "https://www.pinterest.com/pin/412994228349608353/",
-    "note": "Cedro Skincare Delivers Minimalism With a Quiet Pop of Color",
-    "tags": [],
-    "date": "2026-04-28T01:19:13.144Z"
-  }
-]
+{
+  "albums": [
+    {
+      "id": "default",
+      "name": "全部收藏",
+      "order": 0
+    },
+    {
+      "id": "alb_moilytu3",
+      "name": "纸盒",
+      "order": 1
+    }
+  ],
+  "items": [
+    {
+      "id": "mohzwky242c7",
+      "url": "https://i.pinimg.com/1200x/e6/f8/06/e6f806da80201cb206b9f1e8b7b16d00.jpg",
+      "source": "https://www.pinterest.com/pin/498351515033385092/",
+      "note": "æ¶èå° Packaging",
+      "tags": [],
+      "date": "2026-04-28T02:16:57.866Z",
+      "albumId": "default"
+    },
+    {
+      "id": "mohy0gxcet95",
+      "url": "https://i.pinimg.com/1200x/08/a8/58/08a858215314f027d8c8a2f108682f09.jpg",
+      "source": "https://www.pinterest.com/pin/714876140871565879/",
+      "note": "Ã¦ÂÂ¶Ã¨ÂÂÃ¥ÂÂ° Health Pack",
+      "tags": [],
+      "date": "2026-04-28T01:24:00.048Z",
+      "albumId": "default"
+    },
+    {
+      "id": "mohxubjsim3n",
+      "url": "https://i.pinimg.com/1200x/3b/1b/fa/3b1bfa9ec5f2b6b27b1876113153f330.jpg",
+      "source": "https://www.pinterest.com/pin/412994228349608353/",
+      "note": "Cedro Skincare Delivers Minimalism With a Quiet Pop of Color",
+      "tags": [],
+      "date": "2026-04-28T01:19:13.144Z",
+      "albumId": "default"
+    }
+  ]
+}
