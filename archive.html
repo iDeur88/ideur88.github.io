@@ -388,10 +388,8 @@ async function load(){
       if(!db.albums.length) db.albums=[{id:'default',name:'全部收藏',order:0}];
     }
     // 全局清洗所有乱码
-    db.albums.forEach((a, idx) => {
-      const cleaned = cleanText(a.name);
-      a.name = cleaned || ('相册 ' + (idx + 1));
-    });
+    // 注意：不修改 db.albums 的 name，保留原始数据
+    // 乱码过滤在渲染层进行（renderAlbum 里的 displayName）
     db.items.forEach(i => {
       i.note = cleanText(i.note);
       i.tags = (i.tags||[]).map(t => cleanText(t)).filter(Boolean);
@@ -497,7 +495,10 @@ function renderAlbum(filtered){
     sec.className='album-section';
     sec.innerHTML=`
       <div class="album-header">
-        <span class="album-name">${esc(album.name||'未命名相册')}</span>
+        <span class="album-name">${esc((()=>{
+          const c=cleanText(album.name);
+          return c||('相册 '+(db.albums.indexOf(album)+1));
+        })())}</span>
         <span class="album-count">(${total})</span>
         <div class="album-admin-actions">
           <button class="album-btn" onclick="renameAlbum('${esc(album.id)}')">重命名</button>
