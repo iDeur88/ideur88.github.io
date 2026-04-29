@@ -2,21 +2,30 @@
   "albums": [
     {
       "id": "default",
-      "name": "Ã¨Â½Â¯Ã¨ÂÂ",
+      "name": "ÃÂ¨ÃÂ½ÃÂ¯ÃÂ¨ÃÂÃÂ",
       "order": 0
     },
     {
       "id": "alb_mojf8gyv",
-      "name": "Ã§ÂÂ¦Ã¦Â¥ÂÃ§ÂºÂ¸",
+      "name": "ÃÂ§ÃÂÃÂ¦ÃÂ¦ÃÂ¥ÃÂÃÂ§ÃÂºÃÂ¸",
       "order": 1
     }
   ],
   "items": [
     {
       "albumId": "alb_mojf8gyv",
+      "date": "2026-04-29T02:48:29.560Z",
+      "id": "mojggz9482f",
+      "note": "点亮环保：LED灯包装，货架上的自然魅力 - 小红书",
+      "source": "https://www.pinterest.com/pin/882564858229150971/",
+      "tags": [],
+      "url": "https://i.pinimg.com/1200x/02/31/95/023195e5441c3d2192e2958bedc6699e.jpg"
+    },
+    {
+      "albumId": "alb_mojf8gyv",
       "date": "2026-04-29T02:48:03.014Z",
       "id": "mojggerp84a",
-      "note": "经济包装EVO包装上的世界 - 创意包装设计廊",
+      "note": "ç»æµåè£EVOåè£ä¸çä¸ç - åæåè£è®¾è®¡å»",
       "source": "https://www.pinterest.com/pin/312859505340185157/",
       "tags": [],
       "url": "https://i.pinimg.com/1200x/14/87/d6/1487d6dd308fcb2eaa16b4ea06964098.jpg"
