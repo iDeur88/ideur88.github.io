@@ -2,12 +2,12 @@
   "albums": [
     {
       "id": "default",
-      "name": "瓦楞纸",
+      "name": "相册 1",
       "order": 0
     },
     {
       "id": "alb_mojf8gyv",
-      "name": "结构体",
+      "name": "相册 2",
       "order": 1
     }
   ],
@@ -22,7 +22,7 @@
       "url": "https://i.pinimg.com/736x/5c/c0/5d/5cc05d5d0fc62326fe7a6e8c8497fb56.jpg"
     },
     {
-      "albumId": "default",
+      "albumId": "alb_mojf8gyv",
       "date": "2026-04-29T01:15:52.074Z",
       "id": "mojd5v2hz97",
       "note": "",
