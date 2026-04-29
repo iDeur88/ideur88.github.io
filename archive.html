@@ -347,18 +347,14 @@ let adminToken = '';           // Token 仅在本次会话有效
 const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 function cleanText(s){
   if(!s) return '';
-  // 过滤 U+0080-U+00FF：扩展Latin区，是UTF-8被latin-1误读的乱码来源
-  let t = s.replace(/[\u0080-\u00FF]/g, '');
-  // 过滤Unicode替换字符、控制字符、弯引号等误读产物
-  t = t.replace(/[\uFFFD\u2018-\u201F\u2032-\u2036\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '');
-  // 清理多余空格和开头标点
-  t = t.replace(/^[^\w\u4E00-\u9FFF]+/, '').replace(/\s+/g, ' ').trim();
-  // 有效字符（中英文+常用标点）占比检查
-  if(t.length > 2){
-    const valid = (t.match(/[\u4E00-\u9FFF\u3000-\u303F\uFF00-\uFFEF\x20-\x7E]/g)||[]).length;
-    if(valid / t.replace(/\s/g,'').length < 0.3) return '';
-  }
-  return t;
+  // UTF-8 被 Latin-1 误读时产生的字符都在 U+0080-U+00FF 范围内
+  // 正常中英文标题里这个范围的字符极少（< 10%）
+  let latinExt = 0;
+  for(let i=0;i<s.length;i++){ const c=s.charCodeAt(i); if(c>=0x80&&c<=0xFF) latinExt++; }
+  const total = s.replace(/\s/g,'').length;
+  if(total>0 && latinExt/total>0.10) return '';
+  return s.replace(/[\uFFFD\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g,'')
+          .replace(/\s+/g,' ').trim();
 }
 function proxyUrl(url){ return url ? PROXY+'?url='+encodeURIComponent(url) : ''; }
 function imgHtml(url,alt=''){
@@ -392,10 +388,13 @@ async function load(){
       if(!db.albums.length) db.albums=[{id:'default',name:'全部收藏',order:0}];
     }
     // 全局清洗所有乱码
-    db.albums.forEach(a => { a.name = cleanText(a.name) || a.name || '未命名相册'; });
+    db.albums.forEach((a, idx) => {
+      const cleaned = cleanText(a.name);
+      a.name = cleaned || ('相册 ' + (idx + 1));
+    });
     db.items.forEach(i => {
-      i.note = cleanText(i.note) || '';
-      i.tags = (i.tags||[]).map(t => cleanText(t)||t).filter(Boolean);
+      i.note = cleanText(i.note);
+      i.tags = (i.tags||[]).map(t => cleanText(t)).filter(Boolean);
     });
     localStorage.setItem('archive_cache', JSON.stringify(db));
   }catch(e){
@@ -497,7 +496,7 @@ function renderAlbum(filtered){
     sec.className='album-section';
     sec.innerHTML=`
       <div class="album-header">
-        <span class="album-name">${esc(cleanText(album.name)||album.name||'未命名相册')}</span>
+        <span class="album-name">${esc(album.name||'未命名相册')}</span>
         <span class="album-count">(${total})</span>
         <div class="album-admin-actions">
           <button class="album-btn" onclick="renameAlbum('${esc(album.id)}')">重命名</button>
