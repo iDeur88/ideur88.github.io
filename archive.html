@@ -275,6 +275,20 @@ footer a{color:var(--teal);text-decoration:none}
   </div>
 </div>
 
+
+<!-- 通用输入面板（替代 prompt()，避免编码问题） -->
+<div class="panel-overlay" id="inputPanel" onclick="if(event.target===this)closeInputPanel()">
+  <div class="panel-box" onclick="event.stopPropagation()" style="max-width:400px">
+    <div class="panel-title" id="inputPanelTitle">输入</div>
+    <div class="panel-label" id="inputPanelLabel"></div>
+    <input class="panel-input" type="text" id="inputPanelField" placeholder="">
+    <div class="panel-footer">
+      <button class="btn-cancel" onclick="closeInputPanel()">取消</button>
+      <button class="btn-ok" id="inputPanelOk">确定</button>
+    </div>
+  </div>
+</div>
+
 <!-- Token 面板 -->
 <div class="panel-overlay" id="tokenPanel" onclick="if(event.target===this)closePanel('tokenPanel')">
   <div class="panel-box">
@@ -646,6 +660,39 @@ async function submitAdd(){
   else db.items=db.items.filter(i=>i.id!==item.id);
 }
 
+
+/* ── 通用输入面板（替代 prompt，避免编码问题）── */
+let _inputPanelResolve = null;
+
+function showInputPanel(title, label, defaultValue=''){
+  return new Promise(resolve => {
+    _inputPanelResolve = resolve;
+    document.getElementById('inputPanelTitle').textContent = title;
+    document.getElementById('inputPanelLabel').textContent = label;
+    const field = document.getElementById('inputPanelField');
+    field.value = defaultValue;
+    document.getElementById('inputPanel').classList.add('open');
+    setTimeout(() => { field.focus(); field.select(); }, 100);
+    
+    // 确定按钮
+    const okBtn = document.getElementById('inputPanelOk');
+    okBtn.onclick = () => {
+      const val = field.value.trim();
+      closeInputPanel();
+      if(_inputPanelResolve){ _inputPanelResolve(val); _inputPanelResolve=null; }
+    };
+    // 回车确认
+    field.onkeydown = (e) => {
+      if(e.key==='Enter') okBtn.click();
+      if(e.key==='Escape'){ closeInputPanel(); if(_inputPanelResolve){_inputPanelResolve(null);_inputPanelResolve=null;} }
+    };
+  });
+}
+
+function closeInputPanel(){
+  document.getElementById('inputPanel').classList.remove('open');
+}
+
 /* ── 移动图片到其他相册 ── */
 async function moveItem(e, id){
   e.stopPropagation();
@@ -656,8 +703,9 @@ async function moveItem(e, id){
   // 构建相册选择 prompt
   const albumList = db.albums.map((a,i)=>`${i+1}. ${a.name}`).join('\n');
   const currentAlbum = db.albums.find(a=>a.id===item.albumId);
-  const input = prompt(
-    `移动到哪个相册？（当前：${currentAlbum?.name||'未分类'}）\n\n${albumList}\n\n输入序号：`
+  const input = await showInputPanel(
+    '移动到相册',
+    `当前：${currentAlbum?.name||'未分类'}\n\n${albumList}\n\n输入相册序号：`
   );
   if(!input) return;
   const idx = parseInt(input.trim()) - 1;
@@ -688,8 +736,8 @@ async function editTags(e,id){
   const item=db.items.find(i=>i.id===id);
   if(!item)return;
   const cur=(item.tags||[]).join(', ');
-  const input=prompt(`编辑标签（逗号分隔）：`,cur);
-  if(input===null)return;
+  const input = await showInputPanel('编辑标签', '多个标签用逗号分隔：', cur);
+  if(input===null||input===undefined)return;
   item.tags=input.split(',').map(t=>t.trim()).filter(Boolean);
   const ok=await save();
   if(ok){render();toast('标签已更新','ok');}
@@ -699,9 +747,9 @@ async function editTags(e,id){
 async function renameAlbum(id){
   const album=db.albums.find(a=>a.id===id);
   if(!album)return;
-  const name=prompt('新相册名：',album.name);
-  if(!name||name.trim()===album.name)return;
-  const old=album.name; album.name=name.trim();
+  const name = await showInputPanel('重命名相册', '输入新的相册名称：', album.name);
+  if(!name||name===album.name)return;
+  const old=album.name; album.name=name;
   const ok=await save();
   if(ok){render();toast('已重命名','ok');}
   else{album.name=old;toast('失败','err');}
