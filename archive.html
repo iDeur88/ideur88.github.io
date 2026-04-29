@@ -391,6 +391,12 @@ async function load(){
       db = { albums:raw.albums||[], items:raw.items||[] };
       if(!db.albums.length) db.albums=[{id:'default',name:'全部收藏',order:0}];
     }
+    // 全局清洗所有乱码
+    db.albums.forEach(a => { a.name = cleanText(a.name) || a.name || '未命名相册'; });
+    db.items.forEach(i => {
+      i.note = cleanText(i.note) || '';
+      i.tags = (i.tags||[]).map(t => cleanText(t)||t).filter(Boolean);
+    });
     localStorage.setItem('archive_cache', JSON.stringify(db));
   }catch(e){
     const c=localStorage.getItem('archive_cache');
@@ -449,7 +455,7 @@ function renderWaterfall(items){
 
 function makeMCard(item){
   const note=cleanText(item.note);
-  const tags=(item.tags||[]).map(t=>`<span class="mctag">${esc(t)}</span>`).join('');
+  const tags=(item.tags||[]).map(t=>cleanText(t)||t).filter(Boolean).map(t=>`<span class="mctag">${esc(t)}</span>`).join('');
   const date=item.date?new Date(item.date).toLocaleDateString('zh-CN'):'';
   let srcHost=''; try{srcHost=new URL(item.source||'').hostname;}catch{}
   const displayNote = note || srcHost; // 乱码清空后用 hostname 兜底
@@ -491,7 +497,7 @@ function renderAlbum(filtered){
     sec.className='album-section';
     sec.innerHTML=`
       <div class="album-header">
-        <span class="album-name">${esc(album.name)}</span>
+        <span class="album-name">${esc(cleanText(album.name)||album.name||'未命名相册')}</span>
         <span class="album-count">(${total})</span>
         <div class="album-admin-actions">
           <button class="album-btn" onclick="renameAlbum('${esc(album.id)}')">重命名</button>
