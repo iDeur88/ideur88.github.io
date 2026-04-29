@@ -467,6 +467,7 @@ function makeMCard(item){
       <div class="mcard-meta">
         <span class="mcard-date">${date}</span>
         <div class="mcard-ops">
+          <button class="op-btn" onclick="moveItem(event,'${esc(item.id||'')}')">↗ 移动</button>
           <button class="op-btn" onclick="editTags(event,'${esc(item.id||'')}')">🏷</button>
           <button class="op-btn del" onclick="deleteItem(event,'${esc(item.id||'')}')">✕</button>
         </div>
@@ -538,6 +539,7 @@ function makeAgCard(item){
     ${agImgHtml(item.url,note)}
     <div class="agcard-overlay">${note?`<div class="agcard-note">${esc(note)}</div>`:''}</div>
     <div class="agcard-ops">
+      <button class="ag-op" title="移动相册" onclick="event.stopPropagation();moveItem(event,'${esc(item.id||'')}')">↗</button>
       <button class="ag-op" title="编辑标签" onclick="event.stopPropagation();editTags(event,'${esc(item.id||'')}')">🏷</button>
       <button class="ag-op del" title="删除" onclick="event.stopPropagation();deleteItem(event,'${esc(item.id||'')}')">✕</button>
     </div>`;
@@ -641,6 +643,31 @@ async function submitAdd(){
   const ok=await save();
   if(ok){render();closePanel('addPanel');toast('已添加','ok');}
   else db.items=db.items.filter(i=>i.id!==item.id);
+}
+
+/* ── 移动图片到其他相册 ── */
+async function moveItem(e, id){
+  e.stopPropagation();
+  if(!isAdmin){ toast('请先激活管理员模式','err'); return; }
+  const item = db.items.find(i=>i.id===id);
+  if(!item) return;
+
+  // 构建相册选择 prompt
+  const albumList = db.albums.map((a,i)=>`${i+1}. ${a.name}`).join('\n');
+  const currentAlbum = db.albums.find(a=>a.id===item.albumId);
+  const input = prompt(
+    `移动到哪个相册？（当前：${currentAlbum?.name||'未分类'}）\n\n${albumList}\n\n输入序号：`
+  );
+  if(!input) return;
+  const idx = parseInt(input.trim()) - 1;
+  if(isNaN(idx) || idx<0 || idx>=db.albums.length){
+    toast('无效的序号','err'); return;
+  }
+  const targetAlbum = db.albums[idx];
+  if(targetAlbum.id === item.albumId){ toast('已在该相册',''); return; }
+  item.albumId = targetAlbum.id;
+  const ok = await save();
+  if(ok){ render(); toast(`已移动到「${targetAlbum.name}」`,'ok'); }
 }
 
 /* ── 删除图片 ── */
