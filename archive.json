@@ -2,12 +2,12 @@
   "albums": [
     {
       "id": "default",
-      "name": "相册 1",
+      "name": "软膜",
       "order": 0
     },
     {
       "id": "alb_mojf8gyv",
-      "name": "相册 2",
+      "name": "ç¸å 2",
       "order": 1
     }
   ],
@@ -16,7 +16,7 @@
       "albumId": "alb_mojf8gyv",
       "date": "2026-04-29T02:48:29.560Z",
       "id": "mojggz9482f",
-      "note": "点亮环保：LED灯包装，货架上的自然魅力",
+      "note": "",
       "source": "https://www.pinterest.com/pin/882564858229150971/",
       "tags": [],
       "url": "https://i.pinimg.com/1200x/02/31/95/023195e5441c3d2192e2958bedc6699e.jpg"
