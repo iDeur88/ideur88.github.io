@@ -2,7 +2,7 @@
   "albums": [
     {
       "id": "default",
-      "name": "全部收藏",
+      "name": "å¨é¨æ¶è",
       "order": 0
     }
   ],
@@ -11,19 +11,10 @@
       "albumId": "default",
       "date": "2026-04-29T01:15:52.074Z",
       "id": "mojd5v2hz97",
-      "note": "收藏到 패키지",
+      "note": "æ¶èå° í¨í¤ì§",
       "source": "https://www.pinterest.com/pin/573294227566519601/",
       "tags": [],
       "url": "https://i.pinimg.com/1200x/d8/68/6c/d8686cd4f4c8feb6531edcbf85256d3c.jpg"
-    },
-    {
-      "id": "mojcdcqr05n4",
-      "url": "https://i.pinimg.com/736x/ad/d0/e4/add0e4be9f4985fc24caf6778080f1ef.jpg",
-      "source": "https://www.pinterest.com/pin/613263674300781064/",
-      "note": "ÐÐÐÐ ÐÐ¤ÐÐ¢ÐÐ¡ÐÐ¡Ð¡ÐÐ | ÐÐÐÐ ÐÐ¡ÐÐ¢Ð | ÐÐÐÐÐÐ",
-      "tags": [],
-      "date": "2026-04-29T00:53:41.956Z",
-      "albumId": "default"
     }
   ]
 }
